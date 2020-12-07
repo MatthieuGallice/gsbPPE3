@@ -166,8 +166,10 @@
             this.Controls.Add(this.buttonModifierMedecin);
             this.Controls.Add(this.dgwDernierRapport);
             this.Controls.Add(this.dgwMedecin);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Medecin";
             this.Text = "Medecins";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dgwMedecin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwDernierRapport)).EndInit();
             this.ResumeLayout(false);

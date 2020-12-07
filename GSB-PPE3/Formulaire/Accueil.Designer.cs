@@ -60,8 +60,10 @@
             this.ClientSize = new System.Drawing.Size(1369, 799);
             this.Controls.Add(this.Logo);
             this.Controls.Add(this.buttonQuitter);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Accueil";
             this.Text = "Accueil";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).EndInit();
             this.ResumeLayout(false);
 

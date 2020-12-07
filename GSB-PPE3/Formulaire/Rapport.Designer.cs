@@ -208,8 +208,10 @@
             this.Controls.Add(this.buttonSupprimerRapport);
             this.Controls.Add(this.buttonModifierRapport);
             this.Controls.Add(this.dgwRapport);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Rapport";
             this.Text = "Rappors";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dgwRapport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwOffre)).EndInit();
             this.ResumeLayout(false);

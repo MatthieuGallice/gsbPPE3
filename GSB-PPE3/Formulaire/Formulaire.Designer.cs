@@ -122,8 +122,8 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.Menu;
             this.Name = "Formulaire";
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "Accueil";
+            this.Shown += new System.EventHandler(this.accueilMenuStrip_Click);
             this.Menu.ResumeLayout(false);
             this.Menu.PerformLayout();
             this.ResumeLayout(false);

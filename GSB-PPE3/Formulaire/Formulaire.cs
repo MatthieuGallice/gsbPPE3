@@ -16,12 +16,13 @@ namespace Formulaire
         {
             InitializeComponent();
         }
-
+        
         // affichage accueil 
         private void accueilMenuStrip_Click(object sender, EventArgs e)
         {
             Accueil accueilForm = new Accueil();
             accueilForm.MdiParent = this;
+            fermeForme();
             accueilForm.Show();
         }
 
@@ -30,42 +31,62 @@ namespace Formulaire
         {
             Rapport rapportForm = new Rapport();
             rapportForm.MdiParent = this;
+            fermeForme();
             rapportForm.Show();
         }
 
+        // affichage visiteurs
         private void visiteurMenuStrip_Click(object sender, EventArgs e)
         {
             Visiteur visiteurForm = new Visiteur();
             visiteurForm.MdiParent = this;
+            fermeForme();
             visiteurForm.Show();
         }
 
+        // affichage medecin
         private void medecinMenuStrip_Click(object sender, EventArgs e)
         {
             Medecin medecinForm = new Medecin();
             medecinForm.MdiParent = this;
+            fermeForme();
             medecinForm.Show();
         }
 
+        // affichage gérer les médicaments
         private void gérerMédicamentMenuStrip_Click(object sender, EventArgs e)
         {
             Gerer_Medicament gerer_medecinForm = new Gerer_Medicament();
             gerer_medecinForm.MdiParent = this;
+            fermeForme();
             gerer_medecinForm.Show();
         }
 
+        // affichage liste des médicament
         private void listeMédicamentMenuStrip_Click(object sender, EventArgs e)
         {
             Liste_Medicament liste_medecinForm = new Liste_Medicament();
             liste_medecinForm.MdiParent = this;
+            fermeForme();
             liste_medecinForm.Show();
         }
 
+        // affichage de à propos
         private void aProposMenuStrip_Click(object sender, EventArgs e)
         {
             A_Propos AProposForm = new A_Propos();
             AProposForm.MdiParent = this;
+            fermeForme();
             AProposForm.Show();
+        }
+
+        // méthode qui récupére la collection de formulaire et qui regarde si au moins un et ouvert et les ferme
+        public void fermeForme()
+        {
+            if (ActiveMdiChild != null)
+            {
+                ActiveMdiChild.Close();
+            }
         }
     }
 }

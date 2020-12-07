@@ -46,8 +46,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1365, 790);
             this.Controls.Add(this.dgwListeMedicament);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Liste_Medicament";
             this.Text = "Liste_Medicament";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dgwListeMedicament)).EndInit();
             this.ResumeLayout(false);
 

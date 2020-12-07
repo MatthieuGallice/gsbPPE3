@@ -136,8 +136,10 @@
             this.Controls.Add(this.buttonSupprimerMedicament);
             this.Controls.Add(this.buttonModifierMedicament);
             this.Controls.Add(this.dgwGererMedicament);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Gerer_Medicament";
             this.Text = "Gerer_Medicament";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dgwGererMedicament)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
