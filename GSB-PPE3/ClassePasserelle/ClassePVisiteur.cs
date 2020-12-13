@@ -39,9 +39,19 @@ namespace ClassePasserelle
             drr.Close();
             connexion.Close();
         }
-        public static void SupprimerVisiteur()
+        public static void SupprimerVisiteur(string lid)
         {
+            SqlConnection connexion = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
 
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            cmd.CommandText = "DELETE FROM `visiteur` WHERE `visiteur`.`idVis` = '"+ lid+"'";
+            SqlDataReader drr = cmd.ExecuteReader();
+            drr.Close();
+            connexion.Close();
         }
         public static ClasseVisiteur chargerLesVisiteurs()
         {
