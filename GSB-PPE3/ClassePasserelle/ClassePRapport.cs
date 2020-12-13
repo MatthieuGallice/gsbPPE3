@@ -70,7 +70,7 @@ namespace ClassePasserelle
             ClasseMedecin leMedecin;
             List<ClasseEchantillonOffert> lesEchantillonsOfferts;
 
-        SqlConnection connexion = new SqlConnection();
+            SqlConnection connexion = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
@@ -82,21 +82,19 @@ namespace ClassePasserelle
 
             SqlDataReader drr = cmd.ExecuteReader();
 
-            if (drr.Read())
+            while (drr.Read())
             {
                 unId = drr.GetInt32(0);
-                uneDate = drr.GetDateTime();
+                uneDate = drr.GetDateTime(3);
+                unMotif = drr.GetString(4);
+                unBilan = drr.GetString(5);
 
-                lesRapport.Add(new ClasseRapport() { });
+                lesRapport.Add(new ClasseRapport(unId, uneDate, unMotif, unBilan, leVisiteur, leMedecin, lesEchantillonsOfferts));
             }
+            drr.Close();
+            connexion.Close();
+
             return lesRapport;
         }
-
-        private void remplirDGW()
-        {
-
-        }
-
-
     }
 }
