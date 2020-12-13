@@ -91,7 +91,6 @@
     <Compile Include="ClassePFamille.cs" />
     <Compile Include="ClassePMedecin.cs" />
     <Compile Include="ClassePMedicament.cs" />
-    <Compile Include="ClassePPersonne.cs" />
     <Compile Include="ClassePRapport.cs" />
     <Compile Include="ClassePSpecialite.cs" />
     <Compile Include="ClassePVisiteur.cs" />

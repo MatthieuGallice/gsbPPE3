@@ -8,12 +8,13 @@ namespace ClasseMétiers
 {
    public class ClasseMedicament 
    {
-        #region attribut
+        #region propriété privées 
 
         private string id;
         private string nomCommercial;
+        private string composition;
         private string effets;
-        private string contreindictions;
+        private string contreindications;
         private ClasseFamille famille;
         #endregion
 
@@ -28,20 +29,22 @@ namespace ClasseMétiers
 
         #region Constructeur
 
-        public ClasseMedicament(string unid, string unnomcomposition, string deseffets, string unecontreindictions)
+        public ClasseMedicament(string unid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications)
         {
             id = unid;
             nomCommercial = unnomcomposition;
+            composition = unecomposition;
             effets = deseffets;
-            contreindictions = unecontreindictions;
+            contreindications = unecontreindications;
         }
 
-        public ClasseMedicament(string unid, string unnomcomposition, string deseffets, string unecontreindictions , ClasseFamille lafamille)
+        public ClasseMedicament(string unid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications , ClasseFamille lafamille)
         {
             id = unid;
             nomCommercial = unnomcomposition;
+            composition = unecomposition;
             effets = deseffets;
-            contreindictions = unecontreindictions;
+            contreindications = unecontreindications;
             famille = lafamille;
 
             
