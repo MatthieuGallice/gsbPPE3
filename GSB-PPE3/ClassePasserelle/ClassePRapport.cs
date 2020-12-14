@@ -11,9 +11,11 @@ namespace ClassePasserelle
 {
     public class ClassePRapport
     {
+        #region UPDATE
         // procédure qui modifie un rapport 
         public static void modifRapport(int idRap, DateTime dateRap, string motifRap, string bilanRap, int idVisiteurRap, int idMedecinRAp)
         {
+            //Connexion BDD
             SqlConnection connexion = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
@@ -21,15 +23,20 @@ namespace ClassePasserelle
             connexion.Open();
 
             cmd = connexion.CreateCommand();
+            //REQUETE SQL
             cmd.CommandText = "UPDATE rapport SET dateRap = '"+ dateRap + "', motifRap = '" + motifRap + "', bilanRap = '" + bilanRap + "', idVisiteurRap = '" + idVisiteurRap + "', idMedecinRap = '" + idMedecinRAp + "' WHERE idRap = '" + idRap + "' ";
+            //EXECUTION REQUETE
             SqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
             connexion.Close();
         }
+        #endregion
 
+        #region DELETE
         // procédure qui supprime un rapport grace a l'id 
         public static void supprimerRapport(int idRap)
         {
+            //CONNEXION BDD
             SqlConnection connexion = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
@@ -37,15 +44,20 @@ namespace ClassePasserelle
             connexion.Open();
 
             cmd = connexion.CreateCommand();
+            //REQUETE SQL
             cmd.CommandText = "DELETE FROM 'rapport' WHERE idRap = '" + idRap + "' ";
+            //EXECUTION REQUETE
             SqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
             connexion.Close();
         }
+        #endregion
 
+        #region INSERT
         // procédure qui ajoute un rapport 
         public static void ajoutRapport(int idRap, DateTime dateRap, string motifRap, string bilanRap, int idVisiteurRap, int idMedecinRAp)
         {
+            //CONNEXION BDD
             SqlConnection connexion = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
@@ -53,23 +65,28 @@ namespace ClassePasserelle
             connexion.Open();
 
             cmd = connexion.CreateCommand();
+            //REQUETE SQL
             cmd.CommandText = "DELETE FROM 'rapport' WHERE idRap = '" + idRap + "' ";
+            //EXECUTION REQUETE
             SqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
             connexion.Close();
         }
-
-        public static ClasseRapport ChargerLesRapport()
+        #endregion
+        
+        #region chargerLesRapports
+        public static List<ClasseRapport> chargerLesRapports()
         {
-            List<ClasseRapport> lesRapport = new List<ClasseRapport>();
-            int unId;
-            DateTime uneDate;
-            string unMotif;
-            string unBilan;
-            ClasseVisiteur leVisiteur;
-            ClasseMedecin leMedecin;
-            List<ClasseEchantillonOffert> lesEchantillonsOfferts;
+            //Variables
+            List<ClasseRapport> LesRapports = new List<ClasseRapport>();
+            int idRapport;
+            DateTime dateRap;
+            string motifRap;
+            string bilanRap;
+            string idVisiteurRap;
+            string idMedecinRap;
 
+            //CONNEXION BDD
             SqlConnection connexion = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
@@ -77,24 +94,42 @@ namespace ClassePasserelle
             connexion.Open();
 
             cmd = connexion.CreateCommand();
-
-            cmd.CommandText = "SELECT idRap, nomVis, prenomVis, dateRap, motifRap, bilanRap, nomMed, prenomMed FROM `rapport` inner join visiteur on idVisiteurRap = idVisiteurRap inner join medecin on idMedecinRap = idMedecinRap WHERE idVis = idVisiteurRap AND idMed = idMedecinRap";
-
+            //REQUETE SQL
+            cmd.CommandText = "SELECT idRap, dateRap, motifRap, bilanRap, idVisiteurRap, idMedecinRap" +
+                              "FROM rapport ";
+            //EXECUTION REQUETE SQL
             SqlDataReader drr = cmd.ExecuteReader();
 
+            //LECTURE REQUETE 
             while (drr.Read())
             {
-                unId = drr.GetInt32(0);
-                uneDate = drr.GetDateTime(3);
-                unMotif = drr.GetString(4);
-                unBilan = drr.GetString(5);
+                //ON RECUPERE LES VARIABLES
+                idRapport = drr.GetInt16(0);
+                dateRap = drr.GetDateTime(1);
+                motifRap = drr.GetString(2);
+                bilanRap = drr.GetString(3);
+                idVisiteurRap = drr.GetString(4);
+                idMedecinRap = drr.GetString(5);
 
-                lesRapport.Add(new ClasseRapport(unId, uneDate, unMotif, unBilan, leVisiteur, leMedecin, lesEchantillonsOfferts));
+                //On récupère un objet visiteur avec la méthode chargerLeVisiteur
+                ClasseVisiteur leVisiteur = ClassePVisiteur.chargerLeVisiteur(idVisiteurRap);
+                //On récupère un objet Medecin avec la méthode chargerLeMedecin
+                ClasseMedecin leMedecin = ClassePMedecin.chargerLeMedecin(idMedecinRap);
+
+                // Instancie un échantillon 
+                List<ClasseEchantillonOffert> lesEchantillonsOfferts = ClassePEchantillonOffert.chargerLesEchantillonOffert();
+
+
+                // Instancie un rapport
+                ClasseRapport unRapport = new ClasseRapport(idRapport, dateRap, motifRap, bilanRap, leVisiteur, leMedecin, lesEchantillonsOfferts);
+                LesRapports.Add(unRapport);
             }
+            //CLOTURE LA CONNEXION
             drr.Close();
             connexion.Close();
 
-            return lesRapport;
+            return LesRapports;
         }
+        #endregion
     }
 }

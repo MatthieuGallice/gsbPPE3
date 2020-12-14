@@ -17,7 +17,9 @@ namespace ClasseMétiers
         #endregion
 
         #region constructeurs
-
+        public ClassePersonne()
+        {
+        }
         public ClassePersonne(string lid, string lenom, string leprenom, string ladresse)
         {
             id = lid;

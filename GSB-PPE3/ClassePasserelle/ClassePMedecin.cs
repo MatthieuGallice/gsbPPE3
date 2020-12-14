@@ -10,6 +10,7 @@ namespace ClassePasserelle
 {
     public class ClassePMedecin
     {
+        #region UPDATE
         public void modifierMedecin(int lidMed ,string lenomMed , string leprenomMed , string ladresseMed , int letelMed , int lidSpecialisteMed , int ledepartementMed)
         {
             //Connexion à la BDD
@@ -26,7 +27,9 @@ namespace ClassePasserelle
             connexion.Close();
 
         }
+        #endregion
 
+        #region INSERT
         public void AjouterMedecin(int lidMed, string lenomMed, string leprenomMed, string ladresseMed, int letelMed, int lidSpecialisteMed, int ledepartementMed)
         {
             //Connexion à la BDD
@@ -44,8 +47,9 @@ namespace ClassePasserelle
             connexion.Close();
 
         }
+        #endregion
 
-
+        #region DELETE
         public void SupprimerMedecin( int lidMed)
         {
             //Connexion à la BDD 
@@ -62,11 +66,68 @@ namespace ClassePasserelle
             drr.Close();
             connexion.Close();
         }
+        #endregion
 
+        #region ChargerLeMedecin
+        public static ClasseMedecin chargerLeMedecin(string lid)
+        {
+            //VARIABLES
+            ClasseMedecin leMedecin = new ClasseMedecin();
+            string nom;
+            string prenom;
+            string tel;
+            string adresse;
+            string idspecialite;
+            int departement;
+            string libSpec;
+            string idMed;
+
+            //CONNEXION BDD
+            SqlConnection connexion = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT nomMed, prenomMed, adresseMed, telMed , idSpec, departementMed, libSpec, idMed  " +
+                              "FROM medecin INNER JOIN specialite ON idSpecialiteMed" +
+                              "WHERE idMed = '"+ lid +"'"; 
+            //EXECUTION REQUETE
+            SqlDataReader drr = cmd.ExecuteReader();
+
+            //LECTURE REQUETE
+            while (drr.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                nom = drr.GetString(0); 
+                prenom = drr.GetString(1);
+                tel = drr.GetString(3);
+                adresse = drr.GetString(2); 
+                departement = drr.GetInt16(5);
+                idspecialite = drr.GetString(4);
+                libSpec = drr.GetString(6); 
+                idMed = drr.GetString(7); 
+
+                //ON INSTANCIE UN OBJET CLASSESPECIALITE
+                ClasseSpecialite LaSpe = new ClasseSpecialite(idspecialite, libSpec); 
+                //ON INSTANCIE UN OBJET CLASSEMEDECIN
+                leMedecin = new ClasseMedecin(idMed, nom, prenom, adresse, tel, departement, LaSpe);
+            }
+
+            drr.Close();
+            connexion.Close();
+
+            return leMedecin;
+        }
+        #endregion
+
+        #region ChargerLesMedecins
         public static List<ClasseMedecin> chargerLesMedecins()
         {
+            //VARIABLES
             List<ClasseMedecin> LesMedecins = new List<ClasseMedecin>();
-            
             string nom;
             string prenom;
             string tel;
@@ -76,7 +137,7 @@ namespace ClassePasserelle
             string libSpec;
             string idMed;
             
-
+            //CONNEXION BDD
             SqlConnection connexion = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
@@ -84,12 +145,15 @@ namespace ClassePasserelle
             connexion.Open();
 
             cmd = connexion.CreateCommand();
+            //REQUETE SQL
             cmd.CommandText = "SELECT nomMed, prenomMed, adresseMed, telMed , idSpec, departementMed, libSpec, idMed  " +
-                              "FROM medecin INNER JOIN specialite "; //Inner join pour faire le lien avec la table specialite pour afficher libelle d'une Spéciallité 
+                              "FROM medecin INNER JOIN specialite ON idSpecialiteMed"; 
+            //EXECUTE LA REQUETE
             SqlDataReader drr = cmd.ExecuteReader();
 
             while (drr.Read())
             {
+                //ON RECUPERE LES VARIABLES
                 nom = drr.GetString(0); // 0 correspond à nomMed
                 prenom = drr.GetString(1);// 1 correspond à prenomMed
                 tel = drr.GetString(3);// 3 correspond à telMed
@@ -99,9 +163,11 @@ namespace ClassePasserelle
                 libSpec = drr.GetString(6); //6 correspond à libSpec
                 idMed = drr.GetString(7); // 7 correspond à idMed
 
-
-                ClasseSpecialite LaSpe = new ClasseSpecialite(idspecialite, libSpec); //Declaration de la specialite medecin pour le ComboBox l'id correspond à un libelle Spécialité
+                //ON INSTANCIE UN OBJET CLASSESPECIALITE
+                ClasseSpecialite LaSpe = new ClasseSpecialite(idspecialite, libSpec); 
+                // ON INSTANCIE UN OBJET CLASSEMEDECIN
                 ClasseMedecin leMedecin = new ClasseMedecin(idMed, nom, prenom, adresse, tel, departement, LaSpe);
+                // ON AJOUTE UN OBJET CLASSEMEDECIN DANS UNE LISTE CLASSEMEDECIN
                 LesMedecins.Add(leMedecin);
             }
 
@@ -110,5 +176,6 @@ namespace ClassePasserelle
 
             return LesMedecins; //retoune la liste des Medecins 
         }
+        #endregion
     }
 }
