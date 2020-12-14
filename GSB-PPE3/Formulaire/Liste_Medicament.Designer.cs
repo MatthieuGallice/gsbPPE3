@@ -29,16 +29,45 @@
         private void InitializeComponent()
         {
             this.dgwListeMedicament = new System.Windows.Forms.DataGridView();
+            this.idRap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idMecidament = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomCommercialMedicament = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantiteOff = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgwListeMedicament)).BeginInit();
             this.SuspendLayout();
             // 
             // dgwListeMedicament
             // 
             this.dgwListeMedicament.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwListeMedicament.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idRap,
+            this.idMecidament,
+            this.nomCommercialMedicament,
+            this.quantiteOff});
             this.dgwListeMedicament.Location = new System.Drawing.Point(72, 41);
             this.dgwListeMedicament.Name = "dgwListeMedicament";
             this.dgwListeMedicament.Size = new System.Drawing.Size(1197, 613);
             this.dgwListeMedicament.TabIndex = 1;
+            // 
+            // idRap
+            // 
+            this.idRap.HeaderText = "numéro du rapport";
+            this.idRap.Name = "idRap";
+            // 
+            // idMecidament
+            // 
+            this.idMecidament.HeaderText = "numéro du médicament";
+            this.idMecidament.Name = "idMecidament";
+            // 
+            // nomCommercialMedicament
+            // 
+            this.nomCommercialMedicament.HeaderText = "nom commercial";
+            this.nomCommercialMedicament.Name = "nomCommercialMedicament";
+            // 
+            // quantiteOff
+            // 
+            this.quantiteOff.HeaderText = "quantité offerte";
+            this.quantiteOff.Name = "quantiteOff";
             // 
             // Liste_Medicament
             // 
@@ -57,5 +86,9 @@
 
         #endregion
         private System.Windows.Forms.DataGridView dgwListeMedicament;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idRap;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idMecidament;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomCommercialMedicament;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantiteOff;
     }
 }
