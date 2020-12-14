@@ -23,7 +23,7 @@ namespace ClasseMétiers
         public string Id { get => id; set => id = value; }
         public string NomCommercial { get => nomCommercial; set => nomCommercial = value; }
         public string Effets { get => effets; set => effets = value; }
-        public string Contreindictions { get => contreindictions; set => contreindictions = value; }
+        public string Contreindictions { get => contreindications; set => contreindications = value; }
         public ClasseFamille Famille { get => famille; set => famille = value; }
         #endregion
 
