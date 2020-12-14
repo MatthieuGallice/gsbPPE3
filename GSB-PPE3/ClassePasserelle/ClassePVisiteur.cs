@@ -53,6 +53,50 @@ namespace ClassePasserelle
             drr.Close();
             connexion.Close();
         }
+        public static ClasseVisiteur chargerLeVisiteur()
+        {
+            string id;
+            string nom;
+            string prenom;
+            string adresse;
+            string login;
+            string mdp;
+            string cp;
+            string ville;
+            DateTime dateEmbauche;
+            ClasseVisiteur leVisiteur = new ClasseVisiteur();
+
+            SqlConnection connexion = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            cmd.CommandText = "SELECT nomVis, prenomVis, loginVis, mdpVis, adresseVis, cpVis, villeVis, dateEmbaucheVis, idVis " +
+                              "FROM visiteur ";
+            SqlDataReader drr = cmd.ExecuteReader();
+
+            while (drr.Read())
+            {
+                nom = drr.GetString(0);
+                prenom = drr.GetString(1);
+                login = drr.GetString(2);
+                mdp = drr.GetString(3);
+                adresse = drr.GetString(4);
+                cp = drr.GetString(5);
+                ville = drr.GetString(6);
+                dateEmbauche = drr.GetDateTime(7);
+                id = drr.GetString(8);
+                leVisiteur = new ClasseVisiteur(id, nom, prenom, adresse, login, mdp, cp, ville, dateEmbauche);
+            }
+
+            drr.Close();
+            connexion.Close();
+
+            return leVisiteur;
+        }
+
         public static List<ClasseVisiteur> chargerLesVisiteurs()
         {
             List<ClasseVisiteur> LesVisiteurs = new List<ClasseVisiteur>();
