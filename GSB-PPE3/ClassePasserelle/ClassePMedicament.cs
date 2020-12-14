@@ -10,14 +10,50 @@ namespace ClassePasserelle
 {
     public class ClassePMedicament
     {
-        public static void AjoutMedicament()
+        public static void AjoutMedicament(string unnomcomposition, string unecomposition, string deseffets, string unecontreindications, ClasseFamille lafamille)
         {
+            SqlConnection connexion = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            cmd.CommandText = "INSERT INTO medicament (`idMedicament`, `nomCommercialMedicament`, `idFamilleMedicament`, `compositionMedicament`, `effetsMedicament`, `contreIndicationsMedicament`)" +
+                              "VALUES('"+ unnomcomposition +"', '"+ unecomposition + "', '"+ lafamille +"', '" + deseffets +"', '"+ unecontreindications +"')";
+            SqlDataReader drr = cmd.ExecuteReader();
+            drr.Close();
+            connexion.Close();
         }
-        public static void ModifMedicament(string lid, string lenom, string leprenom, string ladresse, string lelogin, string lemdp, string lecp, string laville, DateTime ladateEmbauche)
+        public static void ModifMedicament(string lid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications, ClasseFamille lafamille)
         {
+            SqlConnection connexion = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            cmd.CommandText = "UPDATE medicament " +
+                              "SET  nomCommercialMedicament  = '" + unnomcomposition + "', idFamilleMedicament  = '" + lafamille + "', compositionMedicament  = '" + unecomposition + "',  effetsMedicament  = '" + deseffets + "', contreIndicationsMedicament  = '" + unecontreindications + "'," +
+                              "WHERE `medicament.idMedicament = '"+ lid +"'; ";
+            SqlDataReader drr = cmd.ExecuteReader();
+            drr.Close();
+            connexion.Close();
         }
         public static void SupprimerMedicament(string lid)
         {
+            SqlConnection connexion = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            cmd.CommandText = "DELETE FROM medicament WHERE medicament.idMedicament = '"+ lid +"' ";
+            SqlDataReader drr = cmd.ExecuteReader();
+            drr.Close();
+            connexion.Close();
         }
         public static List<ClasseMedicament> chargerLesMedicaments()
         {
