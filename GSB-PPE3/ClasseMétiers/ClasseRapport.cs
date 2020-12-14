@@ -21,6 +21,14 @@ namespace ClasseMétiers
         #endregion
 
         #region constructeurs
+        public ClasseRapport() { }
+        public ClasseRapport(int lid, DateTime ladate, string lemotif, string lebilan)
+        {
+            id = lid;
+            date = ladate;
+            motif = lemotif;
+            bilan = lebilan;
+        }
         public ClasseRapport(int lid, DateTime ladate, string lemotif, string lebilan, ClasseVisiteur lVisiteur, ClasseMedecin lMedecin, List<ClasseEchantillonOffert> desEchantillonsOfferts)
         {
             id = lid;
