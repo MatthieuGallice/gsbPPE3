@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClassePasserelle;
+using ClasseMétiers;
 
 namespace Formulaire
 {
@@ -17,10 +19,22 @@ namespace Formulaire
             InitializeComponent();
         }
 
-        private void buttonValiderModificationVisiteur_Click(object sender, EventArgs e)
+        private void Visiteur_Load(object sender, EventArgs e)
         {
+            List<ClasseVisiteur> unVisiteur = ClassePVisiteur.chargerLesVisiteurs();
+            foreach(ClasseVisiteur lesVisiteurs in unVisiteur)
+            {
+                string leNb = lesVisiteurs.Id;
+                string leNom = lesVisiteurs.Nom;
+                string lePrenom = lesVisiteurs.Prenom;
+                string ladresse = lesVisiteurs.Adresse;
+                string leCodePostal = lesVisiteurs.Cp;
+                string laVille = lesVisiteurs.Ville;
+                DateTime laDate = lesVisiteurs.DateEmbauche;
+
+                dgwVisiteur.Rows.Add(leNb, leNom, lePrenom, ladresse, leCodePostal, laVille, laDate);
+            }
 
         }
-        
     }
 }

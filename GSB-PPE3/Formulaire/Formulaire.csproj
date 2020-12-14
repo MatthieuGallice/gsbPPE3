@@ -192,5 +192,15 @@
   <ItemGroup>
     <None Include="Resources\logo.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClasseMétiers\ClasseMétiers.csproj">
+      <Project>{03db9bac-680c-47c2-b329-2d070284d365}</Project>
+      <Name>ClasseMétiers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassePasserelle\ClassePasserelle.csproj">
+      <Project>{5718ff79-3308-438b-8961-6f83759155e4}</Project>
+      <Name>ClassePasserelle</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

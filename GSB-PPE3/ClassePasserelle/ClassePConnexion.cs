@@ -12,7 +12,7 @@ namespace ClassePasserelle
     {
         public static string DBConnection()
         {
-            string connectionString = "SERVER=localhost; DATABASE=gsbppe3;UID = root; PASSWORD = ";
+            string connectionString = "SERVER=127.0.0.1;Initial Catalog=gsbppe3; UID = root; PASSWORD = ";
             return (connectionString);
         }
 

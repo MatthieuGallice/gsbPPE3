@@ -149,7 +149,6 @@
             this.buttonValiderModificationVisiteur.TabIndex = 4;
             this.buttonValiderModificationVisiteur.Text = "Valider Modification";
             this.buttonValiderModificationVisiteur.UseVisualStyleBackColor = true;
-            this.buttonValiderModificationVisiteur.Click += new System.EventHandler(this.buttonValiderModificationVisiteur_Click);
             // 
             // buttonAjouterVisiteur
             // 
@@ -332,6 +331,7 @@
             this.Name = "Visiteur";
             this.Text = "Visiteur";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Visiteur_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgwVisiteur)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.groupBoxNomVisiteur.ResumeLayout(false);

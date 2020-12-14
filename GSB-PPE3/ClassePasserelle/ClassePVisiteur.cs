@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using ClasseMétiers;
 
 namespace ClassePasserelle
@@ -142,9 +142,9 @@ namespace ClassePasserelle
             DateTime dateEmbauche;
 
             //CONNEXION BDD
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
-            connexion.ConnectionString = ClassePConnexion.DBConnection();
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = "SERVER=localhost;Initial Catalog=gsbppe3; UID = root; PASSWORD =''";
 
             connexion.Open();
 
@@ -153,7 +153,7 @@ namespace ClassePasserelle
             cmd.CommandText = "SELECT nomVis, prenomVis, loginVis, mdpVis, adresseVis, cpVis, villeVis, dateEmbaucheVis, idVis " +
                               "FROM visiteur ";
             //EXECUTION REQUETE
-            SqlDataReader drr = cmd.ExecuteReader();
+            MySqlDataReader drr = cmd.ExecuteReader();
 
             //LECTURE REQUETE
             while (drr.Read())
