@@ -45,6 +45,14 @@
             this.buttonModifierOffre = new System.Windows.Forms.Button();
             this.buttonSupprimerOffre = new System.Windows.Forms.Button();
             this.dgwOffre = new System.Windows.Forms.DataGridView();
+            this.idRapport = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomVisiteur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prenomVisiteur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateRapport = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.motifRapport = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bilanRapport = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomMedecin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prenomMedecin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgwRapport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwOffre)).BeginInit();
             this.SuspendLayout();
@@ -52,6 +60,15 @@
             // dgwRapport
             // 
             this.dgwRapport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwRapport.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idRapport,
+            this.nomVisiteur,
+            this.prenomVisiteur,
+            this.dateRapport,
+            this.motifRapport,
+            this.bilanRapport,
+            this.nomMedecin,
+            this.prenomMedecin});
             this.dgwRapport.Location = new System.Drawing.Point(301, 12);
             this.dgwRapport.Name = "dgwRapport";
             this.dgwRapport.Size = new System.Drawing.Size(1060, 226);
@@ -186,6 +203,46 @@
             this.dgwOffre.Size = new System.Drawing.Size(896, 279);
             this.dgwOffre.TabIndex = 17;
             // 
+            // idRapport
+            // 
+            this.idRapport.HeaderText = "nbRapport";
+            this.idRapport.Name = "idRapport";
+            // 
+            // nomVisiteur
+            // 
+            this.nomVisiteur.HeaderText = "nomVisiteur";
+            this.nomVisiteur.Name = "nomVisiteur";
+            // 
+            // prenomVisiteur
+            // 
+            this.prenomVisiteur.HeaderText = "prenomVisiteur";
+            this.prenomVisiteur.Name = "prenomVisiteur";
+            // 
+            // dateRapport
+            // 
+            this.dateRapport.HeaderText = "dateRapport";
+            this.dateRapport.Name = "dateRapport";
+            // 
+            // motifRapport
+            // 
+            this.motifRapport.HeaderText = "motifRapport";
+            this.motifRapport.Name = "motifRapport";
+            // 
+            // bilanRapport
+            // 
+            this.bilanRapport.HeaderText = "bilanRapport";
+            this.bilanRapport.Name = "bilanRapport";
+            // 
+            // nomMedecin
+            // 
+            this.nomMedecin.HeaderText = "nomMedecin";
+            this.nomMedecin.Name = "nomMedecin";
+            // 
+            // prenomMedecin
+            // 
+            this.prenomMedecin.HeaderText = "prenomMedecin";
+            this.prenomMedecin.Name = "prenomMedecin";
+            // 
             // Rapport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -237,5 +294,13 @@
         private System.Windows.Forms.Button buttonModifierOffre;
         private System.Windows.Forms.Button buttonSupprimerOffre;
         private System.Windows.Forms.DataGridView dgwOffre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idRapport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomVisiteur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prenomVisiteur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateRapport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn motifRapport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bilanRapport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomMedecin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prenomMedecin;
     }
 }

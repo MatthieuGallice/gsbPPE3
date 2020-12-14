@@ -35,10 +35,7 @@ namespace ClasseMétiers
         #endregion
 
         #region accesseurs
-        public int Id {
-            get => id;
-            set => id = value;
-        }
+        public int Id {get => id; set => id = value; }
         public DateTime Date { get => date; set => date = value; }
         public string Motif { get => motif; set => motif = value; }
         public string Bilan { get => bilan; set => bilan = value; }
