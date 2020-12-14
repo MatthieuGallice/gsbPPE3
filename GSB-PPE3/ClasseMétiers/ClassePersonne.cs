@@ -21,27 +21,31 @@ namespace ClasseMétiers
         public ClassePersonne(string lid, string lenom, string leprenom, string ladresse)
         {
             id = lid;
-            nom = lenom ;
-            prenom = leprenom ;
+            nom = lenom;
+            prenom = leprenom;
             adresse = ladresse;
         }
 
         #endregion
 
         #region accesseurs
-        public string Id {
+        public string Id
+        {
             get => id;
             set => id = value;
         }
-        public string Nom {
+        public string Nom
+        {
             get => nom;
             set => nom = value;
         }
-        public string Prenom {
+        public string Prenom
+        {
             get => prenom;
             set => prenom = value;
         }
-        public string Adresse {
+        public string Adresse
+        {
             get => adresse;
             set => adresse = value;
         }
