@@ -14,8 +14,8 @@ namespace ClassePasserelle
         public static void AjoutVisiteur(string lenom, string leprenom, string ladresse, string lelogin, string lemdp, string lecp, string laville, DateTime ladateEmbauche)
         {
             // CONNEXION BDD
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
@@ -25,7 +25,7 @@ namespace ClassePasserelle
             cmd.CommandText = "INSERT INTO `visiteur` (`nomVis`, `prenomVis`, `loginVis`, `mdpVis`, `adresseVis`, `cpVis`, `villeVis`, `dateEmbaucheVis`) " +
                                 "VALUES ('"+ lenom + "', '" + leprenom + "', '" + lelogin + "', '" + lemdp + "', '" + ladresse + "', '" + lecp + "', '" + laville + "', '" + ladateEmbauche + "');";
             //EXECUTION REQUETE
-            SqlDataReader drr = cmd.ExecuteReader();
+            MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
             connexion.Close();
         }
@@ -35,8 +35,8 @@ namespace ClassePasserelle
         public static void ModifVisiteur(string lid, string lenom, string leprenom, string ladresse, string lelogin, string lemdp, string lecp, string laville, DateTime ladateEmbauche)
         {
             //CONNEXION BDD
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
@@ -45,7 +45,7 @@ namespace ClassePasserelle
             //REQUETE SQL
             cmd.CommandText = "UPDATE `visiteur` SET `nomVis` = '" + lenom + "', `prenomVis` = '" + lelogin + "', `loginVis` = '" + lelogin + "', `mdpVis` = '" + lemdp + "', `adresseVis` = '" + ladresse + "', `cpVis` = '" + lecp + "', `villeVis` = '" + laville + "', `dateEmbaucheVis` = '" + ladateEmbauche + "' WHERE `visiteur`.`idVis` = '" + lid + "'; ";
             //EXECUTION REQUETE SQL
-            SqlDataReader drr = cmd.ExecuteReader();
+            MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
             connexion.Close();
         }
@@ -55,8 +55,8 @@ namespace ClassePasserelle
         public static void SupprimerVisiteur(string lid)
         {
             //CONNEXION BDD
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
@@ -65,7 +65,7 @@ namespace ClassePasserelle
             //REQUETE SQL
             cmd.CommandText = "DELETE FROM `visiteur` WHERE `visiteur`.`idVis` = '"+ lid +"'";
             //EXECUTION REQUETE SQL
-            SqlDataReader drr = cmd.ExecuteReader();
+            MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
             connexion.Close();
         }
@@ -87,8 +87,8 @@ namespace ClassePasserelle
             ClasseVisiteur leVisiteur = new ClasseVisiteur();
 
             //Connexion BDD
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
@@ -99,7 +99,7 @@ namespace ClassePasserelle
                               "FROM visiteur " +
                               "WHERE idVis = '"+ lid +"'";
             //EXECUTION REQUETE SQL
-            SqlDataReader drr = cmd.ExecuteReader();
+            MySqlDataReader drr = cmd.ExecuteReader();
 
             //LECTURE REQUETE
             while (drr.Read())

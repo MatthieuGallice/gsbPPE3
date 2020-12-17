@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using ClasseMétiers;
 
 namespace ClassePasserelle
@@ -15,8 +15,8 @@ namespace ClassePasserelle
         public static void modifRapport(int idRap, DateTime dateRap, string motifRap, string bilanRap, int idVisiteurRap, int idMedecinRAp)
         {
             //Connexion BDD
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
@@ -25,7 +25,7 @@ namespace ClassePasserelle
             //REQUETE SQL
             cmd.CommandText = "UPDATE rapport SET dateRap = '"+ dateRap + "', motifRap = '" + motifRap + "', bilanRap = '" + bilanRap + "', idVisiteurRap = '" + idVisiteurRap + "', idMedecinRap = '" + idMedecinRAp + "' WHERE idRap = '" + idRap + "' ";
             //EXECUTION REQUETE
-            SqlDataReader drr = cmd.ExecuteReader();
+            MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
             connexion.Close();
         }
@@ -36,8 +36,8 @@ namespace ClassePasserelle
         public static void supprimerRapport(int idRap)
         {
             //CONNEXION BDD
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
@@ -46,7 +46,7 @@ namespace ClassePasserelle
             //REQUETE SQL
             cmd.CommandText = "DELETE FROM 'rapport' WHERE idRap = '" + idRap + "' ";
             //EXECUTION REQUETE
-            SqlDataReader drr = cmd.ExecuteReader();
+            MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
             connexion.Close();
         }
@@ -57,8 +57,8 @@ namespace ClassePasserelle
         public static void ajoutRapport(int idRap, DateTime dateRap, string motifRap, string bilanRap, int idVisiteurRap, int idMedecinRAp)
         {
             //CONNEXION BDD
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
@@ -67,7 +67,7 @@ namespace ClassePasserelle
             //REQUETE SQL
             cmd.CommandText = "DELETE FROM 'rapport' WHERE idRap = '" + idRap + "' ";
             //EXECUTION REQUETE
-            SqlDataReader drr = cmd.ExecuteReader();
+            MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
             connexion.Close();
         }
@@ -86,8 +86,8 @@ namespace ClassePasserelle
             string idMedecinRap;
 
             //CONNEXION BDD
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
@@ -97,7 +97,7 @@ namespace ClassePasserelle
             cmd.CommandText = "SELECT idRap, dateRap, motifRap, bilanRap, idVisiteurRap, idMedecinRap" +
                               "FROM rapport ";
             //EXECUTION REQUETE SQL
-            SqlDataReader drr = cmd.ExecuteReader();
+            MySqlDataReader drr = cmd.ExecuteReader();
 
             //LECTURE REQUETE 
             while (drr.Read())

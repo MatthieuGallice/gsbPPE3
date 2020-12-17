@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using ClasseMétiers;
 
 namespace ClassePasserelle
@@ -14,8 +14,8 @@ namespace ClassePasserelle
         public static void AjoutEchantillonOffert(string idRapport, string idMedicament, string quantite)
         {
             //CONNEXION BDD
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
@@ -25,7 +25,7 @@ namespace ClassePasserelle
             cmd.CommandText = "INSERT INTO offrir (`idRapportOff`, `idMedicamentOff`, `quantiteOff`) " +
                               "VALUES ('"+ idRapport + "', '" + idMedicament + "', '" + quantite + "');";
             //EXECUTION REQUETE
-            SqlDataReader drr = cmd.ExecuteReader();
+            MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
             connexion.Close();
         }
@@ -35,8 +35,8 @@ namespace ClassePasserelle
         public static void ModifEchantillonOffert(string idRapport, string idMedicament, string quantite)
         {
             //CONNEXION BDD
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
@@ -46,7 +46,7 @@ namespace ClassePasserelle
             cmd.CommandText = "UPDATE offrir " +
                               "SET idRapportOff = '"+ idRapport + "', idMedicamentOff = '" + idMedicament + "', quantiteOff = '" + quantite + "'; ";
             //EXECUTION REQUETE
-            SqlDataReader drr = cmd.ExecuteReader();
+            MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
             connexion.Close();
         }
@@ -56,8 +56,8 @@ namespace ClassePasserelle
         public static void SupprimerEchantillonOffert(string idRapport, string idMedicament)
         {
             //CONNEXION BDD
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
@@ -67,7 +67,7 @@ namespace ClassePasserelle
             cmd.CommandText = "DELETE FROM offrir " +
                               "WHERE offrir.idRapportOff = '" + idRapport + "' && offrir.idMedicamentOff = '" + idMedicament + "'";
             //EXECUTE LA REQUETE
-            SqlDataReader drr = cmd.ExecuteReader();
+            MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
             connexion.Close();
         }
@@ -83,8 +83,8 @@ namespace ClassePasserelle
             int quantite;
 
             //CONNEXION BDD
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
@@ -94,7 +94,7 @@ namespace ClassePasserelle
             cmd.CommandText = "SELECT idRapportOff, idMedicamentOff, quantiteOff " +
                               "FROM offrir ";
             //EXECUTE LA REQUETE
-            SqlDataReader drr = cmd.ExecuteReader();
+            MySqlDataReader drr = cmd.ExecuteReader();
             
             //LECTURE DE LA REQUETE
             while (drr.Read())

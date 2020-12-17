@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using ClasseMétiers;
 
 namespace ClassePasserelle
@@ -14,8 +14,8 @@ namespace ClassePasserelle
         public static void AjoutMedicament(string unnomcomposition, string unecomposition, string deseffets, string unecontreindications, ClasseFamille lafamille)
         {
             //CONNEXION BDD
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
@@ -25,7 +25,7 @@ namespace ClassePasserelle
             cmd.CommandText = "INSERT INTO medicament (`idMedicament`, `nomCommercialMedicament`, `idFamilleMedicament`, `compositionMedicament`, `effetsMedicament`, `contreIndicationsMedicament`)" +
                               "VALUES('"+ unnomcomposition +"', '"+ unecomposition + "', '"+ lafamille +"', '" + deseffets +"', '"+ unecontreindications +"')";
             //EXECUTE LA REQUETE
-            SqlDataReader drr = cmd.ExecuteReader();
+            MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
             connexion.Close();
         }
@@ -35,8 +35,8 @@ namespace ClassePasserelle
         public static void ModifMedicament(string lid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications, ClasseFamille lafamille)
         {
             //CONNEXION BDD
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
@@ -47,7 +47,7 @@ namespace ClassePasserelle
                               "SET  nomCommercialMedicament  = '" + unnomcomposition + "', idFamilleMedicament  = '" + lafamille + "', compositionMedicament  = '" + unecomposition + "',  effetsMedicament  = '" + deseffets + "', contreIndicationsMedicament  = '" + unecontreindications + "'," +
                               "WHERE `medicament.idMedicament = '"+ lid +"'; ";
             //EXECUTE LA REQUETE
-            SqlDataReader drr = cmd.ExecuteReader();
+            MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
             connexion.Close();
         }
@@ -57,8 +57,8 @@ namespace ClassePasserelle
         public static void SupprimerMedicament(string lid)
         {
             //CONNEXION BDD
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
@@ -67,7 +67,7 @@ namespace ClassePasserelle
             //REQUETE SQL
             cmd.CommandText = "DELETE FROM medicament WHERE medicament.idMedicament = '"+ lid +"' ";
             //EXECUTION REQUETE
-            SqlDataReader drr = cmd.ExecuteReader();
+            MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
             connexion.Close();
         }
@@ -87,8 +87,8 @@ namespace ClassePasserelle
             string libFam;
 
             //CONNEXION BDD
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
@@ -98,7 +98,7 @@ namespace ClassePasserelle
             cmd.CommandText = "SELECT idMedicament, nomCommercialMedicament, idFamilleMedicament, libFamille, compositionMedicament, effetsMedicament, contreIndicationsMedicament " +
                               "FROM medicament INNER JOIN famille ON idFamilleMedicament";
             //EXECUTION REQUETE 
-            SqlDataReader drr = cmd.ExecuteReader();
+            MySqlDataReader drr = cmd.ExecuteReader();
 
             //LECTURE REQUETE
             while (drr.Read())

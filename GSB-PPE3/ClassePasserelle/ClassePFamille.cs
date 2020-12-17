@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClasseMétiers;
+using MySql.Data.MySqlClient;
 
 namespace ClassePasserelle
 {
@@ -16,15 +16,15 @@ namespace ClassePasserelle
             string id_famille;
             string libelle;
 
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
 
             cmd = connexion.CreateCommand();
             cmd.CommandText = "SELECT * FROM famille";
-            SqlDataReader drr = cmd.ExecuteReader();
+            MySqlDataReader drr = cmd.ExecuteReader();
 
             while (drr.Read())
             {
