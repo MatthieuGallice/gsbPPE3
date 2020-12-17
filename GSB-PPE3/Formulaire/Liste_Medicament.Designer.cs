@@ -79,6 +79,7 @@
             this.Name = "Liste_Medicament";
             this.Text = "Liste_Medicament";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Liste_Medicament_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgwListeMedicament)).EndInit();
             this.ResumeLayout(false);
 

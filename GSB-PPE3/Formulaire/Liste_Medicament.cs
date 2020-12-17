@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClassePasserelle;
+using ClasseMétiers;
 
 namespace Formulaire
 {
@@ -15,6 +17,15 @@ namespace Formulaire
         public Liste_Medicament()
         {
             InitializeComponent();
+        }
+
+        private void Liste_Medicament_Load(object sender, EventArgs e)
+        {
+            List<ClasseMedicament> lesMedicaments = ClassePMedicament.chargerLesMedicaments();
+            foreach (ClasseMedicament leMedicament in lesMedicaments)
+            {
+                dgwListeMedicament.Rows.Add(leMedicament.Famille);
+            }
         }
     }
 }
