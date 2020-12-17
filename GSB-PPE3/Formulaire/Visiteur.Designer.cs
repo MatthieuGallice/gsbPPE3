@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.dgwVisiteur = new System.Windows.Forms.DataGridView();
+            this.idVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prenomVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adresseVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cpVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.villeVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateEmbaucheVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonModifierVisiteur = new System.Windows.Forms.Button();
             this.buttonSupprimerVisiteur = new System.Windows.Forms.Button();
             this.buttonValiderModificationVisiteur = new System.Windows.Forms.Button();
@@ -50,13 +57,6 @@
             this.groupBoxCodePostal = new System.Windows.Forms.GroupBox();
             this.groupBoxAdresse = new System.Windows.Forms.GroupBox();
             this.groupBoxMdp = new System.Windows.Forms.GroupBox();
-            this.idVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prenomVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adresseVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cpVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.villeVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateEmbaucheVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgwVisiteur)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.groupBoxNomVisiteur.SuspendLayout();
@@ -80,10 +80,52 @@
             this.cpVis,
             this.villeVis,
             this.dateEmbaucheVis});
-            this.dgwVisiteur.Location = new System.Drawing.Point(12, 37);
+            this.dgwVisiteur.Location = new System.Drawing.Point(18, 37);
             this.dgwVisiteur.Name = "dgwVisiteur";
-            this.dgwVisiteur.Size = new System.Drawing.Size(1276, 236);
+            this.dgwVisiteur.Size = new System.Drawing.Size(1264, 236);
             this.dgwVisiteur.TabIndex = 1;
+            // 
+            // idVis
+            // 
+            this.idVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.idVis.HeaderText = "numéro du visiteur";
+            this.idVis.Name = "idVis";
+            // 
+            // nomVis
+            // 
+            this.nomVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nomVis.HeaderText = "nom";
+            this.nomVis.Name = "nomVis";
+            // 
+            // prenomVis
+            // 
+            this.prenomVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.prenomVis.HeaderText = "prénom";
+            this.prenomVis.Name = "prenomVis";
+            // 
+            // adresseVis
+            // 
+            this.adresseVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.adresseVis.HeaderText = "adresse";
+            this.adresseVis.Name = "adresseVis";
+            // 
+            // cpVis
+            // 
+            this.cpVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cpVis.HeaderText = "code postal ";
+            this.cpVis.Name = "cpVis";
+            // 
+            // villeVis
+            // 
+            this.villeVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.villeVis.HeaderText = "ville";
+            this.villeVis.Name = "villeVis";
+            // 
+            // dateEmbaucheVis
+            // 
+            this.dateEmbaucheVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dateEmbaucheVis.HeaderText = "date d\'embauche";
+            this.dateEmbaucheVis.Name = "dateEmbaucheVis";
             // 
             // buttonModifierVisiteur
             // 
@@ -273,48 +315,6 @@
             this.groupBoxMdp.TabIndex = 27;
             this.groupBoxMdp.TabStop = false;
             this.groupBoxMdp.Text = "Mot de Passe";
-            // 
-            // idVis
-            // 
-            this.idVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.idVis.HeaderText = "numéro du visiteur";
-            this.idVis.Name = "idVis";
-            // 
-            // nomVis
-            // 
-            this.nomVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nomVis.HeaderText = "nom";
-            this.nomVis.Name = "nomVis";
-            // 
-            // prenomVis
-            // 
-            this.prenomVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.prenomVis.HeaderText = "prénom";
-            this.prenomVis.Name = "prenomVis";
-            // 
-            // adresseVis
-            // 
-            this.adresseVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.adresseVis.HeaderText = "adresse";
-            this.adresseVis.Name = "adresseVis";
-            // 
-            // cpVis
-            // 
-            this.cpVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cpVis.HeaderText = "code postal ";
-            this.cpVis.Name = "cpVis";
-            // 
-            // villeVis
-            // 
-            this.villeVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.villeVis.HeaderText = "ville";
-            this.villeVis.Name = "villeVis";
-            // 
-            // dateEmbaucheVis
-            // 
-            this.dateEmbaucheVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dateEmbaucheVis.HeaderText = "date d\'embauche";
-            this.dateEmbaucheVis.Name = "dateEmbaucheVis";
             // 
             // Visiteur
             // 

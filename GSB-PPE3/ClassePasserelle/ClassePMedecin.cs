@@ -92,7 +92,7 @@ namespace ClassePasserelle
             cmd = connexion.CreateCommand();
             //REQUETE SQL
             cmd.CommandText = "SELECT nomMed, prenomMed, adresseMed, telMed , idSpec, departementMed, libSpec, idMed  " +
-                              "FROM medecin INNER JOIN specialite ON idSpecialiteMed" +
+                              "FROM medecin INNER JOIN specialite ON idSpecialiteMed " +
                               "WHERE idMed = '"+ lid +"'"; 
             //EXECUTION REQUETE
             MySqlDataReader drr = cmd.ExecuteReader();

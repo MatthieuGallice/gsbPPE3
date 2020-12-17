@@ -34,7 +34,6 @@ namespace Formulaire
 
                 dgwVisiteur.Rows.Add(leNb, leNom, lePrenom, ladresse, leCodePostal, laVille, laDate);
             }
-
         }
     }
 }

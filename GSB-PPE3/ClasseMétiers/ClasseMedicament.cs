@@ -25,6 +25,7 @@ namespace ClasseMétiers
         public string Effets { get => effets; set => effets = value; }
         public string Contreindictions { get => contreindications; set => contreindications = value; }
         public ClasseFamille Famille { get => famille; set => famille = value; }
+        public string Composition { get => composition; set => composition = value; }
         #endregion
 
         #region Constructeur
@@ -33,7 +34,7 @@ namespace ClasseMétiers
         {
             id = unid;
             nomCommercial = unnomcomposition;
-            composition = unecomposition;
+            Composition = unecomposition;
             effets = deseffets;
             contreindications = unecontreindications;
         }
@@ -42,7 +43,7 @@ namespace ClasseMétiers
         {
             id = unid;
             nomCommercial = unnomcomposition;
-            composition = unecomposition;
+            Composition = unecomposition;
             effets = deseffets;
             contreindications = unecontreindications;
             famille = lafamille;

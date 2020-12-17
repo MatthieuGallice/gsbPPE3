@@ -78,7 +78,7 @@ namespace ClassePasserelle
         {
             //Variables
             List<ClasseRapport> LesRapports = new List<ClasseRapport>();
-            int idRapport;
+            int idRap;
             DateTime dateRap;
             string motifRap;
             string bilanRap;
@@ -94,8 +94,8 @@ namespace ClassePasserelle
 
             cmd = connexion.CreateCommand();
             //REQUETE SQL
-            cmd.CommandText = "SELECT idRap, dateRap, motifRap, bilanRap, idVisiteurRap, idMedecinRap" +
-                              "FROM rapport ";
+            cmd.CommandText = "SELECT idRap, dateRap, motifRap, bilanRap, idVisiteurRap, idMedecinRap " +
+                              "FROM rapport";
             //EXECUTION REQUETE SQL
             MySqlDataReader drr = cmd.ExecuteReader();
 
@@ -103,7 +103,7 @@ namespace ClassePasserelle
             while (drr.Read())
             {
                 //ON RECUPERE LES VARIABLES
-                idRapport = drr.GetInt16(0);
+                idRap = drr.GetInt16(0);
                 dateRap = drr.GetDateTime(1);
                 motifRap = drr.GetString(2);
                 bilanRap = drr.GetString(3);
@@ -120,7 +120,7 @@ namespace ClassePasserelle
 
 
                 // Instancie un rapport
-                ClasseRapport unRapport = new ClasseRapport(idRapport, dateRap, motifRap, bilanRap, leVisiteur, leMedecin, lesEchantillonsOfferts);
+                ClasseRapport unRapport = new ClasseRapport(idRap, dateRap, motifRap, bilanRap, leVisiteur, leMedecin, lesEchantillonsOfferts);
                 LesRapports.Add(unRapport);
             }
             //CLOTURE LA CONNEXION

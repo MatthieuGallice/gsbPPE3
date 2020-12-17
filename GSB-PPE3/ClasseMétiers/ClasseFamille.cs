@@ -17,7 +17,7 @@ namespace ClasseMétiers
         #region Accesseur 
 
         public string Id_famille1 { get => id_famille; set => id_famille = value; }
-        public string Libelle1 { get => libelle; set => libelle = value; }
+        public string Libelle { get => libelle; set => libelle = value; }
 
         #endregion
 

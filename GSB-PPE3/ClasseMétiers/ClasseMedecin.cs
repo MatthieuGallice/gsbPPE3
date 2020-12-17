@@ -19,25 +19,16 @@ namespace ClasseMétiers
         public ClasseMedecin() { }
         public ClasseMedecin(string lid, string lenom, string leprenom, string ladresse, string letel, int ledepartement, ClasseSpecialite lSpecialite) : base(lid, lenom, leprenom, ladresse)
         {
-            tel = letel;
-            departement = ledepartement;
-            laSpecialite = lSpecialite;
+            Tel = letel;
+            Departement = ledepartement;
+            LaSpecialite = lSpecialite;
         }
         #endregion
 
         #region accesseurs
-        public string Tel
-        {
-            get => tel;
-        }
-        public int Departement
-        {
-            get => departement;
-        }
-        public ClasseSpecialite LaSpecialite {
-            get => laSpecialite;
-        }
-
+        public string Tel { get => tel; set => tel = value; }
+        public int Departement { get => departement; set => departement = value; }
+        public ClasseSpecialite LaSpecialite { get => laSpecialite; set => laSpecialite = value; }
         #endregion
 
         #region méthodes
