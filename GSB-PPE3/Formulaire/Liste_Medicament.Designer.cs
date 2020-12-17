@@ -44,28 +44,32 @@
             this.idMecidament,
             this.nomCommercialMedicament,
             this.quantiteOff});
-            this.dgwListeMedicament.Location = new System.Drawing.Point(72, 41);
+            this.dgwListeMedicament.Location = new System.Drawing.Point(12, 46);
             this.dgwListeMedicament.Name = "dgwListeMedicament";
-            this.dgwListeMedicament.Size = new System.Drawing.Size(1197, 613);
+            this.dgwListeMedicament.Size = new System.Drawing.Size(1276, 636);
             this.dgwListeMedicament.TabIndex = 1;
             // 
             // idRap
             // 
+            this.idRap.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.idRap.HeaderText = "numéro du rapport";
             this.idRap.Name = "idRap";
             // 
             // idMecidament
             // 
+            this.idMecidament.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.idMecidament.HeaderText = "numéro du médicament";
             this.idMecidament.Name = "idMecidament";
             // 
             // nomCommercialMedicament
             // 
+            this.nomCommercialMedicament.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.nomCommercialMedicament.HeaderText = "nom commercial";
             this.nomCommercialMedicament.Name = "nomCommercialMedicament";
             // 
             // quantiteOff
             // 
+            this.quantiteOff.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.quantiteOff.HeaderText = "quantité offerte";
             this.quantiteOff.Name = "quantiteOff";
             // 
@@ -73,7 +77,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1365, 790);
+            this.ClientSize = new System.Drawing.Size(1300, 722);
             this.Controls.Add(this.dgwListeMedicament);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Liste_Medicament";

@@ -28,7 +28,7 @@ namespace ClasseMétiers
         #endregion
 
         #region Constructeur
-
+        public ClasseMedicament() { }
         public ClasseMedicament(string unid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications)
         {
             id = unid;

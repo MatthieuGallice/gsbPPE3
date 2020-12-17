@@ -21,10 +21,18 @@ namespace Formulaire
 
         private void Liste_Medicament_Load(object sender, EventArgs e)
         {
-            List<ClasseMedicament> lesMedicaments = ClassePMedicament.chargerLesMedicaments();
-            foreach (ClasseMedicament leMedicament in lesMedicaments)
+            List<ClasseRapport> lesRapports = ClassePRapport.chargerLesRapports();
+            foreach (ClasseRapport leRapport in lesRapports)
             {
-                dgwListeMedicament.Rows.Add(leMedicament.Famille);
+                int numrapport = leRapport.Id;
+                List<ClasseEchantillonOffert> lEchantillonOffert = ClassePEchantillonOffert.chargerLEchantillonOffert(numrapport);
+                foreach (ClasseEchantillonOffert unEchantillon in lEchantillonOffert)
+                {
+                    int quantiteOff = unEchantillon.Quantite;
+                    string numMedic = unEchantillon.LeMedicament.Id;
+                    string nomCommercial = unEchantillon.LeMedicament.NomCommercial;
+                    dgwListeMedicament.Rows.Add(numrapport, numMedic, nomCommercial, quantiteOff);
+                }
             }
         }
     }

@@ -73,6 +73,59 @@ namespace ClassePasserelle
         }
         #endregion
 
+        #region ChargerLeMedicament
+        public static ClasseMedicament chargerLeMedicament(string idMedicament)
+        {
+            //VARIABLES
+            ClasseMedicament LeMedicament = new ClasseMedicament();
+            string id;
+            string nomcomposition;
+            string composition;
+            string effets;
+            string contreindications;
+            string idfamille;
+            string libFam;
+
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT idMedicament, nomCommercialMedicament, idFamilleMedicament, libFamille, compositionMedicament, effetsMedicament, contreIndicationsMedicament " +
+                              "FROM medicament INNER JOIN famille ON idFamilleMedicament " +
+                              "WHERE medicament.idFamilleMedicament = famille.idFamille && medicament.idMedicament = "+ idMedicament +"";
+            //EXECUTION REQUETE 
+            MySqlDataReader drr = cmd.ExecuteReader();
+
+            //LECTURE REQUETE
+            while (drr.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                id = drr.GetString(0);
+                nomcomposition = drr.GetString(1);
+                idfamille = drr.GetString(2);
+                libFam = drr.GetString(3);
+                composition = drr.GetString(4);
+                effets = drr.GetString(5);
+                contreindications = drr.GetString(6);
+
+                //ON INSTANCIE UN OBJET CLASSEFAMILLE
+                ClasseFamille laFamille = new ClasseFamille(idfamille, libFam);
+                //ON INSTANCIE UN OBJET CLASSEMEDICAMENT
+                ClasseMedicament leMedicament = new ClasseMedicament(id, nomcomposition, composition, effets, contreindications, laFamille);
+            }
+
+            drr.Close();
+            connexion.Close();
+
+            return LeMedicament;
+        }
+        #endregion
+
         #region ChargerLesMedicaments
         public static List<ClasseMedicament> chargerLesMedicaments()
         {

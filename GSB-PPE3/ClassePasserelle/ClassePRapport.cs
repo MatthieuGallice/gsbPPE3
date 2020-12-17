@@ -95,7 +95,7 @@ namespace ClassePasserelle
             cmd = connexion.CreateCommand();
             //REQUETE SQL
             cmd.CommandText = "SELECT idRap, dateRap, motifRap, bilanRap, idVisiteurRap, idMedecinRap" +
-                              "FROM rapport ";
+                              " FROM rapport";
             //EXECUTION REQUETE SQL
             MySqlDataReader drr = cmd.ExecuteReader();
 
