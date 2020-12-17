@@ -29,13 +29,6 @@
         private void InitializeComponent()
         {
             this.dgwVisiteur = new System.Windows.Forms.DataGridView();
-            this.idVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prenomVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adresseVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cpVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.villeVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateEmbaucheVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonModifierVisiteur = new System.Windows.Forms.Button();
             this.buttonSupprimerVisiteur = new System.Windows.Forms.Button();
             this.buttonValiderModificationVisiteur = new System.Windows.Forms.Button();
@@ -57,6 +50,13 @@
             this.groupBoxCodePostal = new System.Windows.Forms.GroupBox();
             this.groupBoxAdresse = new System.Windows.Forms.GroupBox();
             this.groupBoxMdp = new System.Windows.Forms.GroupBox();
+            this.idVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prenomVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adresseVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cpVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.villeVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateEmbaucheVis = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgwVisiteur)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.groupBoxNomVisiteur.SuspendLayout();
@@ -80,50 +80,15 @@
             this.cpVis,
             this.villeVis,
             this.dateEmbaucheVis});
-            this.dgwVisiteur.Location = new System.Drawing.Point(11, 12);
+            this.dgwVisiteur.Location = new System.Drawing.Point(12, 37);
             this.dgwVisiteur.Name = "dgwVisiteur";
-            this.dgwVisiteur.Size = new System.Drawing.Size(1351, 256);
+            this.dgwVisiteur.Size = new System.Drawing.Size(1276, 236);
             this.dgwVisiteur.TabIndex = 1;
-            // 
-            // idVis
-            // 
-            this.idVis.HeaderText = "numéro du visiteur";
-            this.idVis.Name = "idVis";
-            // 
-            // nomVis
-            // 
-            this.nomVis.HeaderText = "nom";
-            this.nomVis.Name = "nomVis";
-            // 
-            // prenomVis
-            // 
-            this.prenomVis.HeaderText = "prénom";
-            this.prenomVis.Name = "prenomVis";
-            // 
-            // adresseVis
-            // 
-            this.adresseVis.HeaderText = "adresse";
-            this.adresseVis.Name = "adresseVis";
-            // 
-            // cpVis
-            // 
-            this.cpVis.HeaderText = "code postal ";
-            this.cpVis.Name = "cpVis";
-            // 
-            // villeVis
-            // 
-            this.villeVis.HeaderText = "ville";
-            this.villeVis.Name = "villeVis";
-            // 
-            // dateEmbaucheVis
-            // 
-            this.dateEmbaucheVis.HeaderText = "date d\'embauche";
-            this.dateEmbaucheVis.Name = "dateEmbaucheVis";
             // 
             // buttonModifierVisiteur
             // 
             this.buttonModifierVisiteur.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonModifierVisiteur.Location = new System.Drawing.Point(416, 286);
+            this.buttonModifierVisiteur.Location = new System.Drawing.Point(448, 300);
             this.buttonModifierVisiteur.Name = "buttonModifierVisiteur";
             this.buttonModifierVisiteur.Size = new System.Drawing.Size(132, 29);
             this.buttonModifierVisiteur.TabIndex = 2;
@@ -133,7 +98,7 @@
             // buttonSupprimerVisiteur
             // 
             this.buttonSupprimerVisiteur.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonSupprimerVisiteur.Location = new System.Drawing.Point(818, 286);
+            this.buttonSupprimerVisiteur.Location = new System.Drawing.Point(717, 300);
             this.buttonSupprimerVisiteur.Name = "buttonSupprimerVisiteur";
             this.buttonSupprimerVisiteur.Size = new System.Drawing.Size(132, 29);
             this.buttonSupprimerVisiteur.TabIndex = 3;
@@ -143,7 +108,7 @@
             // buttonValiderModificationVisiteur
             // 
             this.buttonValiderModificationVisiteur.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonValiderModificationVisiteur.Location = new System.Drawing.Point(416, 736);
+            this.buttonValiderModificationVisiteur.Location = new System.Drawing.Point(448, 658);
             this.buttonValiderModificationVisiteur.Name = "buttonValiderModificationVisiteur";
             this.buttonValiderModificationVisiteur.Size = new System.Drawing.Size(132, 29);
             this.buttonValiderModificationVisiteur.TabIndex = 4;
@@ -153,7 +118,7 @@
             // buttonAjouterVisiteur
             // 
             this.buttonAjouterVisiteur.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonAjouterVisiteur.Location = new System.Drawing.Point(818, 736);
+            this.buttonAjouterVisiteur.Location = new System.Drawing.Point(717, 658);
             this.buttonAjouterVisiteur.Name = "buttonAjouterVisiteur";
             this.buttonAjouterVisiteur.Size = new System.Drawing.Size(132, 29);
             this.buttonAjouterVisiteur.TabIndex = 5;
@@ -232,7 +197,7 @@
             // groupBoxNomVisiteur
             // 
             this.groupBoxNomVisiteur.Controls.Add(this.txtNomVisiteur);
-            this.groupBoxNomVisiteur.Location = new System.Drawing.Point(36, 362);
+            this.groupBoxNomVisiteur.Location = new System.Drawing.Point(36, 360);
             this.groupBoxNomVisiteur.Name = "groupBoxNomVisiteur";
             this.groupBoxNomVisiteur.Size = new System.Drawing.Size(512, 57);
             this.groupBoxNomVisiteur.TabIndex = 21;
@@ -242,7 +207,7 @@
             // groupBoxDateEmbauche
             // 
             this.groupBoxDateEmbauche.Controls.Add(this.txtDateEmbaucheVisiteur);
-            this.groupBoxDateEmbauche.Location = new System.Drawing.Point(36, 454);
+            this.groupBoxDateEmbauche.Location = new System.Drawing.Point(36, 437);
             this.groupBoxDateEmbauche.Name = "groupBoxDateEmbauche";
             this.groupBoxDateEmbauche.Size = new System.Drawing.Size(512, 57);
             this.groupBoxDateEmbauche.TabIndex = 22;
@@ -252,7 +217,7 @@
             // groupBoxVille
             // 
             this.groupBoxVille.Controls.Add(this.txtVilleVisiteur);
-            this.groupBoxVille.Location = new System.Drawing.Point(36, 541);
+            this.groupBoxVille.Location = new System.Drawing.Point(36, 509);
             this.groupBoxVille.Name = "groupBoxVille";
             this.groupBoxVille.Size = new System.Drawing.Size(512, 57);
             this.groupBoxVille.TabIndex = 23;
@@ -262,7 +227,7 @@
             // groupBoxLogin
             // 
             this.groupBoxLogin.Controls.Add(this.txtLoginVisiteur);
-            this.groupBoxLogin.Location = new System.Drawing.Point(36, 620);
+            this.groupBoxLogin.Location = new System.Drawing.Point(36, 579);
             this.groupBoxLogin.Name = "groupBoxLogin";
             this.groupBoxLogin.Size = new System.Drawing.Size(512, 57);
             this.groupBoxLogin.TabIndex = 24;
@@ -272,7 +237,7 @@
             // groupBoxPrenomVisiteur
             // 
             this.groupBoxPrenomVisiteur.Controls.Add(this.txtPrenomVisiteur);
-            this.groupBoxPrenomVisiteur.Location = new System.Drawing.Point(818, 362);
+            this.groupBoxPrenomVisiteur.Location = new System.Drawing.Point(755, 360);
             this.groupBoxPrenomVisiteur.Name = "groupBoxPrenomVisiteur";
             this.groupBoxPrenomVisiteur.Size = new System.Drawing.Size(512, 57);
             this.groupBoxPrenomVisiteur.TabIndex = 25;
@@ -282,7 +247,7 @@
             // groupBoxCodePostal
             // 
             this.groupBoxCodePostal.Controls.Add(this.txtCodePostalVisiteur);
-            this.groupBoxCodePostal.Location = new System.Drawing.Point(818, 454);
+            this.groupBoxCodePostal.Location = new System.Drawing.Point(755, 437);
             this.groupBoxCodePostal.Name = "groupBoxCodePostal";
             this.groupBoxCodePostal.Size = new System.Drawing.Size(512, 57);
             this.groupBoxCodePostal.TabIndex = 26;
@@ -292,7 +257,7 @@
             // groupBoxAdresse
             // 
             this.groupBoxAdresse.Controls.Add(this.txtAdresseVisiteur);
-            this.groupBoxAdresse.Location = new System.Drawing.Point(818, 541);
+            this.groupBoxAdresse.Location = new System.Drawing.Point(755, 509);
             this.groupBoxAdresse.Name = "groupBoxAdresse";
             this.groupBoxAdresse.Size = new System.Drawing.Size(512, 57);
             this.groupBoxAdresse.TabIndex = 27;
@@ -302,18 +267,60 @@
             // groupBoxMdp
             // 
             this.groupBoxMdp.Controls.Add(this.txtMdpVisiteur);
-            this.groupBoxMdp.Location = new System.Drawing.Point(818, 620);
+            this.groupBoxMdp.Location = new System.Drawing.Point(755, 579);
             this.groupBoxMdp.Name = "groupBoxMdp";
             this.groupBoxMdp.Size = new System.Drawing.Size(512, 57);
             this.groupBoxMdp.TabIndex = 27;
             this.groupBoxMdp.TabStop = false;
             this.groupBoxMdp.Text = "Mot de Passe";
             // 
+            // idVis
+            // 
+            this.idVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.idVis.HeaderText = "numéro du visiteur";
+            this.idVis.Name = "idVis";
+            // 
+            // nomVis
+            // 
+            this.nomVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nomVis.HeaderText = "nom";
+            this.nomVis.Name = "nomVis";
+            // 
+            // prenomVis
+            // 
+            this.prenomVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.prenomVis.HeaderText = "prénom";
+            this.prenomVis.Name = "prenomVis";
+            // 
+            // adresseVis
+            // 
+            this.adresseVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.adresseVis.HeaderText = "adresse";
+            this.adresseVis.Name = "adresseVis";
+            // 
+            // cpVis
+            // 
+            this.cpVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cpVis.HeaderText = "code postal ";
+            this.cpVis.Name = "cpVis";
+            // 
+            // villeVis
+            // 
+            this.villeVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.villeVis.HeaderText = "ville";
+            this.villeVis.Name = "villeVis";
+            // 
+            // dateEmbaucheVis
+            // 
+            this.dateEmbaucheVis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dateEmbaucheVis.HeaderText = "date d\'embauche";
+            this.dateEmbaucheVis.Name = "dateEmbaucheVis";
+            // 
             // Visiteur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1376, 809);
+            this.ClientSize = new System.Drawing.Size(1300, 722);
             this.Controls.Add(this.buttonAjouterVisiteur);
             this.Controls.Add(this.buttonValiderModificationVisiteur);
             this.Controls.Add(this.groupBoxMdp);
@@ -360,13 +367,6 @@
         private System.Windows.Forms.Button buttonSupprimerVisiteur;
         private System.Windows.Forms.Button buttonValiderModificationVisiteur;
         private System.Windows.Forms.Button buttonAjouterVisiteur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idVis;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomVis;
-        private System.Windows.Forms.DataGridViewTextBoxColumn prenomVis;
-        private System.Windows.Forms.DataGridViewTextBoxColumn adresseVis;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cpVis;
-        private System.Windows.Forms.DataGridViewTextBoxColumn villeVis;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateEmbaucheVis;
         private System.Windows.Forms.TextBox txtMdpVisiteur;
         private System.Windows.Forms.TextBox txtLoginVisiteur;
         private System.Windows.Forms.TextBox txtVilleVisiteur;
@@ -384,5 +384,12 @@
         private System.Windows.Forms.GroupBox groupBoxLogin;
         private System.Windows.Forms.GroupBox groupBoxVille;
         private System.Windows.Forms.GroupBox groupBoxDateEmbauche;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idVis;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomVis;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prenomVis;
+        private System.Windows.Forms.DataGridViewTextBoxColumn adresseVis;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cpVis;
+        private System.Windows.Forms.DataGridViewTextBoxColumn villeVis;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateEmbaucheVis;
     }
 }
