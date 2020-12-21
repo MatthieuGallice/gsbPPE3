@@ -73,6 +73,53 @@ namespace ClassePasserelle
         }
         #endregion
 
+        #region ChargerLeEchantillonsOffert selon rapport
+        public static List<ClasseEchantillonOffert> chargerLEchantillonOffert(int idRapport)
+        {
+            //VARIABLES
+            List<ClasseEchantillonOffert> LEchantillons = new List<ClasseEchantillonOffert>();
+            string idMedicament;
+            int quantite;
+
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT idMedicamentOff, quantiteOff " +
+                              "FROM offrir " +
+                              "WHERE idRapportOff = '"+ idRapport + "'";
+            //EXECUTE LA REQUETE
+            MySqlDataReader drr = cmd.ExecuteReader();
+
+            //LECTURE DE LA REQUETE
+            while (drr.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                idMedicament = drr.GetString(0);
+                quantite = drr.GetInt16(1);
+                //On récupère le médicaments avec la méthode chargerLeMedicament
+                ClasseMedicament leMedicament = ClassePMedicament.chargerLeMedicament(idMedicament);
+
+
+                // Instancie un échantillon 
+                ClasseEchantillonOffert lEchantillon = new ClasseEchantillonOffert(quantite, leMedicament);
+                // Ajoute un échantillon dans la liste
+                LEchantillons.Add(lEchantillon);
+
+            }
+
+            drr.Close();
+            connexion.Close();
+
+            return LEchantillons;
+        }
+        #endregion
+
         #region ChargerLesEchantillonsOfferts 
         public static List<ClasseEchantillonOffert> chargerLesEchantillonOffert()
         {
@@ -104,11 +151,11 @@ namespace ClassePasserelle
                 idMedicament = drr.GetString(1);
                 quantite = drr.GetInt16(2);
                 //On récupère la liste des médicaments avec la méthode chargerLesMedicaments
-                List<ClasseMedicament> lesMedicaments = ClassePMedicament.chargerLesMedicaments();
+                ClasseMedicament leMedicament = ClassePMedicament.chargerLeMedicament(idMedicament);
 
 
                 // Instancie un échantillon 
-                ClasseEchantillonOffert lEchantillon = new ClasseEchantillonOffert(quantite, lesMedicaments);
+                ClasseEchantillonOffert lEchantillon = new ClasseEchantillonOffert(quantite, leMedicament);
 
                 // Instancie un rapport
                 LesEchantillonsOffert.Add(lEchantillon);

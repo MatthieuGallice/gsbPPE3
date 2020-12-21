@@ -10,17 +10,18 @@ namespace ClasseMétiers
     {
         #region attribut
         private int quantite;
-        private List<ClasseMedicament> leMedicament;
+        private ClasseMedicament leMedicament;
         #endregion
 
         #region Accesseur
         public int Quantite { get => quantite; set => quantite = value; }
-        public List<ClasseMedicament> LeMedicament { get => leMedicament; set => leMedicament = value; }
+        public ClasseMedicament LeMedicament { get => leMedicament; set => leMedicament = value; }
 
         #endregion
 
         #region Constructeur
-        public ClasseEchantillonOffert(int unequantite , List<ClasseMedicament> unMedicament)
+        public ClasseEchantillonOffert() { }
+        public ClasseEchantillonOffert(int unequantite , ClasseMedicament unMedicament)
         {
             quantite = unequantite;
             leMedicament = unMedicament;
