@@ -39,7 +39,7 @@ namespace Formulaire
 
         private void buttonModifierMedecin_Click(object sender, EventArgs e)
         {
-            if (dgwMedecin.CurrentRow.Selected)
+            /*if (dgwMedecin.CurrentRow.Selected)
             {
                 // VARIABLE POUR LA REQUETE SQL 
                 string leNom = dgwMedecin.CurrentRow.Cells[0].Value.ToString();
@@ -72,7 +72,7 @@ namespace Formulaire
             else
             {
                 MessageBox.Show("Sélectionner un médecin dans le tableau !");
-            }
+            }*/
         }
     }
 }
