@@ -144,7 +144,7 @@ namespace ClassePasserelle
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
             MySqlCommand cmd = new MySqlCommand();
-            connexion.ConnectionString = "SERVER=localhost;Initial Catalog=gsbppe3; UID = root; PASSWORD =''";
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
 
