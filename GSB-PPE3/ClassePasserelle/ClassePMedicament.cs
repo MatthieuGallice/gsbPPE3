@@ -96,7 +96,7 @@ namespace ClassePasserelle
             cmd = connexion.CreateCommand();
             //REQUETE SQL
             cmd.CommandText = "SELECT DISTINCT idMedicament, nomCommercialMedicament, idFamilleMedicament, libFamille, compositionMedicament, effetsMedicament, contreIndicationsMedicament " +
-                              "FROM medicament INNER JOIN famille ON idFamilleMedicament WHERE medicament.idFamilleMedicament = famille.idFamille";
+                              "FROM medicament INNER JOIN famille ON famille.idFamille = medicament.idFamilleMedicament WHERE medicament.idFamilleMedicament = famille.idFamille";
             //EXECUTION REQUETE 
             MySqlDataReader drr = cmd.ExecuteReader();
 

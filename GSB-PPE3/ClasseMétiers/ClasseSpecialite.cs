@@ -16,6 +16,10 @@ namespace ClasseMétiers
 
         #region constructeurs
 
+        public ClasseSpecialite()
+        {
+
+        }
         public ClasseSpecialite(string lid, string laspecialite)
         {
             id = lid;

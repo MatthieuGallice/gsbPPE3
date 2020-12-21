@@ -50,7 +50,7 @@ namespace ClassePasserelle
         #endregion
 
         #region DELETE
-        public void SupprimerMedecin( int lidMed)
+        public static void SupprimerMedecin(string lidMed)
         {
             //Connexion à la BDD 
             MySqlConnection connexion = new MySqlConnection();
@@ -60,7 +60,7 @@ namespace ClassePasserelle
             connexion.Open();
             //Supprimer un Medecin dans la Table Medecin 
             cmd = connexion.CreateCommand();
-            cmd.CommandText = "DELETE FROM `medecin` WHERE `medecin`.`idMed` = '" + lidMed + "'";
+            cmd.CommandText = "DELETE FROM `medecin` WHERE `idMed` = " + lidMed + "";
 
             MySqlDataReader drr = cmd.ExecuteReader(); //Execution du script
             drr.Close();
@@ -146,8 +146,8 @@ namespace ClassePasserelle
 
             cmd = connexion.CreateCommand();
             //REQUETE SQL
-            cmd.CommandText = "SELECT nomMed, prenomMed, adresseMed, telMed , idSpec, departementMed, libSpec, idMed  " +
-                              "FROM medecin INNER JOIN specialite ON idSpecialiteMed"; 
+            cmd.CommandText = "SELECT nomMed, prenomMed, adresseMed, telMed , idSpec, departementMed, libSpec, idMed " +
+                            "FROM medecin INNER JOIN specialite ON specialite.idSpec = medecin.idSpecialiteMed "; 
             //EXECUTE LA REQUETE
             MySqlDataReader drr = cmd.ExecuteReader();
 

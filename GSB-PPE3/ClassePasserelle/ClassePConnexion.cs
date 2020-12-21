@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace ClassePasserelle
 {
-    class ClassePConnexion
+    public class ClassePConnexion
     {
         public static string DBConnection()
         {

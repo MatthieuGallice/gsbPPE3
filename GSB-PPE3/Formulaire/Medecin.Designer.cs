@@ -199,6 +199,7 @@
             this.buttonSupprimerMedecin.TabIndex = 4;
             this.buttonSupprimerMedecin.Text = "Supprimer Medecin";
             this.buttonSupprimerMedecin.UseVisualStyleBackColor = true;
+            this.buttonSupprimerMedecin.Click += new System.EventHandler(this.buttonSupprimerMedecin_Click);
             // 
             // buttonValiderModif
             // 
