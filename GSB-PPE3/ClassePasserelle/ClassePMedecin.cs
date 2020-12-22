@@ -11,7 +11,7 @@ namespace ClassePasserelle
     public class ClassePMedecin
     {
         #region UPDATE
-        public static void modifierMedecin(ClasseMedecin nouveau)
+        public static void modifierMedecin(int idMed, string leNom, string lePrenom, string ladresse, string leTel, int idSpe, int leDepartement)
         {
             //Connexion à la BDD
             MySqlConnection connexion = new MySqlConnection();
@@ -21,7 +21,7 @@ namespace ClassePasserelle
             connexion.Open();
             // Mise à jour de la table Médecin dans la BDD
             cmd = connexion.CreateCommand();
-            cmd.CommandText = "UPDATE medecin SET nomMed ='" + nouveau.Nom + "', prenomMed='" + nouveau.Prenom +"' , adresseMed='" + nouveau.Adresse +"', telMed= '" + nouveau.Tel + "', idSpecialiteMed= '" + nouveau.LaSpecialite.Id + "', departementMed='"+ nouveau.Departement +"' WHERE idMed='"+ nouveau.Id +"'";
+            cmd.CommandText = "UPDATE medecin SET nomMed='" + leNom + "', prenomMed='" + lePrenom + "', adresseMed='" + ladresse + "', telMed= '" + leTel + "', idSpecialiteMed= '" + idSpe + "', departementMed='"+ leDepartement + "' WHERE idMed='"+ idMed + "'";
 
             MySqlDataReader drr = cmd.ExecuteReader(); //Execution du script
             drr.Close();
@@ -30,7 +30,7 @@ namespace ClassePasserelle
         #endregion
 
         #region INSERT
-        public static void AjouterMedecin(int lidMed, string lenomMed, string leprenomMed, string ladresseMed, int letelMed, int lidSpecialisteMed, int ledepartementMed)
+        public static void AjouterMedecin(string leNom, string lePrenom, string ladresse, string leTel, int laSpe, int leDepartement)
         {
             //Connexion à la BDD
             MySqlConnection connexion = new MySqlConnection();
@@ -40,8 +40,8 @@ namespace ClassePasserelle
             connexion.Open();
             //Ajout d'un Medecin dans la BDD 
             cmd = connexion.CreateCommand();
-            cmd.CommandText = "INSERT INTO `medecin` (`nomMed`, `prenomMed`, `adresseMed`, `telMed`, `idSpecialisteMed`, `departementMed`) " +
-                                "VALUES ('" + lenomMed + "', '" + leprenomMed + "', '" + ladresseMed + "', '" + letelMed + "', '" + lidSpecialisteMed + "', '" + ledepartementMed + "');";
+            cmd.CommandText = "INSERT INTO medecin (nomMed, prenomMed, adresseMed, telMed, idSpecialiteMed, departementMed) " +
+                                "VALUES ('" + leNom + "', '" + lePrenom + "', '" + ladresse + "', '" + leTel + "', '" + laSpe + "', '" + leDepartement + "');";
             MySqlDataReader drr = cmd.ExecuteReader(); //Execution du script
             drr.Close();
             connexion.Close();

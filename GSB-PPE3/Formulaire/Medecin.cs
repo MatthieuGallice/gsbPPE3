@@ -24,10 +24,11 @@ namespace Formulaire
             InitializeComponent();
         }
 
-        // AU CHARGEMENT DE LA PAGE
-        private void Medecin_Load(object sender, EventArgs e)
+        // FONCTION QUI REMPLIS LE DGW 
+        public void dgvFormulaireMedecin()
         {
-            //AFFICHAGE DATAGRIDVIEW
+            dgwMedecin.Rows.Clear();
+
             List<ClasseMedecin> unMedecin = ClassePMedecin.chargerLesMedecins();
             foreach (ClasseMedecin lesMedecin in unMedecin)
             {
@@ -40,21 +41,11 @@ namespace Formulaire
 
                 dgwMedecin.Rows.Add(leNom, lePrenom, ladresse, leTel, laSpe, leDepartement);
             }
+        }
 
-            // AFFICHAGE SPECIALITE COMBOBOX
-            List<ClasseSpecialite> lesSpe = new List<ClasseSpecialite>();
-            lesSpe = ClassePSpecialite.chargerLesSpecialite();
-
-            comboBoxSpecialite.Items.Clear();
-            comboBoxSpecialite.Items.Add(comboNonChoisi);
-            comboBoxSpecialite.SelectedItem = comboNonChoisi;
-
-            foreach (ClasseSpecialite spe in lesSpe)
-            {
-                comboBoxSpecialite.Items.Add(spe.Specialite.ToString());
-            }
-
-            // AFFICHAGE NOM PRENOM MEDECIN POUR COMBOBOX DEUXIEME DGV
+        // FONCTION QUI REMPLIS LA COMBOBOX DES MEDECINS
+        public void remplirComboboxListeMedecin()
+        {
             List<ClasseMedecin> lesMed = new List<ClasseMedecin>();
             lesMed = ClassePMedecin.chargerLesMedecins();
 
@@ -70,6 +61,29 @@ namespace Formulaire
 
                 comboBoxListeMedecin.Items.Add(leMed);
             }
+        }
+
+        // AU CHARGEMENT DE LA PAGE
+        private void Medecin_Load(object sender, EventArgs e)
+        {
+            //AFFICHAGE DATAGRIDVIEW
+            dgvFormulaireMedecin();
+
+            // AFFICHAGE SPECIALITE COMBOBOX
+            List<ClasseSpecialite> lesSpe = new List<ClasseSpecialite>();
+            lesSpe = ClassePSpecialite.chargerLesSpecialite();
+
+            comboBoxSpecialite.Items.Clear();
+            comboBoxSpecialite.Items.Add(comboNonChoisi);
+            comboBoxSpecialite.SelectedItem = comboNonChoisi;
+
+            foreach (ClasseSpecialite spe in lesSpe)
+            {
+                comboBoxSpecialite.Items.Add(spe.Specialite.ToString());
+            }
+
+            // AFFICHAGE NOM PRENOM MEDECIN POUR COMBOBOX DEUXIEME DGV
+            remplirComboboxListeMedecin();
         }
 
         // BOUTON MODIFIER
@@ -141,16 +155,34 @@ namespace Formulaire
         //BOUTON VALIDER MOFIFICATION
         private void buttonValiderModif_Click(object sender, EventArgs e)
         {
-            ClasseMedecin nouveau = new ClasseMedecin();
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            string tel = txtTelMedecin.Text;
+            bool leTelValide = ClasseMedecin.telValide(tel);
+
+            string departement = txtDepartementMedecin.Text;
+            bool ledepartementValide = ClasseMedecin.departementValide(departement);
 
             if (txtNomMedecin.Text == "" || txtPrenomMedecin.Text == "" || txtTelMedecin.Text == "" 
                 || txtAdresseMedecin.Text == "" || txtDepartementMedecin.Text == "")
             {
                 MessageBox.Show("une ou plusieurs case ne sont pas remplis ! ");
             }
+            else if (leTelValide == false)
+            {
+                MessageBox.Show("le numéro de téléphone n'est pas un numéro valide (dix chiffre) ! ");
+            }
+            else if (ledepartementValide == false)
+            {
+                MessageBox.Show("le numéro de département n'est pas valide (deux chiffre) ! ");
+            }
             else if (comboBoxSpecialite.Text == comboNonChoisi)
             {
-                MessageBox.Show("choisir une spécialité ! ");
+                MessageBox.Show("il faut choisir une spécialité ! ");
             }
             else
             {
@@ -159,18 +191,10 @@ namespace Formulaire
                 string lePrenom = txtPrenomMedecin.Text;
                 string laSpe = comboBoxSpecialite.Text;
 
-                //CONNEXION BDD
-                MySqlConnection connexion = new MySqlConnection();
                 MySqlCommand getId = new MySqlCommand();
-                MySqlCommand getIdSpe = new MySqlCommand();
-                connexion.ConnectionString = ClassePConnexion.DBConnection();
-
-                connexion.Open();
-
                 getId = connexion.CreateCommand();
-                getIdSpe = connexion.CreateCommand();
 
-                //REQUETE SQL ID MEDECIN
+                // REQUETE SQL ID MEDECIN
                 getId.CommandText = "SELECT idMed " +
                                   "FROM medecin " +
                                   "WHERE nomMed = '" + leNom + "' " +
@@ -179,23 +203,23 @@ namespace Formulaire
                 int idMed = Convert.ToInt32(getId.ExecuteScalar());
 
                 // REQUETE SQL ID SPECIALITE
+                MySqlCommand getIdSpe = new MySqlCommand();
+                getIdSpe = connexion.CreateCommand();
+
                 getIdSpe.CommandText = "SELECT `idSpec` " +
-                                        "FROM `specialite` WHERE `libSpec` = '" + laSpe + "'";
+                                    "FROM `specialite` WHERE `libSpec` = '" + laSpe + "'";
 
                 int idSpe = Convert.ToInt32(getIdSpe.ExecuteScalar());
 
                 // MISE A JOUR 
-                nouveau.Id = idMed;
-                nouveau.Nom = txtNomMedecin.Text;
-                nouveau.Prenom = txtPrenomMedecin.Text;
-                nouveau.Adresse = txtAdresseMedecin.Text;
-                nouveau.Tel = txtTelMedecin.Text;
-                nouveau.LaSpecialite = instanSpe;
-                nouveau.Departement = int.Parse(txtDepartementMedecin.Text);
+                string ladresse = txtAdresseMedecin.Text;
+                string leTel = txtTelMedecin.Text;
+                int leDepartement = int.Parse(txtDepartementMedecin.Text);
 
-                ClassePMedecin.modifierMedecin(nouveau);
+                ClassePMedecin.modifierMedecin(idMed, leNom, lePrenom, ladresse, leTel, idSpe, leDepartement);
 
-                ClassePMedecin.chargerLesMedecins();
+                dgvFormulaireMedecin();
+                remplirComboboxListeMedecin();
 
                 connexion.Close();
             }
@@ -230,14 +254,70 @@ namespace Formulaire
             {
                 ClassePMedecin.SupprimerMedecin(idMed);
 
-                ClassePMedecin.chargerLesMedecins();
+                dgvFormulaireMedecin();
+                remplirComboboxListeMedecin();
             }
+            connexion.Close();
         }
 
         // BOUTON AJOUTER 
         private void buttonAjouterMedecin_Click(object sender, EventArgs e)
         {
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
 
+            connexion.Open();
+
+            string tel = txtTelMedecin.Text;
+            bool leTelValide = ClasseMedecin.telValide(tel);
+
+            string departement = txtDepartementMedecin.Text;
+            bool ledepartementValide = ClasseMedecin.departementValide(departement);
+
+            if (txtNomMedecin.Text == "" || txtPrenomMedecin.Text == "" || txtTelMedecin.Text == ""
+               || txtAdresseMedecin.Text == "" || txtDepartementMedecin.Text == "")
+            {
+                MessageBox.Show("une ou plusieurs case ne sont pas remplis ! ");
+            }
+            else if (leTelValide == false)
+            {
+                MessageBox.Show("le numéro de téléphone n'est pas un numéro valide (dix chiffre) ! ");
+            }
+            else if (ledepartementValide == false)
+            {
+                MessageBox.Show("le numéro de département n'est pas valide (deux chiffre) ! ");
+            }
+            else if (comboBoxSpecialite.Text == comboNonChoisi)
+            {
+                MessageBox.Show("il faut choisir une spécialité ! ");
+            }
+            else
+            {
+                string laSpe = comboBoxSpecialite.Text;
+
+                // REQUETE QUI RECUPERE L'ID GRACE AU NOM DE LA SPECIALITE
+                MySqlCommand getIdSpe = new MySqlCommand();
+                getIdSpe = connexion.CreateCommand();
+                getIdSpe.CommandText = "SELECT `idSpec` " +
+                                    "FROM `specialite` WHERE `libSpec` = '" + laSpe + "'";
+
+                int idSpe = Convert.ToInt32(getIdSpe.ExecuteScalar());
+
+                // MISE A JOUR 
+                string leNom = txtNomMedecin.Text;
+                string lePrenom = txtPrenomMedecin.Text;
+                string ladresse = txtAdresseMedecin.Text;
+                string leTel = txtTelMedecin.Text;
+                int leDepartement = int.Parse(txtDepartementMedecin.Text);
+
+                ClassePMedecin.AjouterMedecin(leNom, lePrenom, ladresse, leTel, idSpe, leDepartement);
+
+                dgvFormulaireMedecin();
+                remplirComboboxListeMedecin();
+
+                connexion.Close();
+            }
         }
     }
 }
