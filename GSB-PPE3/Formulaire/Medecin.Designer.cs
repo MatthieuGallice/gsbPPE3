@@ -209,6 +209,7 @@
             this.buttonValiderModif.TabIndex = 5;
             this.buttonValiderModif.Text = "Valider Modifications";
             this.buttonValiderModif.UseVisualStyleBackColor = true;
+            this.buttonValiderModif.Click += new System.EventHandler(this.buttonValiderModif_Click);
             // 
             // buttonAjouterMedecin
             // 
@@ -218,6 +219,7 @@
             this.buttonAjouterMedecin.TabIndex = 6;
             this.buttonAjouterMedecin.Text = "Ajouter Medecin";
             this.buttonAjouterMedecin.UseVisualStyleBackColor = true;
+            this.buttonAjouterMedecin.Click += new System.EventHandler(this.buttonAjouterMedecin_Click);
             // 
             // comboBoxListeMedecin
             // 

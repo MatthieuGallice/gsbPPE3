@@ -10,7 +10,7 @@ namespace ClasseMétiers
    {
         #region propriété privées 
 
-        private string id;
+        private int id;
         private string nomCommercial;
         private string composition;
         private string effets;
@@ -20,7 +20,7 @@ namespace ClasseMétiers
 
         #region Accesseur
 
-        public string Id { get => id; set => id = value; }
+        public int Id { get => id; set => id = value; }
         public string NomCommercial { get => nomCommercial; set => nomCommercial = value; }
         public string Effets { get => effets; set => effets = value; }
         public string Contreindictions { get => contreindications; set => contreindications = value; }
@@ -30,7 +30,7 @@ namespace ClasseMétiers
 
         #region Constructeur
 
-        public ClasseMedicament(string unid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications)
+        public ClasseMedicament(int unid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications)
         {
             id = unid;
             nomCommercial = unnomcomposition;
@@ -39,7 +39,7 @@ namespace ClasseMétiers
             contreindications = unecontreindications;
         }
 
-        public ClasseMedicament(string unid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications , ClasseFamille lafamille)
+        public ClasseMedicament(int unid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications , ClasseFamille lafamille)
         {
             id = unid;
             nomCommercial = unnomcomposition;

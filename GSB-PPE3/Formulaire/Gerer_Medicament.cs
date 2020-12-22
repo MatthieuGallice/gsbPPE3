@@ -24,7 +24,7 @@ namespace Formulaire
             List<ClasseMedicament> lesMedicaments = ClassePMedicament.chargerLesMedicaments();
             foreach (ClasseMedicament unMedicament in lesMedicaments)
             {
-                string leNb = unMedicament.Id;
+                int leNb = unMedicament.Id;
                 string leNom = unMedicament.NomCommercial;
                 string laFamille = unMedicament.Famille.Libelle;
                 string laComposition = unMedicament.Composition;

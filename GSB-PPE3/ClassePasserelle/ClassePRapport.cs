@@ -82,8 +82,8 @@ namespace ClassePasserelle
             DateTime dateRap;
             string motifRap;
             string bilanRap;
-            string idVisiteurRap;
-            string idMedecinRap;
+            int idVisiteurRap;
+            int idMedecinRap;
 
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
@@ -107,8 +107,8 @@ namespace ClassePasserelle
                 dateRap = drr.GetDateTime(1);
                 motifRap = drr.GetString(2);
                 bilanRap = drr.GetString(3);
-                idVisiteurRap = drr.GetString(4);
-                idMedecinRap = drr.GetString(5);
+                idVisiteurRap = int.Parse(drr.GetString(4));
+                idMedecinRap = int.Parse(drr.GetString(5));
 
                 //On récupère un objet visiteur avec la méthode chargerLeVisiteur
                 ClasseVisiteur leVisiteur = ClassePVisiteur.chargerLeVisiteur(idVisiteurRap);

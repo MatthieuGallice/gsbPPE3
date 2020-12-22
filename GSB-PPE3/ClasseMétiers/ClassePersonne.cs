@@ -10,7 +10,7 @@ namespace ClasseMétiers
     {
 
         #region propriétés privées
-        private string id;
+        private int id;
         private string nom;
         private string prenom;
         private string adresse;
@@ -20,7 +20,7 @@ namespace ClasseMétiers
         public ClassePersonne()
         {
         }
-        public ClassePersonne(string lid, string lenom, string leprenom, string ladresse)
+        public ClassePersonne(int lid, string lenom, string leprenom, string ladresse)
         {
             id = lid;
             nom = lenom;
@@ -31,7 +31,7 @@ namespace ClasseMétiers
         #endregion
 
         #region accesseurs
-        public string Id
+        public int Id
         {
             get => id;
             set => id = value;

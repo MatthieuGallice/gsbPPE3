@@ -13,7 +13,7 @@ namespace ClassePasserelle
         public static List<ClasseFamille> chargerLesFamilles()
         {
             List<ClasseFamille> lesFamille = new List<ClasseFamille>();
-            string id_famille;
+            int id_famille;
             string libelle;
 
             MySqlConnection connexion = new MySqlConnection();
@@ -28,7 +28,7 @@ namespace ClassePasserelle
 
             while (drr.Read())
             {
-                id_famille = drr.GetString(0);
+                id_famille = int.Parse(drr.GetString(0));
                 libelle = drr.GetString(1);
                 ClasseFamille laFamille = new ClasseFamille(id_famille, libelle);
                 lesFamille.Add(laFamille);
