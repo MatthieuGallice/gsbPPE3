@@ -11,7 +11,7 @@ namespace ClassePasserelle
     public class ClassePMedecin
     {
         #region UPDATE
-        public void modifierMedecin(int lidMed ,string lenomMed , string leprenomMed , string ladresseMed , int letelMed , int lidSpecialisteMed , int ledepartementMed)
+        public static void modifierMedecin(ClasseMedecin nouveau)
         {
             //Connexion à la BDD
             MySqlConnection connexion = new MySqlConnection();
@@ -21,16 +21,16 @@ namespace ClassePasserelle
             connexion.Open();
             // Mise à jour de la table Médecin dans la BDD
             cmd = connexion.CreateCommand();
-            cmd.CommandText = "UPDATE `medecin` SET `nomMed` ='" + lenomMed + "',prenomMed='" + leprenomMed +"' ,adresseMed='" + ladresseMed +"',telMed= '" + letelMed + "',idSpecialiteMed= '" + lidSpecialisteMed + "'departementMed='"+ ledepartementMed ;
-            MySqlDataReader drr = cmd.ExecuteReader();//execution du script
+            cmd.CommandText = "UPDATE medecin SET nomMed ='" + nouveau.Nom + "', prenomMed='" + nouveau.Prenom +"' , adresseMed='" + nouveau.Adresse +"', telMed= '" + nouveau.Tel + "', idSpecialiteMed= '" + nouveau.LaSpecialite.Id + "', departementMed='"+ nouveau.Departement +"' WHERE idMed='"+ nouveau.Id +"'";
+
+            MySqlDataReader drr = cmd.ExecuteReader(); //Execution du script
             drr.Close();
             connexion.Close();
-
         }
         #endregion
 
         #region INSERT
-        public void AjouterMedecin(int lidMed, string lenomMed, string leprenomMed, string ladresseMed, int letelMed, int lidSpecialisteMed, int ledepartementMed)
+        public static void AjouterMedecin(int lidMed, string lenomMed, string leprenomMed, string ladresseMed, int letelMed, int lidSpecialisteMed, int ledepartementMed)
         {
             //Connexion à la BDD
             MySqlConnection connexion = new MySqlConnection();
@@ -50,7 +50,7 @@ namespace ClassePasserelle
         #endregion
 
         #region DELETE
-        public void SupprimerMedecin( int lidMed)
+        public static void SupprimerMedecin(int lidMed)
         {
             //Connexion à la BDD 
             MySqlConnection connexion = new MySqlConnection();
@@ -60,7 +60,7 @@ namespace ClassePasserelle
             connexion.Open();
             //Supprimer un Medecin dans la Table Medecin 
             cmd = connexion.CreateCommand();
-            cmd.CommandText = "DELETE FROM `medecin` WHERE `medecin`.`idMed` = '" + lidMed + "'";
+            cmd.CommandText = "DELETE FROM `medecin` WHERE `idMed` = " + lidMed + "";
 
             MySqlDataReader drr = cmd.ExecuteReader(); //Execution du script
             drr.Close();
@@ -69,7 +69,7 @@ namespace ClassePasserelle
         #endregion
 
         #region ChargerLeMedecin
-        public static ClasseMedecin chargerLeMedecin(string lid)
+        public static ClasseMedecin chargerLeMedecin(int lid)
         {
             //VARIABLES
             ClasseMedecin leMedecin = new ClasseMedecin();
@@ -77,10 +77,10 @@ namespace ClassePasserelle
             string prenom;
             string tel;
             string adresse;
-            string idspecialite;
+            int idspecialite;
             int departement;
             string libSpec;
-            string idMed;
+            int idMed;
 
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
@@ -106,9 +106,9 @@ namespace ClassePasserelle
                 tel = drr.GetString(3);
                 adresse = drr.GetString(2); 
                 departement = drr.GetInt16(5);
-                idspecialite = drr.GetString(4);
+                idspecialite = int.Parse(drr.GetString(4));
                 libSpec = drr.GetString(6); 
-                idMed = drr.GetString(7); 
+                idMed = int.Parse(drr.GetString(7)); 
 
                 //ON INSTANCIE UN OBJET CLASSESPECIALITE
                 ClasseSpecialite LaSpe = new ClasseSpecialite(idspecialite, libSpec); 
@@ -132,10 +132,10 @@ namespace ClassePasserelle
             string prenom;
             string tel;
             string adresse;
-            string idspecialite;
+            int idspecialite;
             int departement;
             string libSpec;
-            string idMed;
+            int idMed;
             
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
@@ -146,8 +146,8 @@ namespace ClassePasserelle
 
             cmd = connexion.CreateCommand();
             //REQUETE SQL
-            cmd.CommandText = "SELECT nomMed, prenomMed, adresseMed, telMed , idSpec, departementMed, libSpec, idMed  " +
-                              "FROM medecin INNER JOIN specialite ON idSpecialiteMed"; 
+            cmd.CommandText = "SELECT nomMed, prenomMed, adresseMed, telMed , idSpec, departementMed, libSpec, idMed " +
+                            "FROM medecin INNER JOIN specialite ON specialite.idSpec = medecin.idSpecialiteMed "; 
             //EXECUTE LA REQUETE
             MySqlDataReader drr = cmd.ExecuteReader();
 
@@ -159,9 +159,9 @@ namespace ClassePasserelle
                 tel = drr.GetString(3);// 3 correspond à telMed
                 adresse = drr.GetString(2); // 2 correspond à adresseMed
                 departement = drr.GetInt16(5);//5 correspond à departementMed
-                idspecialite = drr.GetString(4);//4 correspond à idSpec
+                idspecialite = int.Parse(drr.GetString(4));//4 correspond à idSpec
                 libSpec = drr.GetString(6); //6 correspond à libSpec
-                idMed = drr.GetString(7); // 7 correspond à idMed
+                idMed = int.Parse(drr.GetString(7)); // 7 correspond à idMed
 
                 //ON INSTANCIE UN OBJET CLASSESPECIALITE
                 ClasseSpecialite LaSpe = new ClasseSpecialite(idspecialite, libSpec); 

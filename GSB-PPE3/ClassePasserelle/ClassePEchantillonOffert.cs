@@ -11,7 +11,7 @@ namespace ClassePasserelle
     public class ClassePEchantillonOffert
     {
         #region INSERT
-        public static void AjoutEchantillonOffert(string idRapport, string idMedicament, string quantite)
+        public static void AjoutEchantillonOffert(int idRapport, int idMedicament, int quantite)
         {
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
@@ -32,7 +32,7 @@ namespace ClassePasserelle
         #endregion
 
         #region UPDATE
-        public static void ModifEchantillonOffert(string idRapport, string idMedicament, string quantite)
+        public static void ModifEchantillonOffert(int idRapport, int idMedicament, int quantite)
         {
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
@@ -53,7 +53,7 @@ namespace ClassePasserelle
         #endregion
 
         #region DELETE
-        public static void SupprimerEchantillonOffert(string idRapport, string idMedicament)
+        public static void SupprimerEchantillonOffert(int idRapport, int idMedicament)
         {
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
@@ -125,8 +125,8 @@ namespace ClassePasserelle
         {
             //VARIABLES
             List<ClasseEchantillonOffert> LesEchantillonsOffert = new List<ClasseEchantillonOffert>();
-            string idRapport;
-            string idMedicament;
+            int idRapport;
+            int idMedicament;
             int quantite;
 
             //CONNEXION BDD
@@ -147,8 +147,8 @@ namespace ClassePasserelle
             while (drr.Read())
             {
                 //ON RECUPERE LES VARIABLES
-                idRapport = drr.GetString(0);
-                idMedicament = drr.GetString(1);
+                idRapport = int.Parse(drr.GetString(0));
+                idMedicament = int.Parse(drr.GetString(1));
                 quantite = drr.GetInt16(2);
                 //On récupère la liste des médicaments avec la méthode chargerLesMedicaments
                 ClasseMedicament leMedicament = ClassePMedicament.chargerLeMedicament(idMedicament);

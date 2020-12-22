@@ -21,7 +21,7 @@ namespace ClasseMétiers
         public ClasseVisiteur() 
         {
         }
-        public ClasseVisiteur(string lid, string lenom, string leprenom, string ladresse, string lelogin, string lemdp, string lecp, string laville, DateTime ladateEmbauche) : base(lid, lenom, leprenom, ladresse)
+        public ClasseVisiteur(int lid, string lenom, string leprenom, string ladresse, string lelogin, string lemdp, string lecp, string laville, DateTime ladateEmbauche) : base(lid, lenom, leprenom, ladresse)
         {
             login = lelogin;
             mdp = lemdp;

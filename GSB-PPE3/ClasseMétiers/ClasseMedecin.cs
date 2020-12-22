@@ -17,7 +17,7 @@ namespace ClasseMétiers
 
         #region constructeurs
         public ClasseMedecin() { }
-        public ClasseMedecin(string lid, string lenom, string leprenom, string ladresse, string letel, int ledepartement, ClasseSpecialite lSpecialite) : base(lid, lenom, leprenom, ladresse)
+        public ClasseMedecin(int lid, string lenom, string leprenom, string ladresse, string letel, int ledepartement, ClasseSpecialite lSpecialite) : base(lid, lenom, leprenom, ladresse)
         {
             Tel = letel;
             Departement = ledepartement;

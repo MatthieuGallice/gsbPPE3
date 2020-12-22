@@ -24,7 +24,7 @@ namespace Formulaire
             List<ClasseRapport> unRapport = ClassePRapport.chargerLesRapports();
             foreach (ClasseRapport lesRapports in unRapport)
             {
-                string leNb = lesRapports.Id.ToString();
+                int leNb = lesRapports.Id;
                 string nomVisiteur = lesRapports.LeVisiteur.Nom;
                 string prenomVisiteur = lesRapports.LeVisiteur.Prenom;
                 string laDate = lesRapports.Date.ToString();

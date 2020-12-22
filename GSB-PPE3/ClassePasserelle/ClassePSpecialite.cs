@@ -13,7 +13,7 @@ namespace ClassePasserelle
         public static List<ClasseSpecialite> chargerLesSpecialite()
         {
             List<ClasseSpecialite> lesSpecialite = new List<ClasseSpecialite>();
-            string id;
+            int id;
             string specialite;
 
             MySqlConnection connexion = new MySqlConnection();
@@ -28,7 +28,7 @@ namespace ClassePasserelle
 
             while (drr.Read())
             {
-                id = drr.GetString(0);
+                id = drr.GetInt16(0);
                 specialite = drr.GetString(1);
                 ClasseSpecialite laSpecialite = new ClasseSpecialite(id, specialite);
                 lesSpecialite.Add(laSpecialite);

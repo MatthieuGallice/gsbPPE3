@@ -8,11 +8,11 @@ using System.Data.SqlClient;
 
 namespace ClassePasserelle
 {
-    class ClassePConnexion
+    public class ClassePConnexion
     {
         public static string DBConnection()
         {
-            string connectionString = " SERVER ='localhost' ; DATABASE ='gsbppe3' ; UID ='root' ; PASSWORD ='' ;";
+            string connectionString = " SERVER ='localhost' ; DATABASE ='gsbppe3' ; UID ='root' ; PASSWORD ='root' ;";
             return (connectionString);
         }
 

@@ -24,7 +24,7 @@ namespace Formulaire
             List<ClasseVisiteur> unVisiteur = ClassePVisiteur.chargerLesVisiteurs();
             foreach(ClasseVisiteur lesVisiteurs in unVisiteur)
             {
-                string leNb = lesVisiteurs.Id;
+                int leNb = lesVisiteurs.Id;
                 string leNom = lesVisiteurs.Nom;
                 string lePrenom = lesVisiteurs.Prenom;
                 string ladresse = lesVisiteurs.Adresse;

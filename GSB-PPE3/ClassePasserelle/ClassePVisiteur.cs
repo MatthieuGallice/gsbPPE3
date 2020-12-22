@@ -72,10 +72,10 @@ namespace ClassePasserelle
         #endregion
 
         #region ChargerLeVisiteur
-        public static ClasseVisiteur chargerLeVisiteur(string lid)
+        public static ClasseVisiteur chargerLeVisiteur(int lid)
         {
             // variables
-            string id;
+            int id;
             string nom;
             string prenom;
             string adresse;
@@ -113,7 +113,7 @@ namespace ClassePasserelle
                 cp = drr.GetString(5);
                 ville = drr.GetString(6);
                 dateEmbauche = drr.GetDateTime(7);
-                id = drr.GetString(8);
+                id = drr.GetInt16(8);
 
                 //On instancie un objet ClasseVisiteur
                 leVisiteur = new ClasseVisiteur(id, nom, prenom, adresse, login, mdp, cp, ville, dateEmbauche);
@@ -131,7 +131,7 @@ namespace ClassePasserelle
         {
             //VARIABLES
             List<ClasseVisiteur> LesVisiteurs = new List<ClasseVisiteur>();
-            string id;
+            int id;
             string nom;
             string prenom;
             string adresse;
@@ -167,7 +167,7 @@ namespace ClassePasserelle
                 cp = drr.GetString(5);
                 ville = drr.GetString(6);
                 dateEmbauche = drr.GetDateTime(7);
-                id = drr.GetString(8);
+                id = int.Parse(drr.GetString(8));
 
                 //ON INSTANCIE UN OBJET CLASSEVISITEUR
                 ClasseVisiteur leVisiteur = new ClasseVisiteur(id, nom, prenom, adresse, login, mdp, cp, ville, dateEmbauche);

@@ -32,7 +32,7 @@ namespace ClassePasserelle
         #endregion
 
         #region UPDATE
-        public static void ModifMedicament(string lid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications, ClasseFamille lafamille)
+        public static void ModifMedicament(int lid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications, ClasseFamille lafamille)
         {
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
@@ -54,7 +54,7 @@ namespace ClassePasserelle
         #endregion
 
         #region DELETE
-        public static void SupprimerMedicament(string lid)
+        public static void SupprimerMedicament(int lid)
         {
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
@@ -131,12 +131,12 @@ namespace ClassePasserelle
         {
             //VARIABLES
             List<ClasseMedicament> LesMedicaments = new List<ClasseMedicament>();
-            string id;
+            int id;
             string nomcomposition;
             string composition;
             string effets;
             string contreindications;
-            string idfamille;
+            int idfamille;
             string libFam;
 
             //CONNEXION BDD
@@ -149,7 +149,7 @@ namespace ClassePasserelle
             cmd = connexion.CreateCommand();
             //REQUETE SQL
             cmd.CommandText = "SELECT DISTINCT idMedicament, nomCommercialMedicament, idFamilleMedicament, libFamille, compositionMedicament, effetsMedicament, contreIndicationsMedicament " +
-                              "FROM medicament INNER JOIN famille ON idFamilleMedicament WHERE medicament.idFamilleMedicament = famille.idFamille";
+                              "FROM medicament INNER JOIN famille ON famille.idFamille = medicament.idFamilleMedicament WHERE medicament.idFamilleMedicament = famille.idFamille";
             //EXECUTION REQUETE 
             MySqlDataReader drr = cmd.ExecuteReader();
 
@@ -157,9 +157,9 @@ namespace ClassePasserelle
             while (drr.Read())
             {
                 //ON RECUPERE LES VARIABLES
-                id = drr.GetString(0);
+                id = int.Parse(drr.GetString(0));
                 nomcomposition = drr.GetString(1);
-                idfamille = drr.GetString(2);
+                idfamille = int.Parse(drr.GetString(2));
                 libFam = drr.GetString(3);
                 composition = drr.GetString(4);
                 effets = drr.GetString(5);
