@@ -29,13 +29,13 @@ namespace ClasseMétiers
         #endregion
 
         #region Constructeur
-<<<<<<< HEAD
-        public ClasseMedicament() { }
-        public ClasseMedicament(string unid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications)
-=======
 
+        public ClasseMedicament() 
+        {
+
+        }
+    
         public ClasseMedicament(int unid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications)
->>>>>>> Anto
         {
             id = unid;
             nomCommercial = unnomcomposition;

@@ -74,16 +74,16 @@ namespace ClassePasserelle
         #endregion
 
         #region ChargerLeMedicament
-        public static ClasseMedicament chargerLeMedicament(string idMedicament)
+        public static ClasseMedicament chargerLeMedicament(int idMedicament)
         {
             //VARIABLES
             ClasseMedicament LeMedicament = new ClasseMedicament();
-            string id;
+            int id;
             string nomcomposition;
             string composition;
             string effets;
             string contreindications;
-            string idfamille;
+            int idfamille;
             string libFam;
 
             //CONNEXION BDD
@@ -105,9 +105,9 @@ namespace ClassePasserelle
             while (drr.Read())
             {
                 //ON RECUPERE LES VARIABLES
-                id = drr.GetString(0);
+                id = drr.GetInt16(0);
                 nomcomposition = drr.GetString(1);
-                idfamille = drr.GetString(2);
+                idfamille = drr.GetInt16(2);
                 libFam = drr.GetString(3);
                 composition = drr.GetString(4);
                 effets = drr.GetString(5);

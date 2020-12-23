@@ -29,7 +29,7 @@ namespace Formulaire
                 foreach (ClasseEchantillonOffert unEchantillon in lEchantillonOffert)
                 {
                     int quantiteOff = unEchantillon.Quantite;
-                    string numMedic = unEchantillon.LeMedicament.Id;
+                    int numMedic = unEchantillon.LeMedicament.Id;
                     string nomCommercial = unEchantillon.LeMedicament.NomCommercial;
                     dgwListeMedicament.Rows.Add(numrapport, numMedic, nomCommercial, quantiteOff);
                 }

@@ -40,33 +40,27 @@
             this.buttonSupprimerVisiteur = new System.Windows.Forms.Button();
             this.buttonValiderModificationVisiteur = new System.Windows.Forms.Button();
             this.buttonAjouterVisiteur = new System.Windows.Forms.Button();
-            this.txtMdpVisiteur = new System.Windows.Forms.TextBox();
-            this.txtLoginVisiteur = new System.Windows.Forms.TextBox();
             this.txtVilleVisiteur = new System.Windows.Forms.TextBox();
             this.txtAdresseVisiteur = new System.Windows.Forms.TextBox();
-            this.txtDateEmbaucheVisiteur = new System.Windows.Forms.TextBox();
             this.txtCodePostalVisiteur = new System.Windows.Forms.TextBox();
             this.txtNomVisiteur = new System.Windows.Forms.TextBox();
             this.txtPrenomVisiteur = new System.Windows.Forms.TextBox();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.groupBoxNomVisiteur = new System.Windows.Forms.GroupBox();
-            this.groupBoxDateEmbauche = new System.Windows.Forms.GroupBox();
             this.groupBoxVille = new System.Windows.Forms.GroupBox();
-            this.groupBoxLogin = new System.Windows.Forms.GroupBox();
             this.groupBoxPrenomVisiteur = new System.Windows.Forms.GroupBox();
             this.groupBoxCodePostal = new System.Windows.Forms.GroupBox();
             this.groupBoxAdresse = new System.Windows.Forms.GroupBox();
-            this.groupBoxMdp = new System.Windows.Forms.GroupBox();
+            this.CalendrierDateEmbauche = new System.Windows.Forms.MonthCalendar();
+            this.groupBoxDateEmbauche = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgwVisiteur)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.groupBoxNomVisiteur.SuspendLayout();
-            this.groupBoxDateEmbauche.SuspendLayout();
             this.groupBoxVille.SuspendLayout();
-            this.groupBoxLogin.SuspendLayout();
             this.groupBoxPrenomVisiteur.SuspendLayout();
             this.groupBoxCodePostal.SuspendLayout();
             this.groupBoxAdresse.SuspendLayout();
-            this.groupBoxMdp.SuspendLayout();
+            this.groupBoxDateEmbauche.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgwVisiteur
@@ -136,6 +130,7 @@
             this.buttonModifierVisiteur.TabIndex = 2;
             this.buttonModifierVisiteur.Text = "Modifier Visiteur";
             this.buttonModifierVisiteur.UseVisualStyleBackColor = true;
+            this.buttonModifierVisiteur.Click += new System.EventHandler(this.buttonModifierVisiteur_Click);
             // 
             // buttonSupprimerVisiteur
             // 
@@ -146,6 +141,7 @@
             this.buttonSupprimerVisiteur.TabIndex = 3;
             this.buttonSupprimerVisiteur.Text = "Supprimer Visiteur";
             this.buttonSupprimerVisiteur.UseVisualStyleBackColor = true;
+            this.buttonSupprimerVisiteur.Click += new System.EventHandler(this.buttonSupprimerVisiteur_Click);
             // 
             // buttonValiderModificationVisiteur
             // 
@@ -156,6 +152,7 @@
             this.buttonValiderModificationVisiteur.TabIndex = 4;
             this.buttonValiderModificationVisiteur.Text = "Valider Modification";
             this.buttonValiderModificationVisiteur.UseVisualStyleBackColor = true;
+            this.buttonValiderModificationVisiteur.Click += new System.EventHandler(this.buttonValiderModificationVisiteur_Click);
             // 
             // buttonAjouterVisiteur
             // 
@@ -166,22 +163,7 @@
             this.buttonAjouterVisiteur.TabIndex = 5;
             this.buttonAjouterVisiteur.Text = "Ajouter Visiteur";
             this.buttonAjouterVisiteur.UseVisualStyleBackColor = true;
-            // 
-            // txtMdpVisiteur
-            // 
-            this.txtMdpVisiteur.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtMdpVisiteur.Location = new System.Drawing.Point(108, 19);
-            this.txtMdpVisiteur.Name = "txtMdpVisiteur";
-            this.txtMdpVisiteur.Size = new System.Drawing.Size(341, 20);
-            this.txtMdpVisiteur.TabIndex = 13;
-            // 
-            // txtLoginVisiteur
-            // 
-            this.txtLoginVisiteur.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtLoginVisiteur.Location = new System.Drawing.Point(108, 19);
-            this.txtLoginVisiteur.Name = "txtLoginVisiteur";
-            this.txtLoginVisiteur.Size = new System.Drawing.Size(309, 20);
-            this.txtLoginVisiteur.TabIndex = 12;
+            this.buttonAjouterVisiteur.Click += new System.EventHandler(this.buttonAjouterVisiteur_Click);
             // 
             // txtVilleVisiteur
             // 
@@ -198,14 +180,6 @@
             this.txtAdresseVisiteur.Name = "txtAdresseVisiteur";
             this.txtAdresseVisiteur.Size = new System.Drawing.Size(341, 20);
             this.txtAdresseVisiteur.TabIndex = 11;
-            // 
-            // txtDateEmbaucheVisiteur
-            // 
-            this.txtDateEmbaucheVisiteur.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtDateEmbaucheVisiteur.Location = new System.Drawing.Point(108, 19);
-            this.txtDateEmbaucheVisiteur.Name = "txtDateEmbaucheVisiteur";
-            this.txtDateEmbaucheVisiteur.Size = new System.Drawing.Size(309, 20);
-            this.txtDateEmbaucheVisiteur.TabIndex = 8;
             // 
             // txtCodePostalVisiteur
             // 
@@ -239,47 +213,27 @@
             // groupBoxNomVisiteur
             // 
             this.groupBoxNomVisiteur.Controls.Add(this.txtNomVisiteur);
-            this.groupBoxNomVisiteur.Location = new System.Drawing.Point(36, 360);
+            this.groupBoxNomVisiteur.Location = new System.Drawing.Point(36, 348);
             this.groupBoxNomVisiteur.Name = "groupBoxNomVisiteur";
             this.groupBoxNomVisiteur.Size = new System.Drawing.Size(512, 57);
             this.groupBoxNomVisiteur.TabIndex = 21;
             this.groupBoxNomVisiteur.TabStop = false;
             this.groupBoxNomVisiteur.Text = "Nom du Visiteur";
             // 
-            // groupBoxDateEmbauche
-            // 
-            this.groupBoxDateEmbauche.Controls.Add(this.txtDateEmbaucheVisiteur);
-            this.groupBoxDateEmbauche.Location = new System.Drawing.Point(36, 437);
-            this.groupBoxDateEmbauche.Name = "groupBoxDateEmbauche";
-            this.groupBoxDateEmbauche.Size = new System.Drawing.Size(512, 57);
-            this.groupBoxDateEmbauche.TabIndex = 22;
-            this.groupBoxDateEmbauche.TabStop = false;
-            this.groupBoxDateEmbauche.Text = "Date Embauche";
-            // 
             // groupBoxVille
             // 
             this.groupBoxVille.Controls.Add(this.txtVilleVisiteur);
-            this.groupBoxVille.Location = new System.Drawing.Point(36, 509);
+            this.groupBoxVille.Location = new System.Drawing.Point(36, 418);
             this.groupBoxVille.Name = "groupBoxVille";
             this.groupBoxVille.Size = new System.Drawing.Size(512, 57);
             this.groupBoxVille.TabIndex = 23;
             this.groupBoxVille.TabStop = false;
             this.groupBoxVille.Text = "Ville";
             // 
-            // groupBoxLogin
-            // 
-            this.groupBoxLogin.Controls.Add(this.txtLoginVisiteur);
-            this.groupBoxLogin.Location = new System.Drawing.Point(36, 579);
-            this.groupBoxLogin.Name = "groupBoxLogin";
-            this.groupBoxLogin.Size = new System.Drawing.Size(512, 57);
-            this.groupBoxLogin.TabIndex = 24;
-            this.groupBoxLogin.TabStop = false;
-            this.groupBoxLogin.Text = "Login";
-            // 
             // groupBoxPrenomVisiteur
             // 
             this.groupBoxPrenomVisiteur.Controls.Add(this.txtPrenomVisiteur);
-            this.groupBoxPrenomVisiteur.Location = new System.Drawing.Point(755, 360);
+            this.groupBoxPrenomVisiteur.Location = new System.Drawing.Point(755, 348);
             this.groupBoxPrenomVisiteur.Name = "groupBoxPrenomVisiteur";
             this.groupBoxPrenomVisiteur.Size = new System.Drawing.Size(512, 57);
             this.groupBoxPrenomVisiteur.TabIndex = 25;
@@ -289,7 +243,7 @@
             // groupBoxCodePostal
             // 
             this.groupBoxCodePostal.Controls.Add(this.txtCodePostalVisiteur);
-            this.groupBoxCodePostal.Location = new System.Drawing.Point(755, 437);
+            this.groupBoxCodePostal.Location = new System.Drawing.Point(36, 490);
             this.groupBoxCodePostal.Name = "groupBoxCodePostal";
             this.groupBoxCodePostal.Size = new System.Drawing.Size(512, 57);
             this.groupBoxCodePostal.TabIndex = 26;
@@ -299,37 +253,41 @@
             // groupBoxAdresse
             // 
             this.groupBoxAdresse.Controls.Add(this.txtAdresseVisiteur);
-            this.groupBoxAdresse.Location = new System.Drawing.Point(755, 509);
+            this.groupBoxAdresse.Location = new System.Drawing.Point(36, 562);
             this.groupBoxAdresse.Name = "groupBoxAdresse";
             this.groupBoxAdresse.Size = new System.Drawing.Size(512, 57);
             this.groupBoxAdresse.TabIndex = 27;
             this.groupBoxAdresse.TabStop = false;
             this.groupBoxAdresse.Text = "Adresse";
             // 
-            // groupBoxMdp
+            // CalendrierDateEmbauche
             // 
-            this.groupBoxMdp.Controls.Add(this.txtMdpVisiteur);
-            this.groupBoxMdp.Location = new System.Drawing.Point(755, 579);
-            this.groupBoxMdp.Name = "groupBoxMdp";
-            this.groupBoxMdp.Size = new System.Drawing.Size(512, 57);
-            this.groupBoxMdp.TabIndex = 27;
-            this.groupBoxMdp.TabStop = false;
-            this.groupBoxMdp.Text = "Mot de Passe";
+            this.CalendrierDateEmbauche.Location = new System.Drawing.Point(163, 21);
+            this.CalendrierDateEmbauche.Name = "CalendrierDateEmbauche";
+            this.CalendrierDateEmbauche.TabIndex = 28;
+            // 
+            // groupBoxDateEmbauche
+            // 
+            this.groupBoxDateEmbauche.Controls.Add(this.CalendrierDateEmbauche);
+            this.groupBoxDateEmbauche.Location = new System.Drawing.Point(755, 418);
+            this.groupBoxDateEmbauche.Name = "groupBoxDateEmbauche";
+            this.groupBoxDateEmbauche.Size = new System.Drawing.Size(512, 201);
+            this.groupBoxDateEmbauche.TabIndex = 29;
+            this.groupBoxDateEmbauche.TabStop = false;
+            this.groupBoxDateEmbauche.Text = "Date d\'Embauche";
             // 
             // Visiteur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1300, 722);
+            this.Controls.Add(this.groupBoxDateEmbauche);
             this.Controls.Add(this.buttonAjouterVisiteur);
             this.Controls.Add(this.buttonValiderModificationVisiteur);
-            this.Controls.Add(this.groupBoxMdp);
             this.Controls.Add(this.groupBoxAdresse);
             this.Controls.Add(this.groupBoxCodePostal);
             this.Controls.Add(this.groupBoxPrenomVisiteur);
-            this.Controls.Add(this.groupBoxLogin);
             this.Controls.Add(this.groupBoxVille);
-            this.Controls.Add(this.groupBoxDateEmbauche);
             this.Controls.Add(this.groupBoxNomVisiteur);
             this.Controls.Add(this.dgwVisiteur);
             this.Controls.Add(this.buttonSupprimerVisiteur);
@@ -343,20 +301,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.groupBoxNomVisiteur.ResumeLayout(false);
             this.groupBoxNomVisiteur.PerformLayout();
-            this.groupBoxDateEmbauche.ResumeLayout(false);
-            this.groupBoxDateEmbauche.PerformLayout();
             this.groupBoxVille.ResumeLayout(false);
             this.groupBoxVille.PerformLayout();
-            this.groupBoxLogin.ResumeLayout(false);
-            this.groupBoxLogin.PerformLayout();
             this.groupBoxPrenomVisiteur.ResumeLayout(false);
             this.groupBoxPrenomVisiteur.PerformLayout();
             this.groupBoxCodePostal.ResumeLayout(false);
             this.groupBoxCodePostal.PerformLayout();
             this.groupBoxAdresse.ResumeLayout(false);
             this.groupBoxAdresse.PerformLayout();
-            this.groupBoxMdp.ResumeLayout(false);
-            this.groupBoxMdp.PerformLayout();
+            this.groupBoxDateEmbauche.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -367,23 +320,17 @@
         private System.Windows.Forms.Button buttonSupprimerVisiteur;
         private System.Windows.Forms.Button buttonValiderModificationVisiteur;
         private System.Windows.Forms.Button buttonAjouterVisiteur;
-        private System.Windows.Forms.TextBox txtMdpVisiteur;
-        private System.Windows.Forms.TextBox txtLoginVisiteur;
         private System.Windows.Forms.TextBox txtVilleVisiteur;
         private System.Windows.Forms.TextBox txtAdresseVisiteur;
-        private System.Windows.Forms.TextBox txtDateEmbaucheVisiteur;
         private System.Windows.Forms.TextBox txtCodePostalVisiteur;
         private System.Windows.Forms.TextBox txtNomVisiteur;
         private System.Windows.Forms.TextBox txtPrenomVisiteur;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
         private System.Windows.Forms.GroupBox groupBoxNomVisiteur;
-        private System.Windows.Forms.GroupBox groupBoxMdp;
         private System.Windows.Forms.GroupBox groupBoxAdresse;
         private System.Windows.Forms.GroupBox groupBoxCodePostal;
         private System.Windows.Forms.GroupBox groupBoxPrenomVisiteur;
-        private System.Windows.Forms.GroupBox groupBoxLogin;
         private System.Windows.Forms.GroupBox groupBoxVille;
-        private System.Windows.Forms.GroupBox groupBoxDateEmbauche;
         private System.Windows.Forms.DataGridViewTextBoxColumn idVis;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomVis;
         private System.Windows.Forms.DataGridViewTextBoxColumn prenomVis;
@@ -391,5 +338,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cpVis;
         private System.Windows.Forms.DataGridViewTextBoxColumn villeVis;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateEmbaucheVis;
+        private System.Windows.Forms.GroupBox groupBoxDateEmbauche;
+        private System.Windows.Forms.MonthCalendar CalendrierDateEmbauche;
     }
 }

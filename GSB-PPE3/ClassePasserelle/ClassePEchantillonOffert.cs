@@ -78,7 +78,7 @@ namespace ClassePasserelle
         {
             //VARIABLES
             List<ClasseEchantillonOffert> LEchantillons = new List<ClasseEchantillonOffert>();
-            string idMedicament;
+            int idMedicament;
             int quantite;
 
             //CONNEXION BDD
@@ -100,7 +100,7 @@ namespace ClassePasserelle
             while (drr.Read())
             {
                 //ON RECUPERE LES VARIABLES
-                idMedicament = drr.GetString(0);
+                idMedicament = drr.GetInt16(0);
                 quantite = drr.GetInt16(1);
                 //On récupère le médicaments avec la méthode chargerLeMedicament
                 ClasseMedicament leMedicament = ClassePMedicament.chargerLeMedicament(idMedicament);

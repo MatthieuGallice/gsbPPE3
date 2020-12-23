@@ -116,7 +116,7 @@ namespace ClassePasserelle
                 id = drr.GetInt16(8);
 
                 //On instancie un objet ClasseVisiteur
-                leVisiteur = new ClasseVisiteur(id, nom, prenom, adresse, login, mdp, cp, ville, dateEmbauche);
+                leVisiteur = new ClasseVisiteur(id, nom, prenom, adresse, cp, ville, dateEmbauche);
             }
 
             drr.Close();
@@ -135,8 +135,6 @@ namespace ClassePasserelle
             string nom;
             string prenom;
             string adresse;
-            string login;
-            string mdp;
             string cp;
             string ville;
             DateTime dateEmbauche;
@@ -150,7 +148,7 @@ namespace ClassePasserelle
 
             cmd = connexion.CreateCommand();
             //REQUETE SQL
-            cmd.CommandText = "SELECT nomVis, prenomVis, loginVis, mdpVis, adresseVis, cpVis, villeVis, dateEmbaucheVis, idVis " +
+            cmd.CommandText = "SELECT nomVis, prenomVis, adresseVis, cpVis, villeVis, dateEmbaucheVis, idVis " +
                               "FROM visiteur ";
             //EXECUTION REQUETE
             MySqlDataReader drr = cmd.ExecuteReader();
@@ -161,16 +159,14 @@ namespace ClassePasserelle
                 //ON RECUPERE LES VARIABLES
                 nom = drr.GetString(0);
                 prenom = drr.GetString(1);
-                login = drr.GetString(2);
-                mdp = drr.GetString(3);
-                adresse = drr.GetString(4);
-                cp = drr.GetString(5);
-                ville = drr.GetString(6);
-                dateEmbauche = drr.GetDateTime(7);
-                id = int.Parse(drr.GetString(8));
+                adresse = drr.GetString(2);
+                cp = drr.GetString(3);
+                ville = drr.GetString(4);
+                dateEmbauche = drr.GetDateTime(5);
+                id = int.Parse(drr.GetString(6));
 
                 //ON INSTANCIE UN OBJET CLASSEVISITEUR
-                ClasseVisiteur leVisiteur = new ClasseVisiteur(id, nom, prenom, adresse, login, mdp, cp, ville, dateEmbauche);
+                ClasseVisiteur leVisiteur = new ClasseVisiteur(id, nom, prenom, adresse, cp, ville, dateEmbauche);
                 //ON L'AJOUTE A UNE LISTE DE VISITEURS
                 LesVisiteurs.Add(leVisiteur);
             }
