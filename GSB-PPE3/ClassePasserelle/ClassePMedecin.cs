@@ -93,7 +93,7 @@ namespace ClassePasserelle
             //REQUETE SQL
             cmd.CommandText = "SELECT nomMed, prenomMed, adresseMed, telMed , idSpec, departementMed, libSpec, idMed  " +
                               "FROM medecin INNER JOIN specialite ON idSpecialiteMed " +
-                              "WHERE idMed = '"+ lid +"'"; 
+                              "WHERE idMed = '" + lid + "'";
             //EXECUTION REQUETE
             MySqlDataReader drr = cmd.ExecuteReader();
 
@@ -101,17 +101,17 @@ namespace ClassePasserelle
             while (drr.Read())
             {
                 //ON RECUPERE LES VARIABLES
-                nom = drr.GetString(0); 
+                nom = drr.GetString(0);
                 prenom = drr.GetString(1);
                 tel = drr.GetString(3);
-                adresse = drr.GetString(2); 
+                adresse = drr.GetString(2);
                 departement = drr.GetInt16(5);
                 idspecialite = int.Parse(drr.GetString(4));
-                libSpec = drr.GetString(6); 
-                idMed = int.Parse(drr.GetString(7)); 
+                libSpec = drr.GetString(6);
+                idMed = int.Parse(drr.GetString(7));
 
                 //ON INSTANCIE UN OBJET CLASSESPECIALITE
-                ClasseSpecialite LaSpe = new ClasseSpecialite(idspecialite, libSpec); 
+                ClasseSpecialite LaSpe = new ClasseSpecialite(idspecialite, libSpec);
                 //ON INSTANCIE UN OBJET CLASSEMEDECIN
                 leMedecin = new ClasseMedecin(idMed, nom, prenom, adresse, tel, departement, LaSpe);
             }
@@ -136,7 +136,7 @@ namespace ClassePasserelle
             int departement;
             string libSpec;
             int idMed;
-            
+
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
             MySqlCommand cmd = new MySqlCommand();
@@ -147,7 +147,7 @@ namespace ClassePasserelle
             cmd = connexion.CreateCommand();
             //REQUETE SQL
             cmd.CommandText = "SELECT nomMed, prenomMed, adresseMed, telMed , idSpec, departementMed, libSpec, idMed " +
-                            "FROM medecin INNER JOIN specialite ON specialite.idSpec = medecin.idSpecialiteMed "; 
+                            "FROM medecin INNER JOIN specialite ON specialite.idSpec = medecin.idSpecialiteMed ORDER BY nomMed ASC";
             //EXECUTE LA REQUETE
             MySqlDataReader drr = cmd.ExecuteReader();
 
@@ -164,7 +164,7 @@ namespace ClassePasserelle
                 idMed = int.Parse(drr.GetString(7)); // 7 correspond à idMed
 
                 //ON INSTANCIE UN OBJET CLASSESPECIALITE
-                ClasseSpecialite LaSpe = new ClasseSpecialite(idspecialite, libSpec); 
+                ClasseSpecialite LaSpe = new ClasseSpecialite(idspecialite, libSpec);
                 // ON INSTANCIE UN OBJET CLASSEMEDECIN
                 ClasseMedecin leMedecin = new ClasseMedecin(idMed, nom, prenom, adresse, tel, departement, LaSpe);
                 // ON AJOUTE UN OBJET CLASSEMEDECIN DANS UNE LISTE CLASSEMEDECIN
@@ -177,5 +177,69 @@ namespace ClassePasserelle
             return LesMedecins; //retoune la liste des Medecins 
         }
         #endregion
+
+        #region ChargerLesRapportMedecin
+        public static List<ClasseMedecin> ChargerLesRapportMedecin(int lid)
+        {
+            //VARIABLES
+            List<ClasseMedecin> leMedecin = new List<ClasseMedecin>();
+            int idMed;
+            string nomMed;
+            string prenomMed;
+            string adresseMed;
+            int idRap;
+            int idVis;
+            string nomVis;
+            string prenomVis;
+            DateTime dateRap;
+            string motifRap;
+            string bilanRap;
+
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT nomMed, prenomMed, adresseMed, idRap, idVis, nomVis, prenomVis, dateRap, motifRap, bilanRap " +
+                            "FROM visiteur INNER JOIN rapport ON rapport.idVisiteurRap = visiteur.idVis " +
+                            "INNER JOIN medecin ON rapport.idMedecinRap = medecin.idMed " +
+                            "WHERE medecin.idMed = '" + lid + "'"; 
+            //EXECUTION REQUETE
+            MySqlDataReader drr = cmd.ExecuteReader();
+
+            //LECTURE REQUETE
+            while (drr.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                idMed = lid;
+                nomMed = drr.GetString(0); ;
+                prenomMed = drr.GetString(1); 
+                adresseMed = drr.GetString(2); 
+                idRap = drr.GetInt16(3);
+                idVis = drr.GetInt16(4);
+                nomVis = drr.GetString(5); 
+                prenomVis = drr.GetString(6);
+                dateRap = drr.GetDateTime(7);
+                motifRap = drr.GetString(8); 
+                bilanRap = drr.GetString(9);
+
+                //ON INSTANCIE UN TABLEAU 
+                ClasseMedecin lesRap = new ClasseMedecin(idMed, nomMed, prenomMed, adresseMed, idRap, idVis, nomVis, prenomVis, dateRap, motifRap, bilanRap);
+                // ON AJOUTE UN OBJET CLASSEMEDECIN DANS UNE LISTE CLASSEMEDECIN
+                leMedecin.Add(lesRap);
+
+            }
+
+            drr.Close();
+            connexion.Close();
+
+            return leMedecin;
+        }
+        #endregion
+ 
     }
 }

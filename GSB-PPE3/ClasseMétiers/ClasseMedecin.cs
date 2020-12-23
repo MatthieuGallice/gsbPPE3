@@ -14,6 +14,14 @@ namespace ClasseMétiers
         private int departement;
         private ClasseSpecialite laSpecialite;
 
+        // PROPRIETES POUR LE CONSTRUCTEUR DE LA FONCTION CHARGERLEMEDECIN
+        private int idRap;
+        private int idVis;
+        private string nomVis;
+        private string prenomVis;
+        private DateTime dateRap;
+        private string motifRap;
+        private string bilanRap;
         #endregion
 
         #region constructeurs
@@ -24,12 +32,30 @@ namespace ClasseMétiers
             Departement = ledepartement;
             LaSpecialite = lSpecialite;
         }
+        // CONSTRUCTEUR POUR FONCTION CHARGERLEMEDECIN DE CLASSEPMEDECIN
+        public ClasseMedecin(int lid, string lenom, string leprenom, string ladresse, int idRap, int idVis, string nomVis, string prenomVis, DateTime dateRap, string motifRap, string bilanRap) : base(lid, lenom, leprenom, ladresse)
+        {
+            this.IdRap = idRap;
+            this.IdVis = idVis;
+            this.NomVis = nomVis;
+            this.PrenomVis = prenomVis;
+            this.DateRap = dateRap;
+            this.MotifRap = motifRap;
+            this.BilanRap = bilanRap;
+        }
         #endregion
 
         #region accesseurs
         public string Tel { get => tel; set => tel = value; }
         public int Departement { get => departement; set => departement = value; }
         public ClasseSpecialite LaSpecialite { get => laSpecialite; set => laSpecialite = value; }
+        public int IdRap { get => idRap; set => idRap = value; }
+        public int IdVis { get => idVis; set => idVis = value; }
+        public string NomVis { get => nomVis; set => nomVis = value; }
+        public string PrenomVis { get => prenomVis; set => prenomVis = value; }
+        public DateTime DateRap { get => dateRap; set => dateRap = value; }
+        public string MotifRap { get => motifRap; set => motifRap = value; }
+        public string BilanRap { get => bilanRap; set => bilanRap = value; }
         #endregion
 
         #region méthodes

@@ -222,6 +222,13 @@ namespace Formulaire
                 remplirComboboxListeMedecin();
 
                 connexion.Close();
+
+                txtNomMedecin.Clear();
+                txtPrenomMedecin.Clear();
+                txtTelMedecin.Clear();
+                txtAdresseMedecin.Clear();
+                txtDepartementMedecin.Clear();
+                comboBoxSpecialite.SelectedItem = comboNonChoisi;
             }
 
         }
@@ -317,6 +324,69 @@ namespace Formulaire
                 remplirComboboxListeMedecin();
 
                 connexion.Close();
+
+                txtNomMedecin.Clear();
+                txtPrenomMedecin.Clear();
+                txtTelMedecin.Clear();
+                txtAdresseMedecin.Clear();
+                txtDepartementMedecin.Clear();
+                comboBoxSpecialite.SelectedItem = comboNonChoisi;
+            }
+        }
+
+        // COMBOBOX ET DGW D'UN MEDECIN
+        private void comboBoxListeMedecin_SelectedValueChanged(object sender, EventArgs e)
+        {
+            int idMed;
+            int idRap;
+            int idVis;
+            string nomVis;
+            string prenomVis;
+            DateTime dateRap;
+            string motifRap;
+            string bilanRap;
+
+            if (comboBoxListeMedecin.ToString() == comboNonChoisi)
+            {
+                dgwDernierRapport.Rows.Clear();
+            }
+            else
+            {
+                dgwDernierRapport.Rows.Clear();
+
+                string nom = comboBoxListeMedecin.ToString();
+                string[] leNom = nom.Split(' ');
+                string leNomMed = leNom[0];
+                string lePrenomMed = leNom[1];
+
+                //CONNEXION BDD
+                MySqlConnection connexion = new MySqlConnection();
+                connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+                connexion.Open();
+
+                // REQUETE QUI RECUPERE L'ID GRACE AU NOM ET PRENOM DU MEDECIN
+                MySqlCommand getIdMed = new MySqlCommand();
+                getIdMed = connexion.CreateCommand();
+                getIdMed.CommandText = "SELECT `idMed` " +
+                                    "FROM `medecin` WHERE `nomMed` = '" + leNomMed + "' " +
+                                    "AND prenomMed = '" + lePrenomMed + "'";
+
+                idMed = Convert.ToInt32(getIdMed.ExecuteScalar());
+
+                List<ClasseMedecin> leMed = ClassePMedecin.ChargerLesRapportMedecin(idMed);
+                foreach (ClasseMedecin lesRap in leMed)
+                {
+                    idRap = lesRap.IdRap;
+                    idVis = lesRap.IdVis;
+                    nomVis = lesRap.NomVis;
+                    prenomVis = lesRap.PrenomVis;
+                    dateRap = lesRap.DateRap;
+                    motifRap = lesRap.MotifRap;
+                    bilanRap = lesRap.BilanRap;
+
+                    dgwDernierRapport.Rows.Add(idRap, idVis, nomVis, prenomMed, dateRap, motifRap, bilanRap); ;
+                }
             }
         }
     }
