@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ClasseMétiers
@@ -13,6 +14,14 @@ namespace ClasseMétiers
         private int departement;
         private ClasseSpecialite laSpecialite;
 
+        // PROPRIETES POUR LE CONSTRUCTEUR DE LA FONCTION CHARGERLEMEDECIN
+        private int idRap;
+        private int idVis;
+        private string nomVis;
+        private string prenomVis;
+        private DateTime dateRap;
+        private string motifRap;
+        private string bilanRap;
         #endregion
 
         #region constructeurs
@@ -23,16 +32,82 @@ namespace ClasseMétiers
             Departement = ledepartement;
             LaSpecialite = lSpecialite;
         }
+        // CONSTRUCTEUR POUR FONCTION CHARGERLEMEDECIN DE CLASSEPMEDECIN
+        public ClasseMedecin(int lid, string lenom, string leprenom, string ladresse, int idRap, int idVis, string nomVis, string prenomVis, DateTime dateRap, string motifRap, string bilanRap) : base(lid, lenom, leprenom, ladresse)
+        {
+            this.IdRap = idRap;
+            this.IdVis = idVis;
+            this.NomVis = nomVis;
+            this.PrenomVis = prenomVis;
+            this.DateRap = dateRap;
+            this.MotifRap = motifRap;
+            this.BilanRap = bilanRap;
+        }
         #endregion
 
         #region accesseurs
         public string Tel { get => tel; set => tel = value; }
         public int Departement { get => departement; set => departement = value; }
         public ClasseSpecialite LaSpecialite { get => laSpecialite; set => laSpecialite = value; }
+        public int IdRap { get => idRap; set => idRap = value; }
+        public int IdVis { get => idVis; set => idVis = value; }
+        public string NomVis { get => nomVis; set => nomVis = value; }
+        public string PrenomVis { get => prenomVis; set => prenomVis = value; }
+        public DateTime DateRap { get => dateRap; set => dateRap = value; }
+        public string MotifRap { get => motifRap; set => motifRap = value; }
+        public string BilanRap { get => bilanRap; set => bilanRap = value; }
         #endregion
 
         #region méthodes
+        // VERIFIE SI LE TEL EST VALIDE, UNIQUEMENT DES CHIFFRE ET 10 CARACTERE
+        public static bool telValide(string tel)
+        {
+            bool resultat = false;
+            var MyRegex = new Regex("^[0-9]*$");
 
+            if (MyRegex.IsMatch(tel))
+            {
+                int nbTel = tel.Count();
+                if(nbTel == 10)
+                {
+                    resultat = true;
+                }
+                else
+                {
+                    resultat = false;
+                }
+            }
+            else
+            {
+                resultat = false;
+            }
+            return resultat;
+        }
+
+        // VERIFIE SI LE DEPARTEMENT EST VALIDE, UNIQUEMENT DES CHIFFRE ET 2 CARACTERE
+        public static bool departementValide(string departement)
+        {
+            bool resultat = false;
+            var MyRegex = new Regex("^[0-9]*$");
+
+            if (MyRegex.IsMatch(departement))
+            {
+                int nbTel = departement.Count();
+                if (nbTel == 2)
+                {
+                    resultat = true;
+                }
+                else
+                {
+                    resultat = false;
+                }
+            }
+            else
+            {
+                resultat = false;
+            }
+            return resultat;
+        }
         #endregion
     }
 }

@@ -228,6 +228,7 @@
             this.comboBoxListeMedecin.Name = "comboBoxListeMedecin";
             this.comboBoxListeMedecin.Size = new System.Drawing.Size(276, 21);
             this.comboBoxListeMedecin.TabIndex = 7;
+            this.comboBoxListeMedecin.SelectedValueChanged += new System.EventHandler(this.comboBoxListeMedecin_SelectedValueChanged);
             // 
             // comboBoxSpecialite
             // 
