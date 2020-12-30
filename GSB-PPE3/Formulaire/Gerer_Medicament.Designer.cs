@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.dgwGererMedicament = new System.Windows.Forms.DataGridView();
+            this.idMedicament = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomCommercialMedicament = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idFamilleMedicament = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.compositionMedicament = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.effetsMedicament = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contreIndicationsMedicament = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonModifierMedicament = new System.Windows.Forms.Button();
             this.buttonSupprimerMedicament = new System.Windows.Forms.Button();
             this.buttonValiderModification = new System.Windows.Forms.Button();
@@ -43,12 +49,6 @@
             this.groupBoxEffetMedicament = new System.Windows.Forms.GroupBox();
             this.groupBoxFamilleMedicament = new System.Windows.Forms.GroupBox();
             this.groupBoxContreIndication = new System.Windows.Forms.GroupBox();
-            this.idMedicament = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomCommercialMedicament = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idFamilleMedicament = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.compositionMedicament = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.effetsMedicament = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contreIndicationsMedicament = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgwGererMedicament)).BeginInit();
             this.groupBoxNomMedicament.SuspendLayout();
             this.groupBoxCompositionMedicament.SuspendLayout();
@@ -72,6 +72,42 @@
             this.dgwGererMedicament.Size = new System.Drawing.Size(1077, 314);
             this.dgwGererMedicament.TabIndex = 1;
             // 
+            // idMedicament
+            // 
+            this.idMedicament.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.idMedicament.HeaderText = "Numéro du Médicament";
+            this.idMedicament.Name = "idMedicament";
+            // 
+            // nomCommercialMedicament
+            // 
+            this.nomCommercialMedicament.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nomCommercialMedicament.HeaderText = "Nom Commercial";
+            this.nomCommercialMedicament.Name = "nomCommercialMedicament";
+            // 
+            // idFamilleMedicament
+            // 
+            this.idFamilleMedicament.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.idFamilleMedicament.HeaderText = "Libelle de la Famille ";
+            this.idFamilleMedicament.Name = "idFamilleMedicament";
+            // 
+            // compositionMedicament
+            // 
+            this.compositionMedicament.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.compositionMedicament.HeaderText = "Composition";
+            this.compositionMedicament.Name = "compositionMedicament";
+            // 
+            // effetsMedicament
+            // 
+            this.effetsMedicament.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.effetsMedicament.HeaderText = "Effets";
+            this.effetsMedicament.Name = "effetsMedicament";
+            // 
+            // contreIndicationsMedicament
+            // 
+            this.contreIndicationsMedicament.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.contreIndicationsMedicament.HeaderText = "Contre Indications";
+            this.contreIndicationsMedicament.Name = "contreIndicationsMedicament";
+            // 
             // buttonModifierMedicament
             // 
             this.buttonModifierMedicament.Location = new System.Drawing.Point(36, 120);
@@ -80,6 +116,7 @@
             this.buttonModifierMedicament.TabIndex = 2;
             this.buttonModifierMedicament.Text = "Modifier Medicament";
             this.buttonModifierMedicament.UseVisualStyleBackColor = true;
+            this.buttonModifierMedicament.Click += new System.EventHandler(this.buttonModifierMedicament_Click);
             // 
             // buttonSupprimerMedicament
             // 
@@ -89,6 +126,7 @@
             this.buttonSupprimerMedicament.TabIndex = 3;
             this.buttonSupprimerMedicament.Text = "Supprimer Medicament";
             this.buttonSupprimerMedicament.UseVisualStyleBackColor = true;
+            this.buttonSupprimerMedicament.Click += new System.EventHandler(this.buttonSupprimerMedicament_Click);
             // 
             // buttonValiderModification
             // 
@@ -98,6 +136,7 @@
             this.buttonValiderModification.TabIndex = 4;
             this.buttonValiderModification.Text = "Valider Modification";
             this.buttonValiderModification.UseVisualStyleBackColor = true;
+            this.buttonValiderModification.Click += new System.EventHandler(this.buttonValiderModification_Click);
             // 
             // buttonAjouterMedicament
             // 
@@ -107,6 +146,7 @@
             this.buttonAjouterMedicament.TabIndex = 5;
             this.buttonAjouterMedicament.Text = "Ajouter Medicament";
             this.buttonAjouterMedicament.UseVisualStyleBackColor = true;
+            this.buttonAjouterMedicament.Click += new System.EventHandler(this.buttonAjouterMedicament_Click);
             // 
             // txtNomMedicament
             // 
@@ -194,42 +234,6 @@
             this.groupBoxContreIndication.TabIndex = 15;
             this.groupBoxContreIndication.TabStop = false;
             this.groupBoxContreIndication.Text = "Contre Indications ";
-            // 
-            // idMedicament
-            // 
-            this.idMedicament.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.idMedicament.HeaderText = "Numéro du Médicament";
-            this.idMedicament.Name = "idMedicament";
-            // 
-            // nomCommercialMedicament
-            // 
-            this.nomCommercialMedicament.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nomCommercialMedicament.HeaderText = "Nom Commercial";
-            this.nomCommercialMedicament.Name = "nomCommercialMedicament";
-            // 
-            // idFamilleMedicament
-            // 
-            this.idFamilleMedicament.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.idFamilleMedicament.HeaderText = "Libelle de la Famille ";
-            this.idFamilleMedicament.Name = "idFamilleMedicament";
-            // 
-            // compositionMedicament
-            // 
-            this.compositionMedicament.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.compositionMedicament.HeaderText = "Composition";
-            this.compositionMedicament.Name = "compositionMedicament";
-            // 
-            // effetsMedicament
-            // 
-            this.effetsMedicament.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.effetsMedicament.HeaderText = "Effets";
-            this.effetsMedicament.Name = "effetsMedicament";
-            // 
-            // contreIndicationsMedicament
-            // 
-            this.contreIndicationsMedicament.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.contreIndicationsMedicament.HeaderText = "Contre Indications";
-            this.contreIndicationsMedicament.Name = "contreIndicationsMedicament";
             // 
             // Gerer_Medicament
             // 

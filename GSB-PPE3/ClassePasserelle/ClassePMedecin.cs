@@ -42,6 +42,7 @@ namespace ClassePasserelle
             cmd = connexion.CreateCommand();
             cmd.CommandText = "INSERT INTO medecin (nomMed, prenomMed, adresseMed, telMed, idSpecialiteMed, departementMed) " +
                                 "VALUES ('" + leNom + "', '" + lePrenom + "', '" + ladresse + "', '" + leTel + "', '" + laSpe + "', '" + leDepartement + "');";
+
             MySqlDataReader drr = cmd.ExecuteReader(); //Execution du script
             drr.Close();
             connexion.Close();

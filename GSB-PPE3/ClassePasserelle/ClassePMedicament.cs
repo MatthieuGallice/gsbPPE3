@@ -11,7 +11,7 @@ namespace ClassePasserelle
     public class ClassePMedicament
     {
         #region INSERT 
-        public static void AjoutMedicament(string unnomcomposition, string unecomposition, string deseffets, string unecontreindications, ClasseFamille lafamille)
+        public static void AjoutMedicament(string unnomcomposition, string unecomposition, string deseffets, string unecontreindications, int lafamille)
         {
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
@@ -22,8 +22,9 @@ namespace ClassePasserelle
 
             cmd = connexion.CreateCommand();
             //REQUETE SQL
-            cmd.CommandText = "INSERT INTO medicament (`idMedicament`, `nomCommercialMedicament`, `idFamilleMedicament`, `compositionMedicament`, `effetsMedicament`, `contreIndicationsMedicament`)" +
-                              "VALUES('"+ unnomcomposition +"', '"+ unecomposition + "', '"+ lafamille +"', '" + deseffets +"', '"+ unecontreindications +"')";
+            cmd.CommandText = "INSERT INTO medicament (nomCommercialMedicament, idFamilleMedicament, compositionMedicament, effetsMedicament, contreIndicationsMedicament)" +
+                              "VALUES('" + unnomcomposition + "', '" + lafamille + "', '" + unecomposition + "', '" + deseffets + "', '" + unecontreindications + "')";
+
             //EXECUTE LA REQUETE
             MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
@@ -32,7 +33,7 @@ namespace ClassePasserelle
         #endregion
 
         #region UPDATE
-        public static void ModifMedicament(int lid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications, ClasseFamille lafamille)
+        public static void ModifMedicament(int lid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications, int lafamille)
         {
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
@@ -44,8 +45,9 @@ namespace ClassePasserelle
             cmd = connexion.CreateCommand();
             //REQUETE SQL
             cmd.CommandText = "UPDATE medicament " +
-                              "SET  nomCommercialMedicament  = '" + unnomcomposition + "', idFamilleMedicament  = '" + lafamille + "', compositionMedicament  = '" + unecomposition + "',  effetsMedicament  = '" + deseffets + "', contreIndicationsMedicament  = '" + unecontreindications + "'," +
-                              "WHERE `medicament.idMedicament = '"+ lid +"'; ";
+                            "SET nomCommercialMedicament='" + unnomcomposition + "', idFamilleMedicament='" + lafamille + "', compositionMedicament='" + unecomposition + "', effetsMedicament='" + deseffets + "', contreIndicationsMedicament='" + unecontreindications + "' " +
+                            "WHERE idMedicament= '" + lid + "'";
+
             //EXECUTE LA REQUETE
             MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
@@ -65,7 +67,7 @@ namespace ClassePasserelle
 
             cmd = connexion.CreateCommand();
             //REQUETE SQL
-            cmd.CommandText = "DELETE FROM medicament WHERE medicament.idMedicament = '"+ lid +"' ";
+            cmd.CommandText = "DELETE FROM medicament WHERE idMedicament = '"+ lid +"' ";
             //EXECUTION REQUETE
             MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
@@ -177,6 +179,72 @@ namespace ClassePasserelle
             connexion.Close();
 
             return LesMedicaments;
+        }
+        #endregion
+
+        #region recuperer id medecin
+        public static int recupererIdMedicament(string nomMedicament)
+        {
+            int idMedicament = 0;
+
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT idMedicament " +
+                            "FROM medicament " +
+                            "WHERE nomCommercialMedicament = '" + nomMedicament + "' ";
+
+            //EXECUTE LA REQUETE
+            MySqlDataReader drr = cmd.ExecuteReader();
+
+            if (drr.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                idMedicament = drr.GetInt16(0);
+            }
+            drr.Close();
+            connexion.Close();
+
+            return idMedicament;
+        }
+        #endregion
+
+        #region recuperer id famille
+        public static int recupererIdFamille(string libelleFamille)
+        {
+            int idFamille = 0;
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT idFamille " +
+                            "FROM famille " +
+                            "WHERE libFamille = '" + libelleFamille + "'";
+
+            //EXECUTE LA REQUETE
+            MySqlDataReader drr = cmd.ExecuteReader();
+
+            if (drr.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                idFamille = drr.GetInt16(0);
+            }
+
+            drr.Close();           
+            connexion.Close();
+
+            return idFamille;
         }
         #endregion
     }

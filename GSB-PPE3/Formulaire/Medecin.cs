@@ -311,7 +311,7 @@ namespace Formulaire
 
                 int idSpe = Convert.ToInt32(getIdSpe.ExecuteScalar());
 
-                // MISE A JOUR 
+                // AJOUT
                 string leNom = txtNomMedecin.Text;
                 string lePrenom = txtPrenomMedecin.Text;
                 string ladresse = txtAdresseMedecin.Text;
