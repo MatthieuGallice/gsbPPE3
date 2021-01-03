@@ -97,20 +97,12 @@ namespace Formulaire
 
                 //CONNEXION BDD
                 MySqlConnection connexion = new MySqlConnection();
-                MySqlCommand getId = new MySqlCommand();
                 connexion.ConnectionString = ClassePConnexion.DBConnection();
 
                 connexion.Open();
 
-                getId = connexion.CreateCommand();
-
                 //REQUETE SQL
-                getId.CommandText = "SELECT idMed " +
-                                  "FROM medecin " +
-                                  "WHERE nomMed = '" + leNom + "' " +
-                                  "AND prenomMed = '" + lePrenom + "'";
-
-                int idMed = Convert.ToInt32(getId.ExecuteScalar());
+                int idMedecin = ClassePMedecin.recupererIdMedecin(leNom, lePrenom);
 
                 // INSTANCIATION DE LA SPECIALITE
                 string laSpe = dgwMedecin.CurrentRow.Cells[4].Value.ToString();
@@ -121,19 +113,14 @@ namespace Formulaire
                     if (specia.Specialite.ToString() == laSpe)
                     {
                         // REQUETE QUI RECUPERE L'ID GRACE AU NOM DE LA SPECIALITE
-                        MySqlCommand getIdSpe = new MySqlCommand();
-                        getIdSpe = connexion.CreateCommand();
-                        getIdSpe.CommandText = "SELECT `idSpec` " +
-                                            "FROM `specialite` WHERE `libSpec` = '" + laSpe + "'";
-
-                        int idSpe = Convert.ToInt32(getIdSpe.ExecuteScalar()); 
+                        int idSpe = ClassePMedecin.recupererIdSpe(laSpe);
 
                         instanSpe = new ClasseSpecialite(idSpe, specia.ToString());
                     }
                 }
 
                 // INSTANCIATION
-                ClasseMedecin modifier = new ClasseMedecin(idMed, dgwMedecin.CurrentRow.Cells[0].Value.ToString(), dgwMedecin.CurrentRow.Cells[1].Value.ToString(), dgwMedecin.CurrentRow.Cells[2].Value.ToString(), dgwMedecin.CurrentRow.Cells[3].Value.ToString(), int.Parse(dgwMedecin.CurrentRow.Cells[5].Value.ToString()), instanSpe);
+                ClasseMedecin modifier = new ClasseMedecin(idMedecin, dgwMedecin.CurrentRow.Cells[0].Value.ToString(), dgwMedecin.CurrentRow.Cells[1].Value.ToString(), dgwMedecin.CurrentRow.Cells[2].Value.ToString(), dgwMedecin.CurrentRow.Cells[3].Value.ToString(), int.Parse(dgwMedecin.CurrentRow.Cells[5].Value.ToString()), instanSpe);
 
                 // PLACEMENT DANS LES TEXTBOX ET SELECTION DANS LE COMBOBOX
                 txtNomMedecin.Text = modifier.Nom;
@@ -191,32 +178,20 @@ namespace Formulaire
                 string lePrenom = txtPrenomMedecin.Text;
                 string laSpe = comboBoxSpecialite.Text;
 
-                MySqlCommand getId = new MySqlCommand();
-                getId = connexion.CreateCommand();
-
                 // REQUETE SQL ID MEDECIN
-                getId.CommandText = "SELECT idMed " +
-                                  "FROM medecin " +
-                                  "WHERE nomMed = '" + leNom + "' " +
-                                  "AND prenomMed = '" + lePrenom + "'";
-
-                int idMed = Convert.ToInt32(getId.ExecuteScalar());
+                int idMedecin = ClassePMedecin.recupererIdMedecin(leNom, lePrenom);
 
                 // REQUETE SQL ID SPECIALITE
-                MySqlCommand getIdSpe = new MySqlCommand();
-                getIdSpe = connexion.CreateCommand();
+                int idSpe = ClassePMedecin.recupererIdSpe(laSpe);
 
-                getIdSpe.CommandText = "SELECT `idSpec` " +
-                                    "FROM `specialite` WHERE `libSpec` = '" + laSpe + "'";
-
-                int idSpe = Convert.ToInt32(getIdSpe.ExecuteScalar());
+                instanSpe = new ClasseSpecialite(idSpe, laSpe.ToString());
 
                 // MISE A JOUR 
                 string ladresse = txtAdresseMedecin.Text;
                 string leTel = txtTelMedecin.Text;
                 int leDepartement = int.Parse(txtDepartementMedecin.Text);
 
-                ClassePMedecin.modifierMedecin(idMed, leNom, lePrenom, ladresse, leTel, idSpe, leDepartement);
+                ClassePMedecin.modifierMedecin(idMedecin, leNom, lePrenom, ladresse, leTel, idSpe, leDepartement);
 
                 dgvFormulaireMedecin();
                 remplirComboboxListeMedecin();
@@ -242,24 +217,16 @@ namespace Formulaire
 
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
-            MySqlCommand getId = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
 
-            getId = connexion.CreateCommand();
-
-            //REQUETE SQL
-            getId.CommandText = "SELECT idMed " +
-                              "FROM medecin " +
-                              "WHERE nomMed = '" + leNom + "' " +
-                              "AND prenomMed = '" + lePrenom + "'";
-
-            int idMed = Convert.ToInt32(getId.ExecuteScalar());
+            // REQUETE SQL ID MEDECIN
+            int idMedecin = ClassePMedecin.recupererIdMedecin(leNom, lePrenom);
 
             if (MessageBox.Show("êtes vous sur de vouloir supprimer " + leNom + " " + lePrenom + " ?", "advertissement ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                ClassePMedecin.SupprimerMedecin(idMed);
+                ClassePMedecin.SupprimerMedecin(idMedecin);
 
                 dgvFormulaireMedecin();
                 remplirComboboxListeMedecin();
@@ -303,13 +270,10 @@ namespace Formulaire
             {
                 string laSpe = comboBoxSpecialite.Text;
 
-                // REQUETE QUI RECUPERE L'ID GRACE AU NOM DE LA SPECIALITE
-                MySqlCommand getIdSpe = new MySqlCommand();
-                getIdSpe = connexion.CreateCommand();
-                getIdSpe.CommandText = "SELECT `idSpec` " +
-                                    "FROM `specialite` WHERE `libSpec` = '" + laSpe + "'";
+                // REQUETE SQL ID SPECIALITE
+                int idSpe = ClassePMedecin.recupererIdSpe(laSpe);
 
-                int idSpe = Convert.ToInt32(getIdSpe.ExecuteScalar());
+                instanSpe = new ClasseSpecialite(idSpe, laSpe.ToString());
 
                 // AJOUT
                 string leNom = txtNomMedecin.Text;
@@ -337,7 +301,6 @@ namespace Formulaire
         // COMBOBOX ET DGW D'UN MEDECIN
         private void comboBoxListeMedecin_SelectedValueChanged(object sender, EventArgs e)
         {
-            int idMed;
             int idRap;
             int idVis;
             string nomVis;
@@ -365,16 +328,10 @@ namespace Formulaire
 
                 connexion.Open();
 
-                // REQUETE QUI RECUPERE L'ID GRACE AU NOM ET PRENOM DU MEDECIN
-                MySqlCommand getIdMed = new MySqlCommand();
-                getIdMed = connexion.CreateCommand();
-                getIdMed.CommandText = "SELECT `idMed` " +
-                                    "FROM `medecin` WHERE `nomMed` = '" + leNomMed + "' " +
-                                    "AND prenomMed = '" + lePrenomMed + "'";
+                // REQUETE SQL ID MEDECIN
+                int idMedecin = ClassePMedecin.recupererIdMedecin(leNomMed, lePrenomMed);
 
-                idMed = Convert.ToInt32(getIdMed.ExecuteScalar());
-
-                List<ClasseMedecin> leMed = ClassePMedecin.ChargerLesRapportMedecin(idMed);
+                List<ClasseMedecin> leMed = ClassePMedecin.ChargerLesRapportMedecin(idMedecin);
                 foreach (ClasseMedecin lesRap in leMed)
                 {
                     idRap = lesRap.IdRap;

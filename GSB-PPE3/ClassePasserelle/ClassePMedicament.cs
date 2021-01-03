@@ -182,7 +182,7 @@ namespace ClassePasserelle
         }
         #endregion
 
-        #region recuperer id medecin
+        #region recuperer id medidament
         public static int recupererIdMedicament(string nomMedicament)
         {
             int idMedicament = 0;

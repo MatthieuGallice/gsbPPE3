@@ -71,12 +71,9 @@ namespace Formulaire
 
                 //CONNEXION BDD
                 MySqlConnection connexion = new MySqlConnection();
-                MySqlCommand getFamille = new MySqlCommand();
                 connexion.ConnectionString = ClassePConnexion.DBConnection();
 
                 connexion.Open();
-
-                getFamille = connexion.CreateCommand();
 
                 //REQUETE SQL
                 int idFamille = ClassePMedicament.recupererIdFamille(laFamille);

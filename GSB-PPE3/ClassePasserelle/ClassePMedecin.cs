@@ -241,6 +241,71 @@ namespace ClassePasserelle
             return leMedecin;
         }
         #endregion
- 
+
+        #region recuperer id medecin
+        public static int recupererIdMedecin(string nomMedecin, string prenomMedecin)
+        {
+            int idMedecin = 0;
+
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT idMed " +
+                              "FROM medecin " +
+                              "WHERE nomMed = '" + nomMedecin + "' " +
+                              "AND prenomMed = '" + prenomMedecin + "'";
+
+            //EXECUTE LA REQUETE
+            MySqlDataReader drr = cmd.ExecuteReader();
+
+            if (drr.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                idMedecin = drr.GetInt16(0);
+            }
+            drr.Close();
+            connexion.Close();
+
+            return idMedecin;
+        }
+        #endregion
+
+        #region recuperer id spécialité
+        public static int recupererIdSpe(string laSpe)
+        {
+            int idSpe = 0;
+
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT `idSpec` " +
+                              "FROM `specialite` WHERE `libSpec` = '" + laSpe + "'";
+
+            //EXECUTE LA REQUETE
+            MySqlDataReader drr = cmd.ExecuteReader();
+
+            if (drr.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                idSpe = drr.GetInt16(0);
+            }
+            drr.Close();
+            connexion.Close();
+
+            return idSpe;
+        }
+        #endregion
     }
 }
