@@ -88,5 +88,6 @@ namespace Formulaire
                 ActiveMdiChild.Close();
             }
         }
+        
     }
 }

@@ -12,6 +12,8 @@ namespace ClasseMétiers
         #region propriétés privées
         private string cp;
         private string ville;
+        private string login;
+        private string mdp;
         private DateTime dateEmbauche;
         #endregion
 
@@ -20,12 +22,19 @@ namespace ClasseMétiers
         {
 
         }
-
         public ClasseVisiteur(int lid, string lenom, string leprenom, string ladresse, string lecp, string laville, DateTime ladateEmbauche) : base(lid, lenom, leprenom, ladresse)
         {
             cp = lecp;
             ville = laville;
             dateEmbauche = ladateEmbauche;
+        }
+        public ClasseVisiteur(int lid, string lenom, string leprenom, string ladresse, string lecp, string laville, string lelogin, string lemdp, DateTime ladateEmbauche) : base(lid, lenom, leprenom, ladresse)
+        {
+            cp = lecp;
+            ville = laville;
+            dateEmbauche = ladateEmbauche;
+            login = lelogin;
+            mdp = lemdp;
         }
         #endregion
 

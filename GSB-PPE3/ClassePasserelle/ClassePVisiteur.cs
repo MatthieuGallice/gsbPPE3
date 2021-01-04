@@ -13,6 +13,14 @@ namespace ClassePasserelle
         #region INSERT
         public static void AjoutVisiteur(string lenom, string leprenom, string ladresse, string lelogin, string lemdp, string lecp, string laville, DateTime ladateEmbauche)
         {
+            //Conversion de la date
+            string ladate = ladateEmbauche.ToString();
+            String jour = ladate.Substring(0, 2);
+            String mois = ladate.Substring(3, 2);
+            String Ans = ladate.Substring(6, 4);
+            string uneDate = Ans + "-" + mois + "-" + jour;
+
+
             // CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
             MySqlCommand cmd = new MySqlCommand();
@@ -23,7 +31,7 @@ namespace ClassePasserelle
             cmd = connexion.CreateCommand();
             //REQUETE SQL
             cmd.CommandText = "INSERT INTO `visiteur` (`nomVis`, `prenomVis`, `loginVis`, `mdpVis`, `adresseVis`, `cpVis`, `villeVis`, `dateEmbaucheVis`) " +
-                                "VALUES ('"+ lenom + "', '" + leprenom + "', '" + lelogin + "', '" + lemdp + "', '" + ladresse + "', '" + lecp + "', '" + laville + "', '" + ladateEmbauche + "');";
+                                "VALUES ('"+ lenom + "', '" + leprenom + "', '" + lelogin + "', '" + lemdp + "', '" + ladresse + "', '" + lecp + "', '" + laville + "', '" + uneDate + "');";
             //EXECUTION REQUETE
             MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
@@ -32,8 +40,17 @@ namespace ClassePasserelle
         #endregion
 
         #region UPDATE
-        public static void ModifVisiteur(string lid, string lenom, string leprenom, string ladresse, string lelogin, string lemdp, string lecp, string laville, DateTime ladateEmbauche)
+        public static void ModifVisiteur(int lid, string lenom, string leprenom, string ladresse, string lelogin, string lemdp, string lecp, string laville, DateTime ladateEmbauche)
         {
+            //Conversion de la date
+            string ladate = ladateEmbauche.ToString();
+            String jour = ladate.Substring(0, 2);
+            String mois = ladate.Substring(3, 2);
+            String Ans = ladate.Substring(6, 4);
+            string uneDate = Ans + "-" + mois + "-" + jour;
+            
+
+
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
             MySqlCommand cmd = new MySqlCommand();
@@ -43,7 +60,9 @@ namespace ClassePasserelle
 
             cmd = connexion.CreateCommand();
             //REQUETE SQL
-            cmd.CommandText = "UPDATE `visiteur` SET `nomVis` = '" + lenom + "', `prenomVis` = '" + lelogin + "', `loginVis` = '" + lelogin + "', `mdpVis` = '" + lemdp + "', `adresseVis` = '" + ladresse + "', `cpVis` = '" + lecp + "', `villeVis` = '" + laville + "', `dateEmbaucheVis` = '" + ladateEmbauche + "' WHERE `visiteur`.`idVis` = '" + lid + "'; ";
+            cmd.CommandText = "UPDATE visiteur " +
+                              "SET nomVis = '" + lenom + "', prenomVis = '" + leprenom + "', loginVis = '" + lelogin + "', mdpVis = '" + lemdp + "', adresseVis = '" + ladresse + "', cpVis = '" + lecp + "', villeVis = '" + laville + "', dateEmbaucheVis = '" + uneDate + "' " +
+                              "WHERE visiteur.idVis = '" + lid + "'; ";
             //EXECUTION REQUETE SQL
             MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
@@ -52,7 +71,7 @@ namespace ClassePasserelle
         #endregion
 
         #region DELETE
-        public static void SupprimerVisiteur(string lid)
+        public static void SupprimerVisiteur(int lid)
         {
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
@@ -63,7 +82,7 @@ namespace ClassePasserelle
             
             cmd = connexion.CreateCommand();
             //REQUETE SQL
-            cmd.CommandText = "DELETE FROM `visiteur` WHERE `visiteur`.`idVis` = '"+ lid +"'";
+            cmd.CommandText = "DELETE FROM visiteur WHERE visiteur.idVis = '"+ lid +"'";
             //EXECUTION REQUETE SQL
             MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
@@ -116,7 +135,7 @@ namespace ClassePasserelle
                 id = drr.GetInt16(8);
 
                 //On instancie un objet ClasseVisiteur
-                leVisiteur = new ClasseVisiteur(id, nom, prenom, adresse, cp, ville, dateEmbauche);
+                leVisiteur = new ClasseVisiteur(id, nom, prenom, adresse, cp, ville, login, mdp, dateEmbauche);
             }
 
             drr.Close();
@@ -137,6 +156,8 @@ namespace ClassePasserelle
             string adresse;
             string cp;
             string ville;
+            string mdp;
+            string login;
             DateTime dateEmbauche;
 
             //CONNEXION BDD
@@ -148,7 +169,7 @@ namespace ClassePasserelle
 
             cmd = connexion.CreateCommand();
             //REQUETE SQL
-            cmd.CommandText = "SELECT nomVis, prenomVis, adresseVis, cpVis, villeVis, dateEmbaucheVis, idVis " +
+            cmd.CommandText = "SELECT nomVis, prenomVis, adresseVis, cpVis, villeVis, dateEmbaucheVis, idVis, loginVis, mdpVis " +
                               "FROM visiteur ";
             //EXECUTION REQUETE
             MySqlDataReader drr = cmd.ExecuteReader();
@@ -164,9 +185,11 @@ namespace ClassePasserelle
                 ville = drr.GetString(4);
                 dateEmbauche = drr.GetDateTime(5);
                 id = int.Parse(drr.GetString(6));
+                login = drr.GetString(7);
+                mdp = drr.GetString(8);
 
                 //ON INSTANCIE UN OBJET CLASSEVISITEUR
-                ClasseVisiteur leVisiteur = new ClasseVisiteur(id, nom, prenom, adresse, cp, ville, dateEmbauche);
+                ClasseVisiteur leVisiteur = new ClasseVisiteur(id, nom, prenom, adresse, cp, ville, login, mdp, dateEmbauche);
                 //ON L'AJOUTE A UNE LISTE DE VISITEURS
                 LesVisiteurs.Add(leVisiteur);
             }
