@@ -140,6 +140,12 @@
     <Compile Include="Rapport.Designer.cs">
       <DependentUpon>Rapport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Recherche_Medicament.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recherche_Medicament.Designer.cs">
+      <DependentUpon>Recherche_Medicament.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visiteur.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +178,9 @@
     <EmbeddedResource Include="Rapport.resx">
       <DependentUpon>Rapport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Recherche_Medicament.resx">
+      <DependentUpon>Recherche_Medicament.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Visiteur.resx">
       <DependentUpon>Visiteur.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,6 +200,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClasseMétiers\ClasseMétiers.csproj">
+      <Project>{03db9bac-680c-47c2-b329-2d070284d365}</Project>
+      <Name>ClasseMétiers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassePasserelle\ClassePasserelle.csproj">
+      <Project>{5718ff79-3308-438b-8961-6f83759155e4}</Project>
+      <Name>ClassePasserelle</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

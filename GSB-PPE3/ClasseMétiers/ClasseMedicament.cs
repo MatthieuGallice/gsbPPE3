@@ -10,7 +10,7 @@ namespace ClasseMétiers
    {
         #region propriété privées 
 
-        private string id;
+        private int id;
         private string nomCommercial;
         private string composition;
         private string effets;
@@ -20,29 +20,35 @@ namespace ClasseMétiers
 
         #region Accesseur
 
-        public string Id { get => id; set => id = value; }
+        public int Id { get => id; set => id = value; }
         public string NomCommercial { get => nomCommercial; set => nomCommercial = value; }
         public string Effets { get => effets; set => effets = value; }
         public string Contreindictions { get => contreindications; set => contreindications = value; }
         public ClasseFamille Famille { get => famille; set => famille = value; }
+        public string Composition { get => composition; set => composition = value; }
         #endregion
 
         #region Constructeur
 
-        public ClasseMedicament(string unid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications)
+        public ClasseMedicament() 
+        {
+
+        }
+    
+        public ClasseMedicament(int unid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications)
         {
             id = unid;
             nomCommercial = unnomcomposition;
-            composition = unecomposition;
+            Composition = unecomposition;
             effets = deseffets;
             contreindications = unecontreindications;
         }
 
-        public ClasseMedicament(string unid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications , ClasseFamille lafamille)
+        public ClasseMedicament(int unid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications , ClasseFamille lafamille)
         {
             id = unid;
             nomCommercial = unnomcomposition;
-            composition = unecomposition;
+            Composition = unecomposition;
             effets = deseffets;
             contreindications = unecontreindications;
             famille = lafamille;

@@ -3,98 +3,133 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using ClasseMétiers;
-using Formulaire;
 
 namespace ClassePasserelle
 {
     public class ClassePRapport
     {
+        #region UPDATE
         // procédure qui modifie un rapport 
         public static void modifRapport(int idRap, DateTime dateRap, string motifRap, string bilanRap, int idVisiteurRap, int idMedecinRAp)
         {
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            //Connexion BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
 
             cmd = connexion.CreateCommand();
+            //REQUETE SQL
             cmd.CommandText = "UPDATE rapport SET dateRap = '"+ dateRap + "', motifRap = '" + motifRap + "', bilanRap = '" + bilanRap + "', idVisiteurRap = '" + idVisiteurRap + "', idMedecinRap = '" + idMedecinRAp + "' WHERE idRap = '" + idRap + "' ";
-            SqlDataReader drr = cmd.ExecuteReader();
+            //EXECUTION REQUETE
+            MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
             connexion.Close();
         }
+        #endregion
 
+        #region DELETE
         // procédure qui supprime un rapport grace a l'id 
         public static void supprimerRapport(int idRap)
         {
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
 
             cmd = connexion.CreateCommand();
+            //REQUETE SQL
             cmd.CommandText = "DELETE FROM 'rapport' WHERE idRap = '" + idRap + "' ";
-            SqlDataReader drr = cmd.ExecuteReader();
+            //EXECUTION REQUETE
+            MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
             connexion.Close();
         }
+        #endregion
 
+        #region INSERT
         // procédure qui ajoute un rapport 
         public static void ajoutRapport(int idRap, DateTime dateRap, string motifRap, string bilanRap, int idVisiteurRap, int idMedecinRAp)
         {
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
 
             cmd = connexion.CreateCommand();
+            //REQUETE SQL
             cmd.CommandText = "DELETE FROM 'rapport' WHERE idRap = '" + idRap + "' ";
-            SqlDataReader drr = cmd.ExecuteReader();
+            //EXECUTION REQUETE
+            MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
             connexion.Close();
         }
-
-        public static ClasseRapport ChargerLesRapport()
+        #endregion
+        
+        #region chargerLesRapports
+        public static List<ClasseRapport> chargerLesRapports()
         {
-            List<ClasseRapport> lesRapport = new List<ClasseRapport>();
-            int unId;
-            DateTime uneDate;
-            string unMotif;
-            string unBilan;
-            ClasseVisiteur leVisiteur;
-            ClasseMedecin leMedecin;
-            List<ClasseEchantillonOffert> lesEchantillonsOfferts;
+            //Variables
+            List<ClasseRapport> LesRapports = new List<ClasseRapport>();
+            int idRap;
+            DateTime dateRap;
+            string motifRap;
+            string bilanRap;
+            int idVisiteurRap;
+            int idMedecinRap;
 
-            SqlConnection connexion = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
 
             cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT idRap, dateRap, motifRap, bilanRap, idVisiteurRap, idMedecinRap " +
+                              "FROM rapport";
 
-            cmd.CommandText = "SELECT idRap, nomVis, prenomVis, dateRap, motifRap, bilanRap, nomMed, prenomMed FROM `rapport` inner join visiteur on idVisiteurRap = idVisiteurRap inner join medecin on idMedecinRap = idMedecinRap WHERE idVis = idVisiteurRap AND idMed = idMedecinRap";
+            //EXECUTION REQUETE SQL
+            MySqlDataReader drr = cmd.ExecuteReader();
 
-            SqlDataReader drr = cmd.ExecuteReader();
-
+            //LECTURE REQUETE 
             while (drr.Read())
             {
-                unId = drr.GetInt32(0);
-                uneDate = drr.GetDateTime(3);
-                unMotif = drr.GetString(4);
-                unBilan = drr.GetString(5);
+                //ON RECUPERE LES VARIABLES
+                idRap = drr.GetInt16(0);
+                dateRap = drr.GetDateTime(1);
+                motifRap = drr.GetString(2);
+                bilanRap = drr.GetString(3);
+                idVisiteurRap = int.Parse(drr.GetString(4));
+                idMedecinRap = int.Parse(drr.GetString(5));
 
-                lesRapport.Add(new ClasseRapport(unId, uneDate, unMotif, unBilan, leVisiteur, leMedecin, lesEchantillonsOfferts));
+                //On récupère un objet visiteur avec la méthode chargerLeVisiteur
+                ClasseVisiteur leVisiteur = ClassePVisiteur.chargerLeVisiteur(idVisiteurRap);
+                //On récupère un objet Medecin avec la méthode chargerLeMedecin
+                ClasseMedecin leMedecin = ClassePMedecin.chargerLeMedecin(idMedecinRap);
+
+                // Instancie un échantillon 
+                List<ClasseEchantillonOffert> lesEchantillonsOfferts = ClassePEchantillonOffert.chargerLesEchantillonOffert();
+
+
+                // Instancie un rapport
+                ClasseRapport unRapport = new ClasseRapport(idRap, dateRap, motifRap, bilanRap, leVisiteur, leMedecin, lesEchantillonsOfferts);
+                LesRapports.Add(unRapport);
             }
+            //CLOTURE LA CONNEXION
             drr.Close();
             connexion.Close();
 
-            return lesRapport;
+            return LesRapports;
         }
+        #endregion
     }
 }

@@ -16,11 +16,21 @@ namespace ClasseMétiers
         private string bilan;
         private ClasseVisiteur leVisiteur;
         private ClasseMedecin leMedecin;
-        private List<ClasseEchantillonOffert> lesEchantillonsOfferts;
+        private List<ClasseEchantillonOffert> lesEchantillonsOfferts = new List<ClasseEchantillonOffert>();
 
         #endregion
 
         #region constructeurs
+        public ClasseRapport()
+        {
+        }
+        public ClasseRapport(int lid, DateTime ladate, string lemotif, string lebilan)
+        {
+            id = lid;
+            date = ladate;
+            motif = lemotif;
+            bilan = lebilan;
+        }
         public ClasseRapport(int lid, DateTime ladate, string lemotif, string lebilan, ClasseVisiteur lVisiteur, ClasseMedecin lMedecin, List<ClasseEchantillonOffert> desEchantillonsOfferts)
         {
             id = lid;
@@ -41,7 +51,7 @@ namespace ClasseMétiers
         public string Bilan { get => bilan; set => bilan = value; }
         public ClasseVisiteur LeVisiteur { get => leVisiteur; set => leVisiteur = value; }
         public ClasseMedecin LeMedecin { get => leMedecin; set => leMedecin = value; }
-        internal List<ClasseEchantillonOffert> LesEchantillonsOfferts { get => lesEchantillonsOfferts; set => lesEchantillonsOfferts = value; }
+        public List<ClasseEchantillonOffert> LesEchantillonsOfferts { get => lesEchantillonsOfferts; set => lesEchantillonsOfferts = value; }
 
         #endregion
 

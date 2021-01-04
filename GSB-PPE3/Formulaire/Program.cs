@@ -16,7 +16,7 @@ namespace Formulaire
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Formulaire());
+            Application.Run(new Recherche_Medicament());
         }
     }
 }

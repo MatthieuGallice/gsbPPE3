@@ -12,6 +12,7 @@ namespace Formulaire
 {
     public partial class Formulaire : Form
     {
+
         public Formulaire()
         {
             InitializeComponent();

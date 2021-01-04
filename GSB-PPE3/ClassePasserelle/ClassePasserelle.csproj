@@ -101,10 +101,6 @@
       <Project>{03db9bac-680c-47c2-b329-2d070284d365}</Project>
       <Name>ClasseMétiers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Formulaire\Formulaire.csproj">
-      <Project>{df700ed6-1af4-455d-af4c-a1bcb270c755}</Project>
-      <Name>Formulaire</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

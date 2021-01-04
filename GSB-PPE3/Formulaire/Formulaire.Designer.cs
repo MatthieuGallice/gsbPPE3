@@ -37,6 +37,7 @@
             this.gérerMédicamentMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.listeMédicamentMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.aProposMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.Menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,7 +88,8 @@
             // 
             this.medicamentMenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gérerMédicamentMenuStrip,
-            this.listeMédicamentMenuStrip});
+            this.listeMédicamentMenuStrip,
+            this.toolStripSeparator1});
             this.medicamentMenuStrip.Name = "medicamentMenuStrip";
             this.medicamentMenuStrip.Size = new System.Drawing.Size(91, 20);
             this.medicamentMenuStrip.Text = "Medicaments";
@@ -113,6 +115,11 @@
             this.aProposMenuStrip.Text = "a propos";
             this.aProposMenuStrip.Click += new System.EventHandler(this.aProposMenuStrip_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(199, 6);
+            // 
             // Formulaire
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -133,7 +140,7 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip Menu;
+        private new System.Windows.Forms.MenuStrip Menu;
         private System.Windows.Forms.ToolStripMenuItem accueilMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem rapportMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem visiteurMenuStrip;
@@ -142,6 +149,7 @@
         private System.Windows.Forms.ToolStripMenuItem gérerMédicamentMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem listeMédicamentMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem aProposMenuStrip;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 
