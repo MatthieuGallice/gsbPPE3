@@ -32,6 +32,7 @@ namespace Formulaire
             List<ClasseMedecin> unMedecin = ClassePMedecin.chargerLesMedecins();
             foreach (ClasseMedecin lesMedecin in unMedecin)
             {
+                string lid = lesMedecin.Id.ToString();
                 string leNom = lesMedecin.Nom;
                 string lePrenom = lesMedecin.Prenom;
                 string ladresse = lesMedecin.Adresse;
@@ -39,7 +40,7 @@ namespace Formulaire
                 string laSpe = lesMedecin.LaSpecialite.Specialite;
                 string leDepartement = lesMedecin.Departement.ToString();
 
-                dgwMedecin.Rows.Add(leNom, lePrenom, ladresse, leTel, laSpe, leDepartement);
+                dgwMedecin.Rows.Add(lid, leNom, lePrenom, ladresse, leTel, laSpe, leDepartement);
             }
         }
 
@@ -63,6 +64,32 @@ namespace Formulaire
             }
         }
 
+        private void cacherText()
+        {
+            groupBoxNomMedecin.Visible = false;
+            groupBoxPrenomMedecin.Visible = false;
+            groupBoxTelMedecin.Visible = false;
+            groupBoxRechercherNom.Visible = false;
+            groupBoxRechercherSpe.Visible = false;
+            groupBoxRechercherDepartement.Visible = false;
+            groupBoxAdresseMedecin.Visible = false;
+            groupBoxDepartementMedecin.Visible = false;
+            groupBoxSpecialiteMedecin.Visible = false;
+
+            buttonValiderModif.Visible = false;
+            buttonValiderAjouterMedecin.Visible = false;
+        }
+
+        private void nettoyer()
+        {
+            txtNomMedecin.Clear();
+            txtPrenomMedecin.Clear();
+            txtTelMedecin.Clear();
+            txtAdresseMedecin.Clear();
+            txtDepartementMedecin.Clear();
+            comboBoxSpecialite.SelectedItem = comboNonChoisi;
+        }
+
         // AU CHARGEMENT DE LA PAGE
         private void Medecin_Load(object sender, EventArgs e)
         {
@@ -82,6 +109,9 @@ namespace Formulaire
                 comboBoxSpecialite.Items.Add(spe.Specialite.ToString());
             }
 
+            // cahcer les textBox et combobox
+            cacherText();
+
             // AFFICHAGE NOM PRENOM MEDECIN POUR COMBOBOX DEUXIEME DGV
             remplirComboboxListeMedecin();
         }
@@ -91,21 +121,20 @@ namespace Formulaire
         {
             if (dgwMedecin.CurrentRow.Selected)
             {
-                // VARIABLE POUR LA REQUETE SQL 
-                string leNom = dgwMedecin.CurrentRow.Cells[0].Value.ToString();
-                string lePrenom = dgwMedecin.CurrentRow.Cells[1].Value.ToString();
+                nettoyer();
+                cacherText();
 
-                //CONNEXION BDD
-                MySqlConnection connexion = new MySqlConnection();
-                connexion.ConnectionString = ClassePConnexion.DBConnection();
+                groupBoxNomMedecin.Visible = true;
+                groupBoxPrenomMedecin.Visible = true;
+                groupBoxTelMedecin.Visible = true;
+                groupBoxAdresseMedecin.Visible = true;
+                groupBoxDepartementMedecin.Visible = true;
+                groupBoxSpecialiteMedecin.Visible = true;
 
-                connexion.Open();
-
-                //REQUETE SQL
-                int idMedecin = ClassePMedecin.recupererIdMedecin(leNom, lePrenom);
+                buttonValiderModif.Visible = true;
 
                 // INSTANCIATION DE LA SPECIALITE
-                string laSpe = dgwMedecin.CurrentRow.Cells[4].Value.ToString();
+                string laSpe = dgwMedecin.CurrentRow.Cells[5].Value.ToString();
                 List<ClasseSpecialite> lesSpe = ClassePSpecialite.chargerLesSpecialite();
 
                 foreach (ClasseSpecialite specia in lesSpe)
@@ -120,17 +149,17 @@ namespace Formulaire
                 }
 
                 // INSTANCIATION
-                ClasseMedecin modifier = new ClasseMedecin(idMedecin, dgwMedecin.CurrentRow.Cells[0].Value.ToString(), dgwMedecin.CurrentRow.Cells[1].Value.ToString(), dgwMedecin.CurrentRow.Cells[2].Value.ToString(), dgwMedecin.CurrentRow.Cells[3].Value.ToString(), int.Parse(dgwMedecin.CurrentRow.Cells[5].Value.ToString()), instanSpe);
+                ClasseMedecin modifier = new ClasseMedecin(int.Parse(dgwMedecin.CurrentRow.Cells[0].Value.ToString()), dgwMedecin.CurrentRow.Cells[1].Value.ToString(), dgwMedecin.CurrentRow.Cells[2].Value.ToString(), dgwMedecin.CurrentRow.Cells[3].Value.ToString(), dgwMedecin.CurrentRow.Cells[4].Value.ToString(), int.Parse(dgwMedecin.CurrentRow.Cells[6].Value.ToString()), instanSpe);
 
                 // PLACEMENT DANS LES TEXTBOX ET SELECTION DANS LE COMBOBOX
+                txtId.Text = modifier.Id.ToString();
                 txtNomMedecin.Text = modifier.Nom;
                 txtPrenomMedecin.Text = modifier.Prenom;
                 txtTelMedecin.Text = modifier.Tel;
                 txtAdresseMedecin.Text = modifier.Adresse;
                 txtDepartementMedecin.Text = modifier.Departement.ToString();
                 comboBoxSpecialite.SelectedItem = laSpe;
-
-                connexion.Close();
+                
             }
             else
             {
@@ -142,12 +171,6 @@ namespace Formulaire
         //BOUTON VALIDER MOFIFICATION
         private void buttonValiderModif_Click(object sender, EventArgs e)
         {
-            //CONNEXION BDD
-            MySqlConnection connexion = new MySqlConnection();
-            connexion.ConnectionString = ClassePConnexion.DBConnection();
-
-            connexion.Open();
-
             string tel = txtTelMedecin.Text;
             bool leTelValide = ClasseMedecin.telValide(tel);
 
@@ -174,12 +197,7 @@ namespace Formulaire
             else
             {
                 // VARIABLE POUR LA REQUETE SQL 
-                string leNom = txtNomMedecin.Text;
-                string lePrenom = txtPrenomMedecin.Text;
                 string laSpe = comboBoxSpecialite.Text;
-
-                // REQUETE SQL ID MEDECIN
-                int idMedecin = ClassePMedecin.recupererIdMedecin(leNom, lePrenom);
 
                 // REQUETE SQL ID SPECIALITE
                 int idSpe = ClassePMedecin.recupererIdSpe(laSpe);
@@ -187,42 +205,29 @@ namespace Formulaire
                 instanSpe = new ClasseSpecialite(idSpe, laSpe.ToString());
 
                 // MISE A JOUR 
+                int lid = int.Parse(txtId.Text);
+                string leNom = txtNomMedecin.Text;
+                string lePrenom = txtPrenomMedecin.Text;
                 string ladresse = txtAdresseMedecin.Text;
                 string leTel = txtTelMedecin.Text;
                 int leDepartement = int.Parse(txtDepartementMedecin.Text);
 
-                ClassePMedecin.modifierMedecin(idMedecin, leNom, lePrenom, ladresse, leTel, idSpe, leDepartement);
+                ClassePMedecin.modifierMedecin(lid, leNom, lePrenom, ladresse, leTel, idSpe, leDepartement);
 
                 dgvFormulaireMedecin();
                 remplirComboboxListeMedecin();
 
-                connexion.Close();
-
-                txtNomMedecin.Clear();
-                txtPrenomMedecin.Clear();
-                txtTelMedecin.Clear();
-                txtAdresseMedecin.Clear();
-                txtDepartementMedecin.Clear();
-                comboBoxSpecialite.SelectedItem = comboNonChoisi;
+                nettoyer();
             }
-
         }
 
         // BOUTON SUPPRIMER
         private void buttonSupprimerMedecin_Click(object sender, EventArgs e)
         {
             // VARIABLE POUR LA REQUETE SQL 
-            string leNom = dgwMedecin.CurrentRow.Cells[0].Value.ToString();
-            string lePrenom = dgwMedecin.CurrentRow.Cells[1].Value.ToString();
-
-            //CONNEXION BDD
-            MySqlConnection connexion = new MySqlConnection();
-            connexion.ConnectionString = ClassePConnexion.DBConnection();
-
-            connexion.Open();
-
-            // REQUETE SQL ID MEDECIN
-            int idMedecin = ClassePMedecin.recupererIdMedecin(leNom, lePrenom);
+            string leNom = dgwMedecin.CurrentRow.Cells[1].Value.ToString();
+            string lePrenom = dgwMedecin.CurrentRow.Cells[2].Value.ToString();
+            int idMedecin = int.Parse(dgwMedecin.CurrentRow.Cells[0].Value.ToString());
 
             if (MessageBox.Show("êtes vous sur de vouloir supprimer " + leNom + " " + lePrenom + " ?", "advertissement ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
@@ -231,18 +236,27 @@ namespace Formulaire
                 dgvFormulaireMedecin();
                 remplirComboboxListeMedecin();
             }
-            connexion.Close();
         }
 
         // BOUTON AJOUTER 
         private void buttonAjouterMedecin_Click(object sender, EventArgs e)
         {
-            //CONNEXION BDD
-            MySqlConnection connexion = new MySqlConnection();
-            connexion.ConnectionString = ClassePConnexion.DBConnection();
+            nettoyer();
+            cacherText();
 
-            connexion.Open();
+            groupBoxNomMedecin.Visible = true;
+            groupBoxPrenomMedecin.Visible = true;
+            groupBoxTelMedecin.Visible = true;
+            groupBoxAdresseMedecin.Visible = true;
+            groupBoxDepartementMedecin.Visible = true;
+            groupBoxSpecialiteMedecin.Visible = true;
 
+            buttonValiderAjouterMedecin.Visible = true;
+        }
+        // BOUTON VALIDER AJOUT
+
+        private void buttonValiderAjouterMedecin_Click(object sender, EventArgs e)
+        {
             string tel = txtTelMedecin.Text;
             bool leTelValide = ClasseMedecin.telValide(tel);
 
@@ -287,19 +301,13 @@ namespace Formulaire
                 dgvFormulaireMedecin();
                 remplirComboboxListeMedecin();
 
-                connexion.Close();
-
-                txtNomMedecin.Clear();
-                txtPrenomMedecin.Clear();
-                txtTelMedecin.Clear();
-                txtAdresseMedecin.Clear();
-                txtDepartementMedecin.Clear();
-                comboBoxSpecialite.SelectedItem = comboNonChoisi;
+                nettoyer();
+                cacherText();
             }
         }
 
         // COMBOBOX ET DGW D'UN MEDECIN
-        private void comboBoxListeMedecin_SelectedValueChanged(object sender, EventArgs e)
+        private void comboBoxListeMedecin_TextChanged(object sender, EventArgs e)
         {
             int idRap;
             int idVis;
@@ -309,7 +317,7 @@ namespace Formulaire
             string motifRap;
             string bilanRap;
 
-            if (comboBoxListeMedecin.ToString() == comboNonChoisi)
+            if (comboBoxListeMedecin.Text == comboNonChoisi)
             {
                 dgwDernierRapport.Rows.Clear();
             }
@@ -317,7 +325,7 @@ namespace Formulaire
             {
                 dgwDernierRapport.Rows.Clear();
 
-                string nom = comboBoxListeMedecin.ToString();
+                string nom = comboBoxListeMedecin.Text;
                 string[] leNom = nom.Split(' ');
                 string leNomMed = leNom[0];
                 string lePrenomMed = leNom[1];
@@ -342,9 +350,21 @@ namespace Formulaire
                     motifRap = lesRap.MotifRap;
                     bilanRap = lesRap.BilanRap;
 
-                    dgwDernierRapport.Rows.Add(idRap, idVis, nomVis, prenomMed, dateRap, motifRap, bilanRap); ;
+                    dgwDernierRapport.Rows.Add(idRap, idVis, nomVis, prenomMed, dateRap, motifRap, bilanRap); 
                 }
             }
         }
+
+        private void buttonRechercherMedecin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonReinitialisermedecin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

@@ -36,8 +36,8 @@
             this.medicamentMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.gérerMédicamentMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.listeMédicamentMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.aProposMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.aProposMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -106,7 +106,11 @@
             this.listeMédicamentMenuStrip.Name = "listeMédicamentMenuStrip";
             this.listeMédicamentMenuStrip.Size = new System.Drawing.Size(202, 22);
             this.listeMédicamentMenuStrip.Text = "Liste Médicament Offert";
-            this.listeMédicamentMenuStrip.Click += new System.EventHandler(this.listeMédicamentMenuStrip_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(199, 6);
             // 
             // aProposMenuStrip
             // 
@@ -114,11 +118,6 @@
             this.aProposMenuStrip.Size = new System.Drawing.Size(65, 20);
             this.aProposMenuStrip.Text = "a propos";
             this.aProposMenuStrip.Click += new System.EventHandler(this.aProposMenuStrip_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(199, 6);
             // 
             // Formulaire
             // 

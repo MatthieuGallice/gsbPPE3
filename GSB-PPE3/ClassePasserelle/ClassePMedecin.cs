@@ -129,6 +129,7 @@ namespace ClassePasserelle
         {
             //VARIABLES
             List<ClasseMedecin> LesMedecins = new List<ClasseMedecin>();
+            int idMed;
             string nom;
             string prenom;
             string tel;
@@ -136,7 +137,6 @@ namespace ClassePasserelle
             int idspecialite;
             int departement;
             string libSpec;
-            int idMed;
 
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
@@ -147,7 +147,7 @@ namespace ClassePasserelle
 
             cmd = connexion.CreateCommand();
             //REQUETE SQL
-            cmd.CommandText = "SELECT nomMed, prenomMed, adresseMed, telMed , idSpec, departementMed, libSpec, idMed " +
+            cmd.CommandText = "SELECT idMed, nomMed, prenomMed, adresseMed, telMed , idSpec, departementMed, libSpec " +
                             "FROM medecin INNER JOIN specialite ON specialite.idSpec = medecin.idSpecialiteMed ORDER BY nomMed ASC";
             //EXECUTE LA REQUETE
             MySqlDataReader drr = cmd.ExecuteReader();
@@ -155,14 +155,15 @@ namespace ClassePasserelle
             while (drr.Read())
             {
                 //ON RECUPERE LES VARIABLES
-                nom = drr.GetString(0); // 0 correspond à nomMed
-                prenom = drr.GetString(1);// 1 correspond à prenomMed
-                tel = drr.GetString(3);// 3 correspond à telMed
-                adresse = drr.GetString(2); // 2 correspond à adresseMed
-                departement = drr.GetInt16(5);//5 correspond à departementMed
-                idspecialite = int.Parse(drr.GetString(4));//4 correspond à idSpec
-                libSpec = drr.GetString(6); //6 correspond à libSpec
-                idMed = int.Parse(drr.GetString(7)); // 7 correspond à idMed
+                idMed = int.Parse(drr.GetString(0)); // 7 correspond à idMed
+                nom = drr.GetString(1); // 0 correspond à nomMed
+                prenom = drr.GetString(2);// 1 correspond à prenomMed
+                tel = drr.GetString(4);// 3 correspond à telMed
+                adresse = drr.GetString(3); // 2 correspond à adresseMed
+                departement = drr.GetInt16(6);//5 correspond à departementMed
+                idspecialite = int.Parse(drr.GetString(5));//4 correspond à idSpec
+                libSpec = drr.GetString(7); //6 correspond à libSpec
+                
 
                 //ON INSTANCIE UN OBJET CLASSESPECIALITE
                 ClasseSpecialite LaSpe = new ClasseSpecialite(idspecialite, libSpec);
@@ -217,7 +218,7 @@ namespace ClassePasserelle
             {
                 //ON RECUPERE LES VARIABLES
                 idMed = lid;
-                nomMed = drr.GetString(0); ;
+                nomMed = drr.GetString(0); 
                 prenomMed = drr.GetString(1); 
                 adresseMed = drr.GetString(2); 
                 idRap = drr.GetInt16(3);
