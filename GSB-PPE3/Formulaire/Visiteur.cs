@@ -89,6 +89,8 @@ namespace Formulaire
         private void buttonSupprimerVisiteur_Click(object sender, EventArgs e)
         {
             int id = int.Parse(dgwVisiteur.CurrentRow.Cells[0].Value.ToString());
+            string nomVis = dgwVisiteur.CurrentRow.Cells[1].Value.ToString();
+            string prenomVis = dgwVisiteur.CurrentRow.Cells[2].Value.ToString();
 
             //Supprime le visiteur
             ClassePVisiteur.SupprimerVisiteur(id);
@@ -113,6 +115,7 @@ namespace Formulaire
             clearBox();
             //Affiche le bonton modifier
             buttonModifierVisiteur.Visible = true;
+            btnValiderRecherche.Visible = false;
 
         }
 
@@ -169,10 +172,14 @@ namespace Formulaire
             btn_Reinitialiser.Visible = false;
             buttonValiderModificationVisiteur.Visible = false;
             btnAjoutVisiteur.Visible = false;
+            grpboxCPRechercher.Visible = false;
+            grpboxNPVisiteurRecherche.Visible = false;
+            grpboxVilleRecherche.Visible = false;
 
             //Afficher
             buttonAjouterVisiteur.Visible = true;
             buttonSupprimerVisiteur.Visible = true;
+            btnRechercheVis.Visible = true;
         }
 
         /// <summary>
@@ -194,6 +201,7 @@ namespace Formulaire
             buttonAjouterVisiteur.Visible = false;
             buttonSupprimerVisiteur.Visible = false;
             buttonModifierVisiteur.Visible = false;
+            btnRechercheVis.Visible = false;
         }
 
         /// <summary>
@@ -232,6 +240,31 @@ namespace Formulaire
 
                 //Ajoute une ligne au dgv
                 dgwVisiteur.Rows.Add(leNb, leNom, lePrenom, ladresse, leCodePostal, laVille, laDate);
+            }
+        }
+
+        private void btnRechercheVis_Click(object sender, EventArgs e)
+        {
+            //Afficher
+            grpboxCPRechercher.Visible = true;
+            grpboxNPVisiteurRecherche.Visible = true;
+            grpboxVilleRecherche.Visible = true;
+            btn_Reinitialiser.Visible = true;
+            btnValiderRecherche.Visible = true;
+
+            //Cacher
+            buttonAjouterVisiteur.Visible = false;
+            buttonSupprimerVisiteur.Visible = false;
+            buttonModifierVisiteur.Visible = false;
+            btnRechercheVis.Visible = false;
+
+            List<ClasseVisiteur> ChargerNomsVisiteurs = ClassePVisiteur.chargerLesVisiteurs();
+            foreach(ClasseVisiteur leNomPrenom in ChargerNomsVisiteurs)
+            {
+                string NomVisiteur = leNomPrenom.Nom;
+                string PrenomVisiteur = leNomPrenom.Prenom;
+                string LesVisiteurs = (NomVisiteur + " - " + PrenomVisiteur);
+                cboxNPVisiteurRechercher.Items.Add(LesVisiteurs);
             }
         }
     }
