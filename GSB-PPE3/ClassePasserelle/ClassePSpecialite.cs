@@ -39,5 +39,30 @@ namespace ClassePasserelle
 
             return lesSpecialite;
         }
+
+        public static int recupererIdSpe(string libelle)
+        {
+            int id = 0;
+
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            cmd.CommandText = "SELECT idSpec FROM specialite WHERE libelle = '"+ libelle +"' ";
+            MySqlDataReader drr = cmd.ExecuteReader();
+
+            while (drr.Read())
+            {
+                id = drr.GetInt16(0);
+            }
+
+            drr.Close();
+            connexion.Close();
+
+            return id;
+        }
     }
 }

@@ -69,9 +69,10 @@
             this.groupBoxRechercherSpe = new System.Windows.Forms.GroupBox();
             this.comboBoxRechercherSpe = new System.Windows.Forms.ComboBox();
             this.groupBoxRechercherDepartement = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxRechercherDepartement = new System.Windows.Forms.TextBox();
             this.buttonAjouterMedecin = new System.Windows.Forms.Button();
             this.buttonValiderAjouterMedecin = new System.Windows.Forms.Button();
+            this.buttonValiderRecherche = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgwMedecin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwDernierRapport)).BeginInit();
             this.groupBoxNomMedecin.SuspendLayout();
@@ -213,7 +214,7 @@
             // 
             // buttonModifierMedecin
             // 
-            this.buttonModifierMedecin.Location = new System.Drawing.Point(344, 485);
+            this.buttonModifierMedecin.Location = new System.Drawing.Point(295, 485);
             this.buttonModifierMedecin.Name = "buttonModifierMedecin";
             this.buttonModifierMedecin.Size = new System.Drawing.Size(112, 32);
             this.buttonModifierMedecin.TabIndex = 3;
@@ -233,7 +234,7 @@
             // 
             // buttonValiderModif
             // 
-            this.buttonValiderModif.Location = new System.Drawing.Point(513, 485);
+            this.buttonValiderModif.Location = new System.Drawing.Point(444, 485);
             this.buttonValiderModif.Name = "buttonValiderModif";
             this.buttonValiderModif.Size = new System.Drawing.Size(112, 32);
             this.buttonValiderModif.TabIndex = 5;
@@ -342,7 +343,7 @@
             this.groupBoxDepartementMedecin.Size = new System.Drawing.Size(384, 56);
             this.groupBoxDepartementMedecin.TabIndex = 16;
             this.groupBoxDepartementMedecin.TabStop = false;
-            this.groupBoxDepartementMedecin.Text = "Département du Médecin";
+            this.groupBoxDepartementMedecin.Text = "Département (2 chiffre) du Médecin";
             // 
             // groupBoxSpecialiteMedecin
             // 
@@ -430,7 +431,7 @@
             // 
             // groupBoxRechercherDepartement
             // 
-            this.groupBoxRechercherDepartement.Controls.Add(this.textBox1);
+            this.groupBoxRechercherDepartement.Controls.Add(this.textBoxRechercherDepartement);
             this.groupBoxRechercherDepartement.Location = new System.Drawing.Point(891, 332);
             this.groupBoxRechercherDepartement.Name = "groupBoxRechercherDepartement";
             this.groupBoxRechercherDepartement.Size = new System.Drawing.Size(384, 56);
@@ -438,12 +439,12 @@
             this.groupBoxRechercherDepartement.TabStop = false;
             this.groupBoxRechercherDepartement.Text = "le Département (2 chiffre) :";
             // 
-            // textBox1
+            // textBoxRechercherDepartement
             // 
-            this.textBox1.Location = new System.Drawing.Point(45, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(288, 20);
-            this.textBox1.TabIndex = 0;
+            this.textBoxRechercherDepartement.Location = new System.Drawing.Point(45, 19);
+            this.textBoxRechercherDepartement.Name = "textBoxRechercherDepartement";
+            this.textBoxRechercherDepartement.Size = new System.Drawing.Size(288, 20);
+            this.textBoxRechercherDepartement.TabIndex = 0;
             // 
             // buttonAjouterMedecin
             // 
@@ -457,7 +458,7 @@
             // 
             // buttonValiderAjouterMedecin
             // 
-            this.buttonValiderAjouterMedecin.Location = new System.Drawing.Point(973, 485);
+            this.buttonValiderAjouterMedecin.Location = new System.Drawing.Point(949, 485);
             this.buttonValiderAjouterMedecin.Name = "buttonValiderAjouterMedecin";
             this.buttonValiderAjouterMedecin.Size = new System.Drawing.Size(112, 32);
             this.buttonValiderAjouterMedecin.TabIndex = 25;
@@ -466,11 +467,23 @@
             this.buttonValiderAjouterMedecin.Visible = false;
             this.buttonValiderAjouterMedecin.Click += new System.EventHandler(this.buttonValiderAjouterMedecin_Click);
             // 
+            // buttonValiderRecherche
+            // 
+            this.buttonValiderRecherche.Location = new System.Drawing.Point(615, 485);
+            this.buttonValiderRecherche.Name = "buttonValiderRecherche";
+            this.buttonValiderRecherche.Size = new System.Drawing.Size(112, 32);
+            this.buttonValiderRecherche.TabIndex = 26;
+            this.buttonValiderRecherche.Text = "Valider Recherche";
+            this.buttonValiderRecherche.UseVisualStyleBackColor = true;
+            this.buttonValiderRecherche.Visible = false;
+            this.buttonValiderRecherche.Click += new System.EventHandler(this.buttonValiderRecherche_Click);
+            // 
             // Medecin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1300, 722);
+            this.Controls.Add(this.buttonValiderRecherche);
             this.Controls.Add(this.buttonValiderAjouterMedecin);
             this.Controls.Add(this.buttonAjouterMedecin);
             this.Controls.Add(this.groupBoxRechercherDepartement);
@@ -561,8 +574,9 @@
         private System.Windows.Forms.GroupBox groupBoxRechercherSpe;
         private System.Windows.Forms.ComboBox comboBoxRechercherSpe;
         private System.Windows.Forms.GroupBox groupBoxRechercherDepartement;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxRechercherDepartement;
         private System.Windows.Forms.Button buttonAjouterMedecin;
         private System.Windows.Forms.Button buttonValiderAjouterMedecin;
+        private System.Windows.Forms.Button buttonValiderRecherche;
     }
 }

@@ -308,5 +308,123 @@ namespace ClassePasserelle
             return idSpe;
         }
         #endregion
+
+        #region medecinRechercheNom
+        public static List<ClasseMedecin> rechercherNomMedecin(string nomMedecin, string prenomMedecin)
+        {
+            //VARIABLES
+            List<ClasseMedecin> LesMedecins = new List<ClasseMedecin>();
+            int idMed;
+            string nom;
+            string prenom;
+            string tel;
+            string adresse;
+            int idspecialite;
+            int departement;
+            string libSpec;
+
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT idMed, nomMed, prenomMed, adresseMed, telMed , idSpec, departementMed, libSpec " +
+                            "FROM medecin INNER JOIN specialite ON specialite.idSpec = medecin.idSpecialiteMed " +
+                            "WHERE nomMed = '"+ nomMedecin + "' AND prenomMed = '"+ prenomMedecin+"' ORDER BY nomMed ASC";
+            //EXECUTE LA REQUETE
+            MySqlDataReader drr = cmd.ExecuteReader();
+
+            while (drr.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                idMed = int.Parse(drr.GetString(0)); // 7 correspond à idMed
+                nom = drr.GetString(1); // 0 correspond à nomMed
+                prenom = drr.GetString(2);// 1 correspond à prenomMed
+                tel = drr.GetString(4);// 3 correspond à telMed
+                adresse = drr.GetString(3); // 2 correspond à adresseMed
+                departement = drr.GetInt16(6);//5 correspond à departementMed
+                idspecialite = int.Parse(drr.GetString(5));//4 correspond à idSpec
+                libSpec = drr.GetString(7); //6 correspond à libSpec
+
+
+                //ON INSTANCIE UN OBJET CLASSESPECIALITE
+                ClasseSpecialite LaSpe = new ClasseSpecialite(idspecialite, libSpec);
+                // ON INSTANCIE UN OBJET CLASSEMEDECIN
+                ClasseMedecin leMedecin = new ClasseMedecin(idMed, nom, prenom, adresse, tel, departement, LaSpe);
+                // ON AJOUTE UN OBJET CLASSEMEDECIN DANS UNE LISTE CLASSEMEDECIN
+                LesMedecins.Add(leMedecin);
+            }
+
+            drr.Close();
+            connexion.Close();
+
+            return LesMedecins; //retoune la liste des Medecins 
+        }
+
+        #endregion
+
+        #region medecinRechercheNom
+        public static List<ClasseMedecin> rechercherSpeMedecin(string laSpe)
+        {
+            //VARIABLES
+            List<ClasseMedecin> LesMedecins = new List<ClasseMedecin>();
+            int idMed;
+            string nom;
+            string prenom;
+            string tel;
+            string adresse;
+            int idspecialite;
+            int departement;
+            string libSpec;
+
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            int id = ClassePSpecialite.recupererIdSpe(laSpe);
+
+            cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT idMed, nomMed, prenomMed, adresseMed, telMed , idSpec, departementMed, libSpec " +
+                            "FROM medecin INNER JOIN specialite ON specialite.idSpec = medecin.idSpecialiteMed " +
+                            "WHERE idSpec = '"+ id +"' ORDER BY nomMed ASC";
+            //EXECUTE LA REQUETE
+            MySqlDataReader drr = cmd.ExecuteReader();
+
+            while (drr.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                idMed = int.Parse(drr.GetString(0)); // 7 correspond à idMed
+                nom = drr.GetString(1); // 0 correspond à nomMed
+                prenom = drr.GetString(2);// 1 correspond à prenomMed
+                tel = drr.GetString(4);// 3 correspond à telMed
+                adresse = drr.GetString(3); // 2 correspond à adresseMed
+                departement = drr.GetInt16(6);//5 correspond à departementMed
+                idspecialite = int.Parse(drr.GetString(5));//4 correspond à idSpec
+                libSpec = drr.GetString(7); //6 correspond à libSpec
+
+
+                //ON INSTANCIE UN OBJET CLASSESPECIALITE
+                ClasseSpecialite LaSpe = new ClasseSpecialite(idspecialite, libSpec);
+                // ON INSTANCIE UN OBJET CLASSEMEDECIN
+                ClasseMedecin leMedecin = new ClasseMedecin(idMed, nom, prenom, adresse, tel, departement, LaSpe);
+                // ON AJOUTE UN OBJET CLASSEMEDECIN DANS UNE LISTE CLASSEMEDECIN
+                LesMedecins.Add(leMedecin);
+            }
+
+            drr.Close();
+            connexion.Close();
+
+            return LesMedecins; //retoune la liste des Medecins 
+        }
+
+        #endregion
     }
 }
