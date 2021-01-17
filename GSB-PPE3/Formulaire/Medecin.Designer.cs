@@ -214,7 +214,7 @@
             // 
             // buttonModifierMedecin
             // 
-            this.buttonModifierMedecin.Location = new System.Drawing.Point(295, 485);
+            this.buttonModifierMedecin.Location = new System.Drawing.Point(427, 485);
             this.buttonModifierMedecin.Name = "buttonModifierMedecin";
             this.buttonModifierMedecin.Size = new System.Drawing.Size(112, 32);
             this.buttonModifierMedecin.TabIndex = 3;
@@ -234,7 +234,7 @@
             // 
             // buttonValiderModif
             // 
-            this.buttonValiderModif.Location = new System.Drawing.Point(444, 485);
+            this.buttonValiderModif.Location = new System.Drawing.Point(282, 485);
             this.buttonValiderModif.Name = "buttonValiderModif";
             this.buttonValiderModif.Size = new System.Drawing.Size(112, 32);
             this.buttonValiderModif.TabIndex = 5;
@@ -448,7 +448,7 @@
             // 
             // buttonAjouterMedecin
             // 
-            this.buttonAjouterMedecin.Location = new System.Drawing.Point(798, 485);
+            this.buttonAjouterMedecin.Location = new System.Drawing.Point(800, 485);
             this.buttonAjouterMedecin.Name = "buttonAjouterMedecin";
             this.buttonAjouterMedecin.Size = new System.Drawing.Size(112, 32);
             this.buttonAjouterMedecin.TabIndex = 24;

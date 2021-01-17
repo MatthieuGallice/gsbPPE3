@@ -51,7 +51,7 @@ namespace ClassePasserelle
             connexion.Open();
 
             cmd = connexion.CreateCommand();
-            cmd.CommandText = "SELECT idSpec FROM specialite WHERE libelle = '"+ libelle +"' ";
+            cmd.CommandText = "SELECT idSpec FROM specialite WHERE libSpec = '"+ libelle +"' ";
             MySqlDataReader drr = cmd.ExecuteReader();
 
             while (drr.Read())
