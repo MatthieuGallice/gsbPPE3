@@ -9,13 +9,14 @@ namespace ClasseMétiers
     public class ClasseSpecialite
     {
         #region propriétés privées
+        // propriétés privées
         private int id;
         private string specialite;
 
         #endregion
 
         #region constructeurs
-
+        // constructeur de la classe spécialité
         public ClasseSpecialite()
         {
 
@@ -30,7 +31,6 @@ namespace ClasseMétiers
         #endregion
 
         #region accesseurs
-
         public int Id {
             get => id;
             set => id = value;

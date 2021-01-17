@@ -30,7 +30,7 @@ namespace ClassePasserelle
         #endregion
 
         #region INSERT
-        public static void AjouterMedecin(string leNom, string lePrenom, string ladresse, string leTel, int laSpe, int leDepartement)
+        public static void ajouterMedecin(string leNom, string lePrenom, string ladresse, string leTel, int laSpe, int leDepartement)
         {
             //Connexion à la BDD
             MySqlConnection connexion = new MySqlConnection();
