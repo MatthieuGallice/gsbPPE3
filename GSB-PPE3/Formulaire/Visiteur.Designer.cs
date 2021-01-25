@@ -345,6 +345,7 @@
             this.cboxNPVisiteurRechercher.Name = "cboxNPVisiteurRechercher";
             this.cboxNPVisiteurRechercher.Size = new System.Drawing.Size(309, 21);
             this.cboxNPVisiteurRechercher.TabIndex = 33;
+            this.cboxNPVisiteurRechercher.TextChanged += new System.EventHandler(this.cboxNPVisiteurRechercher_TextChanged);
             // 
             // cboxVilleRechercher
             // 
@@ -353,6 +354,7 @@
             this.cboxVilleRechercher.Name = "cboxVilleRechercher";
             this.cboxVilleRechercher.Size = new System.Drawing.Size(309, 21);
             this.cboxVilleRechercher.TabIndex = 34;
+            this.cboxVilleRechercher.TextChanged += new System.EventHandler(this.cboxVilleRechercher_TextChanged);
             // 
             // grpboxNPVisiteurRecherche
             // 
@@ -394,6 +396,7 @@
             this.cboxCPRechercher.Name = "cboxCPRechercher";
             this.cboxCPRechercher.Size = new System.Drawing.Size(309, 21);
             this.cboxCPRechercher.TabIndex = 0;
+            this.cboxCPRechercher.TextChanged += new System.EventHandler(this.cboxCPRechercher_TextChanged);
             // 
             // btnValiderRecherche
             // 

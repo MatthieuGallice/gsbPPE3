@@ -201,7 +201,146 @@ namespace ClassePasserelle
         }
         #endregion
 
+        #region ChargerLeCp
+        public static List<ClasseVisiteur> chargerLeCp(string CP)
+        {
+            //VARIABLES
+            List<ClasseVisiteur> LesVisiteurs = new List<ClasseVisiteur>();
+            int id;
+            string nom;
+            string prenom;
+            string adresse;
+            string ville;
+            DateTime dateEmbauche;
 
-        
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT nomVis, prenomVis, adresseVis, villeVis, dateEmbaucheVis, idVis " +
+                              "FROM visiteur " +
+                              "WHERE cpVis = " + CP + "" ;
+            //EXECUTION REQUETE
+            MySqlDataReader drr = cmd.ExecuteReader();
+
+            //LECTURE REQUETE
+            while (drr.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                nom = drr.GetString(0);
+                prenom = drr.GetString(1);
+                adresse = drr.GetString(2);
+                ville = drr.GetString(3);
+                dateEmbauche = drr.GetDateTime(4);
+                id = int.Parse(drr.GetString(5));
+
+                //ON INSTANCIE UN OBJET CLASSEVISITEUR
+                ClasseVisiteur leVisiteur = new ClasseVisiteur(id, nom, prenom, adresse, CP, ville, dateEmbauche);
+                //ON L'AJOUTE A UNE LISTE DE VISITEURS
+                LesVisiteurs.Add(leVisiteur);
+
+
+            }
+
+            drr.Close();
+            connexion.Close();
+
+            return LesVisiteurs;
+        }
+        #endregion
+
+        #region ChargerLeVille
+        public static List<ClasseVisiteur> chargerLeVille(string Ville)
+        {
+            //VARIABLES
+            List<ClasseVisiteur> LesVisiteurs = new List<ClasseVisiteur>();
+            int id;
+            string nom;
+            string prenom;
+            string adresse;
+            string cpVis;
+            DateTime dateEmbauche;
+
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT nomVis, prenomVis, adresseVis, cpVis, dateEmbaucheVis, idVis " +
+                              "FROM visiteur " +
+                              "WHERE villeVis = '" + Ville + "'";
+            //EXECUTION REQUETE
+            MySqlDataReader drr = cmd.ExecuteReader();
+
+            //LECTURE REQUETE
+            while (drr.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                nom = drr.GetString(0);
+                prenom = drr.GetString(1);
+                adresse = drr.GetString(2);
+                cpVis = drr.GetString(3);
+                dateEmbauche = drr.GetDateTime(4);
+                id = int.Parse(drr.GetString(5));
+
+                //ON INSTANCIE UN OBJET CLASSEVISITEUR
+                ClasseVisiteur leVisiteur = new ClasseVisiteur(id, nom, prenom, adresse, cpVis, Ville, dateEmbauche);
+                //ON L'AJOUTE A UNE LISTE DE VISITEURS
+                LesVisiteurs.Add(leVisiteur);
+
+
+            }
+
+            drr.Close();
+            connexion.Close();
+
+            return LesVisiteurs;
+        }
+        #endregion
+
+        #region ChargerUnVisiteur
+        public static int chargerUnVisiteur(string nom, string prenom)
+        {
+            // variables
+            int id = 0;
+
+            //Connexion BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT idVis " +
+                              "FROM visiteur " +
+                              "WHERE nomVis = '" + nom + "' && prenomVis = '" + prenom + "'";
+            //EXECUTION REQUETE SQL
+            MySqlDataReader drr = cmd.ExecuteReader();
+
+            //LECTURE REQUETE
+            while (drr.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                id = drr.GetInt16(0);
+                
+            }
+
+            drr.Close();
+            connexion.Close();
+
+            return id;
+        }
+        #endregion
     }
 }

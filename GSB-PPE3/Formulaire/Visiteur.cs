@@ -215,6 +215,9 @@ namespace Formulaire
             txtPrenomVisiteur.Clear();
             txtVilleVisiteur.Clear();
             CalendrierDateEmbauche.SetDate(DateTime.Now);
+            cboxCPRechercher.Enabled = true;
+            cboxNPVisiteurRechercher.Enabled = true;
+            cboxVilleRechercher.Enabled = true;
         }
 
         /// <summary>
@@ -245,6 +248,14 @@ namespace Formulaire
 
         private void btnRechercheVis_Click(object sender, EventArgs e)
         {
+            // Clear les boxs
+            dgwVisiteur.Rows.Clear();
+            cboxNPVisiteurRechercher.Items.Clear();
+            cboxCPRechercher.Items.Clear();
+            cboxVilleRechercher.Items.Clear();
+            cboxVilleRechercher.Text = "";
+            cboxNPVisiteurRechercher.Text = "";
+            cboxCPRechercher.Text = "";
             //Afficher
             grpboxCPRechercher.Visible = true;
             grpboxNPVisiteurRecherche.Visible = true;
@@ -258,14 +269,145 @@ namespace Formulaire
             buttonModifierVisiteur.Visible = false;
             btnRechercheVis.Visible = false;
 
+            cboxNPVisiteurRechercher.Items.Add("");
+            cboxCPRechercher.Items.Add("");
+            cboxVilleRechercher.Items.Add("");
+
+            // Cherche les visiteurs
             List<ClasseVisiteur> ChargerNomsVisiteurs = ClassePVisiteur.chargerLesVisiteurs();
-            foreach(ClasseVisiteur leNomPrenom in ChargerNomsVisiteurs)
+            // Boucle qui scrute les visiteurs
+            foreach (ClasseVisiteur leNomPrenom in ChargerNomsVisiteurs)
             {
+                // Assigne les variables 
+                string id = leNomPrenom.Id.ToString();
                 string NomVisiteur = leNomPrenom.Nom;
                 string PrenomVisiteur = leNomPrenom.Prenom;
-                string LesVisiteurs = (NomVisiteur + " - " + PrenomVisiteur);
+                // Regroupe les variables en une
+                string LesVisiteurs = (id + "   " + NomVisiteur + " - " + PrenomVisiteur);
+                // Les insèrent dans la combobox
                 cboxNPVisiteurRechercher.Items.Add(LesVisiteurs);
+                
+                // Récupère la ville
+                string ville = leNomPrenom.Ville;
+                // Gère si les villes sont écrites plusieurs fois
+                if (!cboxVilleRechercher.Items.Contains(ville))
+                {
+                    // Les insèrent dans la combobox
+                    cboxVilleRechercher.Items.Add(ville);
+                }
+
+                // Récupère le CP
+                int cp = int.Parse(leNomPrenom.Cp);
+                // Gère si les CP sont écrits plusieurs fois
+                if (!cboxCPRechercher.Items.Contains(cp))
+                {
+                    // Les insèrent dans la combobox
+                    cboxCPRechercher.Items.Add(cp);
+                }
             }
+        }
+
+        private void cboxNPVisiteurRechercher_TextChanged(object sender, EventArgs e)
+        {
+            // Clear le DGV
+            dgwVisiteur.Rows.Clear();
+            // Vérifie que la combobox soit vide
+            if (cboxNPVisiteurRechercher.Text == "")
+            {
+                // Permet la saisie dans les autres combobox
+                cboxVilleRechercher.Enabled = true;
+                cboxCPRechercher.Enabled = true;
+            }
+            else
+            {
+                // Empêche la saisie dans les autres combobox
+                cboxVilleRechercher.Enabled = false;
+                cboxCPRechercher.Enabled = false;
+                // Récupère l'id 
+                int id = int.Parse(cboxNPVisiteurRechercher.Text.Substring(0, 3));
+                // Cherche le visiteur avec l'id "id"
+                ClasseVisiteur LeVisiteur = ClassePVisiteur.chargerLeVisiteur(id);
+                // récupère les variables 
+                int leNb = LeVisiteur.Id;
+                string leNom = LeVisiteur.Nom;
+                string lePrenom = LeVisiteur.Prenom;
+                string ladresse = LeVisiteur.Adresse;
+                string leCodePostal = LeVisiteur.Cp;
+                string laVille = LeVisiteur.Ville;
+                DateTime laDate = LeVisiteur.DateEmbauche;
+                // Insère les variables dans le DGV
+                dgwVisiteur.Rows.Add(leNb, leNom, lePrenom, ladresse, leCodePostal, laVille, laDate);
+            }
+        }
+
+        private void cboxVilleRechercher_TextChanged(object sender, EventArgs e)
+        {
+            // Clear le DGV
+            dgwVisiteur.Rows.Clear();
+            // Vérifie que la combobox soit vide
+            if (cboxVilleRechercher.Text == "")
+            {
+                // Permet la saisie dans les autres combobox
+                cboxNPVisiteurRechercher.Enabled = true;
+                cboxCPRechercher.Enabled = true;
+            }
+            else
+            {
+                // Empêche la saisie dans les autres combobox
+                cboxNPVisiteurRechercher.Enabled = false;
+                cboxCPRechercher.Enabled = false;
+                // Cherche le visiteur avec la ville correspondante
+                List<ClasseVisiteur> LesVisiteurs = ClassePVisiteur.chargerLeVille(cboxVilleRechercher.Text);
+                foreach (ClasseVisiteur leVisiteur in LesVisiteurs)
+                {
+                    // Récupère les variables 
+                    int leNb = leVisiteur.Id;
+                    string leNom = leVisiteur.Nom;
+                    string lePrenom = leVisiteur.Prenom;
+                    string ladresse = leVisiteur.Adresse;
+                    string leCodePostal = leVisiteur.Cp;
+                    string laVille = leVisiteur.Ville;
+                    DateTime laDate = leVisiteur.DateEmbauche;
+                    // Ajoute dans le DGV
+                    dgwVisiteur.Rows.Add(leNb, leNom, lePrenom, ladresse, leCodePostal, laVille, laDate);
+                }
+            }
+        }
+
+        private void cboxCPRechercher_TextChanged(object sender, EventArgs e)
+        {
+            // Clear le DGV
+            dgwVisiteur.Rows.Clear();
+            // Vérifie que la combobox soit vide
+            if (cboxCPRechercher.Text == "")
+            {
+                // Permet la saisie dans les autres combobox
+                cboxVilleRechercher.Enabled = true;
+                cboxNPVisiteurRechercher.Enabled = true;
+            }
+            else
+            {
+                // Cherche le visiteur avec la ville correspondante
+                List<ClasseVisiteur> LesVisiteurs = ClassePVisiteur.chargerLeCp(cboxCPRechercher.Text);
+                foreach (ClasseVisiteur leVisiteur in LesVisiteurs)
+                {
+                    // Récupère les variables 
+                    int leNb = leVisiteur.Id;
+                    string leNom = leVisiteur.Nom;
+                    string lePrenom = leVisiteur.Prenom;
+                    string ladresse = leVisiteur.Adresse;
+                    string leCodePostal = leVisiteur.Cp;
+                    string laVille = leVisiteur.Ville;
+                    DateTime laDate = leVisiteur.DateEmbauche;
+                    // Ajoute dans le DGV
+                    dgwVisiteur.Rows.Add(leNb, leNom, lePrenom, ladresse, leCodePostal, laVille, laDate);
+                }
+                // Empêche la saisie dans les autres combobox
+                cboxVilleRechercher.Enabled = false;
+                cboxNPVisiteurRechercher.Enabled = false;
+            }
+            
+
         }
     }
 }
