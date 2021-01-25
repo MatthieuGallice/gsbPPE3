@@ -54,7 +54,7 @@ namespace ClassePasserelle
 
         #region INSERT
         // procédure qui ajoute un rapport 
-        public static void ajoutRapport(int idRap, DateTime dateRap, string motifRap, string bilanRap, int idVisiteurRap, int idMedecinRAp)
+        public static void ajoutRapport(DateTime dateRap, string motifRap, string bilanRap, int idVisiteurRap, int idMedecinRap)
         {
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
@@ -65,9 +65,10 @@ namespace ClassePasserelle
 
             cmd = connexion.CreateCommand();
             //REQUETE SQL
-            cmd.CommandText = "DELETE FROM 'rapport' WHERE idRap = '" + idRap + "' ";
-            //EXECUTION REQUETE
-            MySqlDataReader drr = cmd.ExecuteReader();
+            cmd.CommandText = "INSERT INTO rapport(dateRap, motifRap, bilanRap, idVisiteurRap, idMedecinRap) " +
+                                "VALUES ('" + dateRap + "', '" + motifRap + "', '" + bilanRap + "', '" + idVisiteurRap + "', '" + idMedecinRap + "');";
+            
+            MySqlDataReader drr = cmd.ExecuteReader(); //Execution du script
             drr.Close();
             connexion.Close();
         }
@@ -131,5 +132,6 @@ namespace ClassePasserelle
             return LesRapports;
         }
         #endregion
+        
     }
 }

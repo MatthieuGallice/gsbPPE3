@@ -73,6 +73,8 @@
             this.buttonAjouterMedecin = new System.Windows.Forms.Button();
             this.buttonValiderAjouterMedecin = new System.Windows.Forms.Button();
             this.buttonValiderRecherche = new System.Windows.Forms.Button();
+            this.labelTitreDgv2 = new System.Windows.Forms.Label();
+            this.labelTitreDgv1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgwMedecin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwDernierRapport)).BeginInit();
             this.groupBoxNomMedecin.SuspendLayout();
@@ -98,7 +100,7 @@
             this.telMed,
             this.nomSpecialite,
             this.departementMed});
-            this.dgwMedecin.Location = new System.Drawing.Point(173, 40);
+            this.dgwMedecin.Location = new System.Drawing.Point(171, 56);
             this.dgwMedecin.Name = "dgwMedecin";
             this.dgwMedecin.Size = new System.Drawing.Size(1104, 208);
             this.dgwMedecin.TabIndex = 1;
@@ -224,7 +226,7 @@
             // 
             // buttonSupprimerMedecin
             // 
-            this.buttonSupprimerMedecin.Location = new System.Drawing.Point(36, 184);
+            this.buttonSupprimerMedecin.Location = new System.Drawing.Point(31, 214);
             this.buttonSupprimerMedecin.Name = "buttonSupprimerMedecin";
             this.buttonSupprimerMedecin.Size = new System.Drawing.Size(112, 32);
             this.buttonSupprimerMedecin.TabIndex = 4;
@@ -358,7 +360,7 @@
             // groupBoxListeMedecin
             // 
             this.groupBoxListeMedecin.Controls.Add(this.comboBoxListeMedecin);
-            this.groupBoxListeMedecin.Location = new System.Drawing.Point(36, 571);
+            this.groupBoxListeMedecin.Location = new System.Drawing.Point(36, 589);
             this.groupBoxListeMedecin.Name = "groupBoxListeMedecin";
             this.groupBoxListeMedecin.Size = new System.Drawing.Size(339, 101);
             this.groupBoxListeMedecin.TabIndex = 17;
@@ -375,7 +377,7 @@
             // 
             // buttonRechercherMedecin
             // 
-            this.buttonRechercherMedecin.Location = new System.Drawing.Point(36, 65);
+            this.buttonRechercherMedecin.Location = new System.Drawing.Point(31, 93);
             this.buttonRechercherMedecin.Name = "buttonRechercherMedecin";
             this.buttonRechercherMedecin.Size = new System.Drawing.Size(112, 32);
             this.buttonRechercherMedecin.TabIndex = 19;
@@ -385,11 +387,11 @@
             // 
             // buttonReinitialisermedecin
             // 
-            this.buttonReinitialisermedecin.Location = new System.Drawing.Point(36, 123);
+            this.buttonReinitialisermedecin.Location = new System.Drawing.Point(31, 150);
             this.buttonReinitialisermedecin.Name = "buttonReinitialisermedecin";
             this.buttonReinitialisermedecin.Size = new System.Drawing.Size(112, 32);
             this.buttonReinitialisermedecin.TabIndex = 20;
-            this.buttonReinitialisermedecin.Text = "réinitialiser";
+            this.buttonReinitialisermedecin.Text = "Réinitialiser";
             this.buttonReinitialisermedecin.UseVisualStyleBackColor = true;
             this.buttonReinitialisermedecin.Click += new System.EventHandler(this.buttonReinitialisermedecin_Click);
             // 
@@ -478,11 +480,33 @@
             this.buttonValiderRecherche.Visible = false;
             this.buttonValiderRecherche.Click += new System.EventHandler(this.buttonValiderRecherche_Click);
             // 
+            // labelTitreDgv2
+            // 
+            this.labelTitreDgv2.AutoSize = true;
+            this.labelTitreDgv2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitreDgv2.Location = new System.Drawing.Point(45, 542);
+            this.labelTitreDgv2.Name = "labelTitreDgv2";
+            this.labelTitreDgv2.Size = new System.Drawing.Size(272, 13);
+            this.labelTitreDgv2.TabIndex = 27;
+            this.labelTitreDgv2.Text = "Tableau des Rapport en fonction du Médecin :";
+            // 
+            // labelTitreDgv1
+            // 
+            this.labelTitreDgv1.AutoSize = true;
+            this.labelTitreDgv1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitreDgv1.Location = new System.Drawing.Point(28, 56);
+            this.labelTitreDgv1.Name = "labelTitreDgv1";
+            this.labelTitreDgv1.Size = new System.Drawing.Size(137, 13);
+            this.labelTitreDgv1.TabIndex = 28;
+            this.labelTitreDgv1.Text = "Tableau des Médecin :";
+            // 
             // Medecin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1300, 722);
+            this.Controls.Add(this.labelTitreDgv1);
+            this.Controls.Add(this.labelTitreDgv2);
             this.Controls.Add(this.buttonValiderRecherche);
             this.Controls.Add(this.buttonValiderAjouterMedecin);
             this.Controls.Add(this.buttonAjouterMedecin);
@@ -578,5 +602,7 @@
         private System.Windows.Forms.Button buttonAjouterMedecin;
         private System.Windows.Forms.Button buttonValiderAjouterMedecin;
         private System.Windows.Forms.Button buttonValiderRecherche;
+        private System.Windows.Forms.Label labelTitreDgv2;
+        private System.Windows.Forms.Label labelTitreDgv1;
     }
 }

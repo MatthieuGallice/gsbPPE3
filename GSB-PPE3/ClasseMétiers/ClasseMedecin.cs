@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions; // pour utilisé les expression réguliè_re
+using System.Text.RegularExpressions; // pour utilisé les expression régulière
 using System.Threading.Tasks;
 
 namespace ClasseMétiers

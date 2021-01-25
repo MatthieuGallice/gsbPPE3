@@ -28,35 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgwRapport = new System.Windows.Forms.DataGridView();
-            this.buttonModifierRapport = new System.Windows.Forms.Button();
-            this.buttonSupprimerRapport = new System.Windows.Forms.Button();
-            this.txtBoxDateRapport = new System.Windows.Forms.TextBox();
-            this.txtBoxBilanRapport = new System.Windows.Forms.TextBox();
-            this.comboBoxVisiteurRapport = new System.Windows.Forms.ComboBox();
-            this.comboBoxMedecinRapport = new System.Windows.Forms.ComboBox();
-            this.buttonValiderModifRapport = new System.Windows.Forms.Button();
-            this.buttonAjouterRapport = new System.Windows.Forms.Button();
-            this.txtQuantiteOffre = new System.Windows.Forms.TextBox();
-            this.buttonAjouterOffre = new System.Windows.Forms.Button();
-            this.buttonModifierOffre = new System.Windows.Forms.Button();
-            this.buttonSupprimerOffre = new System.Windows.Forms.Button();
-            this.dgwOffre = new System.Windows.Forms.DataGridView();
-            this.idRapportOffert = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idMedicamentoffert = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomCommercialMedicament = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantiteOff = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBoxDateRapport = new System.Windows.Forms.GroupBox();
-            this.groupBoxMotifRapport = new System.Windows.Forms.GroupBox();
-            this.comboBoxMotifRapport = new System.Windows.Forms.ComboBox();
-            this.groupBoxBilanRapport = new System.Windows.Forms.GroupBox();
-            this.groupBoxVisiteurRapport = new System.Windows.Forms.GroupBox();
-            this.groupBoxMedecinRapport = new System.Windows.Forms.GroupBox();
-            this.groupBoxRapportOffert = new System.Windows.Forms.GroupBox();
-            this.comboBoxIdOffreRapport = new System.Windows.Forms.ComboBox();
-            this.groupBoxMedicamentOffert = new System.Windows.Forms.GroupBox();
-            this.comboBoxIdMedicament = new System.Windows.Forms.ComboBox();
-            this.groupBoxQuantite = new System.Windows.Forms.GroupBox();
+            this.dgvRapport = new System.Windows.Forms.DataGridView();
             this.idRap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomVisiteur = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prenomVisiteur = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,22 +37,40 @@
             this.bilanRapport = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomMedecin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prenomMedecin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dgwRapport)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgwOffre)).BeginInit();
-            this.groupBoxDateRapport.SuspendLayout();
-            this.groupBoxMotifRapport.SuspendLayout();
-            this.groupBoxBilanRapport.SuspendLayout();
-            this.groupBoxVisiteurRapport.SuspendLayout();
-            this.groupBoxMedecinRapport.SuspendLayout();
-            this.groupBoxRapportOffert.SuspendLayout();
-            this.groupBoxMedicamentOffert.SuspendLayout();
-            this.groupBoxQuantite.SuspendLayout();
+            this.buttonModifierRapport = new System.Windows.Forms.Button();
+            this.buttonValiderModif = new System.Windows.Forms.Button();
+            this.buttonAjouterRapport = new System.Windows.Forms.Button();
+            this.buttonValiderAjout = new System.Windows.Forms.Button();
+            this.buttonValiderRecherche = new System.Windows.Forms.Button();
+            this.buttonReinitialiser = new System.Windows.Forms.Button();
+            this.labelTitreDgv = new System.Windows.Forms.Label();
+            this.buttonSupprimerRapport = new System.Windows.Forms.Button();
+            this.buttonRechercher = new System.Windows.Forms.Button();
+            this.groupBoxCode = new System.Windows.Forms.GroupBox();
+            this.textBoxCode = new System.Windows.Forms.TextBox();
+            this.groupBoxVisiteur = new System.Windows.Forms.GroupBox();
+            this.comboBoxVisiteur = new System.Windows.Forms.ComboBox();
+            this.groupBoxMotif = new System.Windows.Forms.GroupBox();
+            this.comboBoxMotif = new System.Windows.Forms.ComboBox();
+            this.groupBoxDate = new System.Windows.Forms.GroupBox();
+            this.dateTimePickerRapport = new System.Windows.Forms.DateTimePicker();
+            this.groupBoxMedecin = new System.Windows.Forms.GroupBox();
+            this.comboBoxMed = new System.Windows.Forms.ComboBox();
+            this.groupBoxBilan = new System.Windows.Forms.GroupBox();
+            this.textBoxBilan = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRapport)).BeginInit();
+            this.groupBoxCode.SuspendLayout();
+            this.groupBoxVisiteur.SuspendLayout();
+            this.groupBoxMotif.SuspendLayout();
+            this.groupBoxDate.SuspendLayout();
+            this.groupBoxMedecin.SuspendLayout();
+            this.groupBoxBilan.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dgwRapport
+            // dgvRapport
             // 
-            this.dgwRapport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgwRapport.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvRapport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRapport.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idRap,
             this.nomVisiteur,
             this.prenomVisiteur,
@@ -89,251 +79,10 @@
             this.bilanRapport,
             this.nomMedecin,
             this.prenomMedecin});
-            this.dgwRapport.Location = new System.Drawing.Point(171, 39);
-            this.dgwRapport.Name = "dgwRapport";
-            this.dgwRapport.Size = new System.Drawing.Size(1113, 218);
-            this.dgwRapport.TabIndex = 1;
-            // 
-            // buttonModifierRapport
-            // 
-            this.buttonModifierRapport.Location = new System.Drawing.Point(31, 96);
-            this.buttonModifierRapport.Name = "buttonModifierRapport";
-            this.buttonModifierRapport.Size = new System.Drawing.Size(102, 33);
-            this.buttonModifierRapport.TabIndex = 2;
-            this.buttonModifierRapport.Text = "Modifier";
-            this.buttonModifierRapport.UseVisualStyleBackColor = true;
-            // 
-            // buttonSupprimerRapport
-            // 
-            this.buttonSupprimerRapport.Location = new System.Drawing.Point(31, 166);
-            this.buttonSupprimerRapport.Name = "buttonSupprimerRapport";
-            this.buttonSupprimerRapport.Size = new System.Drawing.Size(102, 33);
-            this.buttonSupprimerRapport.TabIndex = 3;
-            this.buttonSupprimerRapport.Text = "Supprimer";
-            this.buttonSupprimerRapport.UseVisualStyleBackColor = true;
-            // 
-            // txtBoxDateRapport
-            // 
-            this.txtBoxDateRapport.Location = new System.Drawing.Point(60, 19);
-            this.txtBoxDateRapport.Name = "txtBoxDateRapport";
-            this.txtBoxDateRapport.Size = new System.Drawing.Size(306, 20);
-            this.txtBoxDateRapport.TabIndex = 4;
-            // 
-            // txtBoxBilanRapport
-            // 
-            this.txtBoxBilanRapport.Location = new System.Drawing.Point(22, 33);
-            this.txtBoxBilanRapport.Name = "txtBoxBilanRapport";
-            this.txtBoxBilanRapport.Size = new System.Drawing.Size(306, 20);
-            this.txtBoxBilanRapport.TabIndex = 6;
-            // 
-            // comboBoxVisiteurRapport
-            // 
-            this.comboBoxVisiteurRapport.FormattingEnabled = true;
-            this.comboBoxVisiteurRapport.Location = new System.Drawing.Point(60, 19);
-            this.comboBoxVisiteurRapport.Name = "comboBoxVisiteurRapport";
-            this.comboBoxVisiteurRapport.Size = new System.Drawing.Size(306, 21);
-            this.comboBoxVisiteurRapport.TabIndex = 7;
-            // 
-            // comboBoxMedecinRapport
-            // 
-            this.comboBoxMedecinRapport.FormattingEnabled = true;
-            this.comboBoxMedecinRapport.Location = new System.Drawing.Point(53, 19);
-            this.comboBoxMedecinRapport.Name = "comboBoxMedecinRapport";
-            this.comboBoxMedecinRapport.Size = new System.Drawing.Size(306, 21);
-            this.comboBoxMedecinRapport.TabIndex = 8;
-            // 
-            // buttonValiderModifRapport
-            // 
-            this.buttonValiderModifRapport.Location = new System.Drawing.Point(312, 417);
-            this.buttonValiderModifRapport.Name = "buttonValiderModifRapport";
-            this.buttonValiderModifRapport.Size = new System.Drawing.Size(125, 33);
-            this.buttonValiderModifRapport.TabIndex = 9;
-            this.buttonValiderModifRapport.Text = "Valider Modification";
-            this.buttonValiderModifRapport.UseVisualStyleBackColor = true;
-            // 
-            // buttonAjouterRapport
-            // 
-            this.buttonAjouterRapport.Location = new System.Drawing.Point(476, 417);
-            this.buttonAjouterRapport.Name = "buttonAjouterRapport";
-            this.buttonAjouterRapport.Size = new System.Drawing.Size(125, 33);
-            this.buttonAjouterRapport.TabIndex = 10;
-            this.buttonAjouterRapport.Text = "Ajouter Rapport";
-            this.buttonAjouterRapport.UseVisualStyleBackColor = true;
-            // 
-            // txtQuantiteOffre
-            // 
-            this.txtQuantiteOffre.Location = new System.Drawing.Point(25, 19);
-            this.txtQuantiteOffre.Name = "txtQuantiteOffre";
-            this.txtQuantiteOffre.Size = new System.Drawing.Size(243, 20);
-            this.txtQuantiteOffre.TabIndex = 13;
-            // 
-            // buttonAjouterOffre
-            // 
-            this.buttonAjouterOffre.Location = new System.Drawing.Point(365, 483);
-            this.buttonAjouterOffre.Name = "buttonAjouterOffre";
-            this.buttonAjouterOffre.Size = new System.Drawing.Size(95, 38);
-            this.buttonAjouterOffre.TabIndex = 14;
-            this.buttonAjouterOffre.Text = "Ajouter Offre";
-            this.buttonAjouterOffre.UseVisualStyleBackColor = true;
-            // 
-            // buttonModifierOffre
-            // 
-            this.buttonModifierOffre.Location = new System.Drawing.Point(365, 567);
-            this.buttonModifierOffre.Name = "buttonModifierOffre";
-            this.buttonModifierOffre.Size = new System.Drawing.Size(95, 38);
-            this.buttonModifierOffre.TabIndex = 15;
-            this.buttonModifierOffre.Text = "Modifier Offre";
-            this.buttonModifierOffre.UseVisualStyleBackColor = true;
-            // 
-            // buttonSupprimerOffre
-            // 
-            this.buttonSupprimerOffre.Location = new System.Drawing.Point(365, 646);
-            this.buttonSupprimerOffre.Name = "buttonSupprimerOffre";
-            this.buttonSupprimerOffre.Size = new System.Drawing.Size(95, 38);
-            this.buttonSupprimerOffre.TabIndex = 16;
-            this.buttonSupprimerOffre.Text = "Supprimer Offre";
-            this.buttonSupprimerOffre.UseVisualStyleBackColor = true;
-            // 
-            // dgwOffre
-            // 
-            this.dgwOffre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgwOffre.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idRapportOffert,
-            this.idMedicamentoffert,
-            this.nomCommercialMedicament,
-            this.quantiteOff});
-            this.dgwOffre.Location = new System.Drawing.Point(498, 474);
-            this.dgwOffre.Name = "dgwOffre";
-            this.dgwOffre.Size = new System.Drawing.Size(786, 223);
-            this.dgwOffre.TabIndex = 17;
-            // 
-            // idRapportOffert
-            // 
-            this.idRapportOffert.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.idRapportOffert.HeaderText = "numéro du rapport";
-            this.idRapportOffert.Name = "idRapportOffert";
-            // 
-            // idMedicamentoffert
-            // 
-            this.idMedicamentoffert.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.idMedicamentoffert.HeaderText = "numéro du médicament";
-            this.idMedicamentoffert.Name = "idMedicamentoffert";
-            // 
-            // nomCommercialMedicament
-            // 
-            this.nomCommercialMedicament.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nomCommercialMedicament.HeaderText = "nom du médicament";
-            this.nomCommercialMedicament.Name = "nomCommercialMedicament";
-            // 
-            // quantiteOff
-            // 
-            this.quantiteOff.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.quantiteOff.HeaderText = "quantité offertes";
-            this.quantiteOff.Name = "quantiteOff";
-            // 
-            // groupBoxDateRapport
-            // 
-            this.groupBoxDateRapport.Controls.Add(this.txtBoxDateRapport);
-            this.groupBoxDateRapport.Location = new System.Drawing.Point(31, 275);
-            this.groupBoxDateRapport.Name = "groupBoxDateRapport";
-            this.groupBoxDateRapport.Size = new System.Drawing.Size(406, 55);
-            this.groupBoxDateRapport.TabIndex = 18;
-            this.groupBoxDateRapport.TabStop = false;
-            this.groupBoxDateRapport.Text = "Date du Rapport";
-            // 
-            // groupBoxMotifRapport
-            // 
-            this.groupBoxMotifRapport.Controls.Add(this.comboBoxMotifRapport);
-            this.groupBoxMotifRapport.Location = new System.Drawing.Point(476, 275);
-            this.groupBoxMotifRapport.Name = "groupBoxMotifRapport";
-            this.groupBoxMotifRapport.Size = new System.Drawing.Size(406, 55);
-            this.groupBoxMotifRapport.TabIndex = 19;
-            this.groupBoxMotifRapport.TabStop = false;
-            this.groupBoxMotifRapport.Text = "Motif du rapport";
-            // 
-            // comboBoxMotifRapport
-            // 
-            this.comboBoxMotifRapport.FormattingEnabled = true;
-            this.comboBoxMotifRapport.Location = new System.Drawing.Point(53, 19);
-            this.comboBoxMotifRapport.Name = "comboBoxMotifRapport";
-            this.comboBoxMotifRapport.Size = new System.Drawing.Size(306, 21);
-            this.comboBoxMotifRapport.TabIndex = 23;
-            // 
-            // groupBoxBilanRapport
-            // 
-            this.groupBoxBilanRapport.Controls.Add(this.txtBoxBilanRapport);
-            this.groupBoxBilanRapport.Location = new System.Drawing.Point(912, 275);
-            this.groupBoxBilanRapport.Name = "groupBoxBilanRapport";
-            this.groupBoxBilanRapport.Size = new System.Drawing.Size(372, 185);
-            this.groupBoxBilanRapport.TabIndex = 20;
-            this.groupBoxBilanRapport.TabStop = false;
-            this.groupBoxBilanRapport.Text = "Bilan du Rapport";
-            // 
-            // groupBoxVisiteurRapport
-            // 
-            this.groupBoxVisiteurRapport.Controls.Add(this.comboBoxVisiteurRapport);
-            this.groupBoxVisiteurRapport.Location = new System.Drawing.Point(31, 347);
-            this.groupBoxVisiteurRapport.Name = "groupBoxVisiteurRapport";
-            this.groupBoxVisiteurRapport.Size = new System.Drawing.Size(406, 55);
-            this.groupBoxVisiteurRapport.TabIndex = 19;
-            this.groupBoxVisiteurRapport.TabStop = false;
-            this.groupBoxVisiteurRapport.Text = "Nom et Prenom du visiteur";
-            // 
-            // groupBoxMedecinRapport
-            // 
-            this.groupBoxMedecinRapport.Controls.Add(this.comboBoxMedecinRapport);
-            this.groupBoxMedecinRapport.Location = new System.Drawing.Point(476, 347);
-            this.groupBoxMedecinRapport.Name = "groupBoxMedecinRapport";
-            this.groupBoxMedecinRapport.Size = new System.Drawing.Size(406, 55);
-            this.groupBoxMedecinRapport.TabIndex = 20;
-            this.groupBoxMedecinRapport.TabStop = false;
-            this.groupBoxMedecinRapport.Text = "Nom et Prenom du medecin";
-            // 
-            // groupBoxRapportOffert
-            // 
-            this.groupBoxRapportOffert.Controls.Add(this.comboBoxIdOffreRapport);
-            this.groupBoxRapportOffert.Location = new System.Drawing.Point(31, 474);
-            this.groupBoxRapportOffert.Name = "groupBoxRapportOffert";
-            this.groupBoxRapportOffert.Size = new System.Drawing.Size(292, 60);
-            this.groupBoxRapportOffert.TabIndex = 20;
-            this.groupBoxRapportOffert.TabStop = false;
-            this.groupBoxRapportOffert.Text = "Rapport associé";
-            // 
-            // comboBoxIdOffreRapport
-            // 
-            this.comboBoxIdOffreRapport.FormattingEnabled = true;
-            this.comboBoxIdOffreRapport.Location = new System.Drawing.Point(25, 19);
-            this.comboBoxIdOffreRapport.Name = "comboBoxIdOffreRapport";
-            this.comboBoxIdOffreRapport.Size = new System.Drawing.Size(243, 21);
-            this.comboBoxIdOffreRapport.TabIndex = 23;
-            // 
-            // groupBoxMedicamentOffert
-            // 
-            this.groupBoxMedicamentOffert.Controls.Add(this.comboBoxIdMedicament);
-            this.groupBoxMedicamentOffert.Location = new System.Drawing.Point(31, 558);
-            this.groupBoxMedicamentOffert.Name = "groupBoxMedicamentOffert";
-            this.groupBoxMedicamentOffert.Size = new System.Drawing.Size(292, 60);
-            this.groupBoxMedicamentOffert.TabIndex = 21;
-            this.groupBoxMedicamentOffert.TabStop = false;
-            this.groupBoxMedicamentOffert.Text = "médicament offert";
-            // 
-            // comboBoxIdMedicament
-            // 
-            this.comboBoxIdMedicament.FormattingEnabled = true;
-            this.comboBoxIdMedicament.Location = new System.Drawing.Point(25, 19);
-            this.comboBoxIdMedicament.Name = "comboBoxIdMedicament";
-            this.comboBoxIdMedicament.Size = new System.Drawing.Size(243, 21);
-            this.comboBoxIdMedicament.TabIndex = 23;
-            // 
-            // groupBoxQuantite
-            // 
-            this.groupBoxQuantite.Controls.Add(this.txtQuantiteOffre);
-            this.groupBoxQuantite.Location = new System.Drawing.Point(31, 637);
-            this.groupBoxQuantite.Name = "groupBoxQuantite";
-            this.groupBoxQuantite.Size = new System.Drawing.Size(292, 60);
-            this.groupBoxQuantite.TabIndex = 22;
-            this.groupBoxQuantite.TabStop = false;
-            this.groupBoxQuantite.Text = "Quantité offertes";
+            this.dgvRapport.Location = new System.Drawing.Point(171, 39);
+            this.dgvRapport.Name = "dgvRapport";
+            this.dgvRapport.Size = new System.Drawing.Size(1113, 218);
+            this.dgvRapport.TabIndex = 1;
             // 
             // idRap
             // 
@@ -383,80 +132,247 @@
             this.prenomMedecin.HeaderText = "Prenom du Medecin";
             this.prenomMedecin.Name = "prenomMedecin";
             // 
+            // buttonModifierRapport
+            // 
+            this.buttonModifierRapport.Location = new System.Drawing.Point(865, 645);
+            this.buttonModifierRapport.Name = "buttonModifierRapport";
+            this.buttonModifierRapport.Size = new System.Drawing.Size(125, 33);
+            this.buttonModifierRapport.TabIndex = 2;
+            this.buttonModifierRapport.Text = "Modifier le Rapport";
+            this.buttonModifierRapport.UseVisualStyleBackColor = true;
+            this.buttonModifierRapport.Click += new System.EventHandler(this.buttonModifierRapport_Click);
+            // 
+            // buttonValiderModif
+            // 
+            this.buttonValiderModif.Location = new System.Drawing.Point(1023, 645);
+            this.buttonValiderModif.Name = "buttonValiderModif";
+            this.buttonValiderModif.Size = new System.Drawing.Size(125, 33);
+            this.buttonValiderModif.TabIndex = 9;
+            this.buttonValiderModif.Text = "Valider la Modification";
+            this.buttonValiderModif.UseVisualStyleBackColor = true;
+            this.buttonValiderModif.Click += new System.EventHandler(this.buttonValiderModif_Click);
+            // 
+            // buttonAjouterRapport
+            // 
+            this.buttonAjouterRapport.Location = new System.Drawing.Point(336, 645);
+            this.buttonAjouterRapport.Name = "buttonAjouterRapport";
+            this.buttonAjouterRapport.Size = new System.Drawing.Size(125, 33);
+            this.buttonAjouterRapport.TabIndex = 10;
+            this.buttonAjouterRapport.Text = "Ajouter un Rapport";
+            this.buttonAjouterRapport.UseVisualStyleBackColor = true;
+            this.buttonAjouterRapport.Click += new System.EventHandler(this.buttonAjouterRapport_Click);
+            // 
+            // buttonValiderAjout
+            // 
+            this.buttonValiderAjout.Location = new System.Drawing.Point(200, 645);
+            this.buttonValiderAjout.Name = "buttonValiderAjout";
+            this.buttonValiderAjout.Size = new System.Drawing.Size(102, 33);
+            this.buttonValiderAjout.TabIndex = 21;
+            this.buttonValiderAjout.Text = "Valider L\'Ajout";
+            this.buttonValiderAjout.UseVisualStyleBackColor = true;
+            this.buttonValiderAjout.Click += new System.EventHandler(this.buttonValiderAjout_Click);
+            // 
+            // buttonValiderRecherche
+            // 
+            this.buttonValiderRecherche.Location = new System.Drawing.Point(591, 645);
+            this.buttonValiderRecherche.Name = "buttonValiderRecherche";
+            this.buttonValiderRecherche.Size = new System.Drawing.Size(125, 33);
+            this.buttonValiderRecherche.TabIndex = 22;
+            this.buttonValiderRecherche.Text = "Valider la Recherche";
+            this.buttonValiderRecherche.UseVisualStyleBackColor = true;
+            this.buttonValiderRecherche.Click += new System.EventHandler(this.buttonValiderRecherche_Click);
+            // 
+            // buttonReinitialiser
+            // 
+            this.buttonReinitialiser.Location = new System.Drawing.Point(31, 142);
+            this.buttonReinitialiser.Name = "buttonReinitialiser";
+            this.buttonReinitialiser.Size = new System.Drawing.Size(118, 33);
+            this.buttonReinitialiser.TabIndex = 23;
+            this.buttonReinitialiser.Text = "Réinitialiser";
+            this.buttonReinitialiser.UseVisualStyleBackColor = true;
+            this.buttonReinitialiser.Click += new System.EventHandler(this.buttonReinitialiser_Click);
+            // 
+            // labelTitreDgv
+            // 
+            this.labelTitreDgv.AutoSize = true;
+            this.labelTitreDgv.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitreDgv.Location = new System.Drawing.Point(12, 39);
+            this.labelTitreDgv.Name = "labelTitreDgv";
+            this.labelTitreDgv.Size = new System.Drawing.Size(140, 13);
+            this.labelTitreDgv.TabIndex = 29;
+            this.labelTitreDgv.Text = "Tableau des Rapports :";
+            // 
+            // buttonSupprimerRapport
+            // 
+            this.buttonSupprimerRapport.Location = new System.Drawing.Point(31, 213);
+            this.buttonSupprimerRapport.Name = "buttonSupprimerRapport";
+            this.buttonSupprimerRapport.Size = new System.Drawing.Size(118, 33);
+            this.buttonSupprimerRapport.TabIndex = 30;
+            this.buttonSupprimerRapport.Text = "Supprimer le Rapport";
+            this.buttonSupprimerRapport.UseVisualStyleBackColor = true;
+            this.buttonSupprimerRapport.Click += new System.EventHandler(this.buttonSupprimerRapport_Click);
+            // 
+            // buttonRechercher
+            // 
+            this.buttonRechercher.Location = new System.Drawing.Point(31, 77);
+            this.buttonRechercher.Name = "buttonRechercher";
+            this.buttonRechercher.Size = new System.Drawing.Size(118, 33);
+            this.buttonRechercher.TabIndex = 31;
+            this.buttonRechercher.Text = "Faire une Recherche";
+            this.buttonRechercher.UseVisualStyleBackColor = true;
+            this.buttonRechercher.Click += new System.EventHandler(this.buttonRechercher_Click);
+            // 
+            // groupBoxCode
+            // 
+            this.groupBoxCode.Controls.Add(this.textBoxCode);
+            this.groupBoxCode.Location = new System.Drawing.Point(171, 301);
+            this.groupBoxCode.Name = "groupBoxCode";
+            this.groupBoxCode.Size = new System.Drawing.Size(415, 68);
+            this.groupBoxCode.TabIndex = 21;
+            this.groupBoxCode.TabStop = false;
+            this.groupBoxCode.Text = "Code du Rapport :";
+            // 
+            // textBoxCode
+            // 
+            this.textBoxCode.Enabled = false;
+            this.textBoxCode.Location = new System.Drawing.Point(6, 30);
+            this.textBoxCode.Name = "textBoxCode";
+            this.textBoxCode.Size = new System.Drawing.Size(403, 20);
+            this.textBoxCode.TabIndex = 32;
+            // 
+            // groupBoxVisiteur
+            // 
+            this.groupBoxVisiteur.Controls.Add(this.comboBoxVisiteur);
+            this.groupBoxVisiteur.Location = new System.Drawing.Point(171, 389);
+            this.groupBoxVisiteur.Name = "groupBoxVisiteur";
+            this.groupBoxVisiteur.Size = new System.Drawing.Size(415, 68);
+            this.groupBoxVisiteur.TabIndex = 22;
+            this.groupBoxVisiteur.TabStop = false;
+            this.groupBoxVisiteur.Text = "Nom Prenom des visiteur";
+            // 
+            // comboBoxVisiteur
+            // 
+            this.comboBoxVisiteur.FormattingEnabled = true;
+            this.comboBoxVisiteur.Location = new System.Drawing.Point(6, 23);
+            this.comboBoxVisiteur.Name = "comboBoxVisiteur";
+            this.comboBoxVisiteur.Size = new System.Drawing.Size(403, 21);
+            this.comboBoxVisiteur.TabIndex = 7;
+            // 
+            // groupBoxMotif
+            // 
+            this.groupBoxMotif.Controls.Add(this.comboBoxMotif);
+            this.groupBoxMotif.Location = new System.Drawing.Point(171, 473);
+            this.groupBoxMotif.Name = "groupBoxMotif";
+            this.groupBoxMotif.Size = new System.Drawing.Size(415, 68);
+            this.groupBoxMotif.TabIndex = 23;
+            this.groupBoxMotif.TabStop = false;
+            this.groupBoxMotif.Text = "Motif du Rapport :";
+            // 
+            // comboBoxMotif
+            // 
+            this.comboBoxMotif.FormattingEnabled = true;
+            this.comboBoxMotif.Location = new System.Drawing.Point(6, 23);
+            this.comboBoxMotif.Name = "comboBoxMotif";
+            this.comboBoxMotif.Size = new System.Drawing.Size(403, 21);
+            this.comboBoxMotif.TabIndex = 7;
+            // 
+            // groupBoxDate
+            // 
+            this.groupBoxDate.Controls.Add(this.dateTimePickerRapport);
+            this.groupBoxDate.Location = new System.Drawing.Point(720, 301);
+            this.groupBoxDate.Name = "groupBoxDate";
+            this.groupBoxDate.Size = new System.Drawing.Size(415, 68);
+            this.groupBoxDate.TabIndex = 22;
+            this.groupBoxDate.TabStop = false;
+            this.groupBoxDate.Text = "Date du Rapport :";
+            // 
+            // dateTimePickerRapport
+            // 
+            this.dateTimePickerRapport.Location = new System.Drawing.Point(6, 30);
+            this.dateTimePickerRapport.Name = "dateTimePickerRapport";
+            this.dateTimePickerRapport.Size = new System.Drawing.Size(403, 20);
+            this.dateTimePickerRapport.TabIndex = 0;
+            // 
+            // groupBoxMedecin
+            // 
+            this.groupBoxMedecin.Controls.Add(this.comboBoxMed);
+            this.groupBoxMedecin.Location = new System.Drawing.Point(720, 389);
+            this.groupBoxMedecin.Name = "groupBoxMedecin";
+            this.groupBoxMedecin.Size = new System.Drawing.Size(415, 68);
+            this.groupBoxMedecin.TabIndex = 22;
+            this.groupBoxMedecin.TabStop = false;
+            this.groupBoxMedecin.Text = "Nom Prenom des Médecin :";
+            // 
+            // comboBoxMed
+            // 
+            this.comboBoxMed.FormattingEnabled = true;
+            this.comboBoxMed.Location = new System.Drawing.Point(6, 23);
+            this.comboBoxMed.Name = "comboBoxMed";
+            this.comboBoxMed.Size = new System.Drawing.Size(403, 21);
+            this.comboBoxMed.TabIndex = 7;
+            // 
+            // groupBoxBilan
+            // 
+            this.groupBoxBilan.Controls.Add(this.textBoxBilan);
+            this.groupBoxBilan.Location = new System.Drawing.Point(720, 473);
+            this.groupBoxBilan.Name = "groupBoxBilan";
+            this.groupBoxBilan.Size = new System.Drawing.Size(415, 68);
+            this.groupBoxBilan.TabIndex = 22;
+            this.groupBoxBilan.TabStop = false;
+            this.groupBoxBilan.Text = "Bilan du Rapport :";
+            // 
+            // textBoxBilan
+            // 
+            this.textBoxBilan.Location = new System.Drawing.Point(6, 24);
+            this.textBoxBilan.Name = "textBoxBilan";
+            this.textBoxBilan.Size = new System.Drawing.Size(403, 20);
+            this.textBoxBilan.TabIndex = 33;
+            // 
             // Rapport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1300, 722);
-            this.Controls.Add(this.groupBoxQuantite);
-            this.Controls.Add(this.groupBoxMedicamentOffert);
-            this.Controls.Add(this.groupBoxRapportOffert);
-            this.Controls.Add(this.groupBoxMedecinRapport);
-            this.Controls.Add(this.groupBoxVisiteurRapport);
-            this.Controls.Add(this.groupBoxBilanRapport);
-            this.Controls.Add(this.groupBoxMotifRapport);
-            this.Controls.Add(this.groupBoxDateRapport);
-            this.Controls.Add(this.dgwOffre);
-            this.Controls.Add(this.buttonSupprimerOffre);
-            this.Controls.Add(this.buttonModifierOffre);
-            this.Controls.Add(this.buttonAjouterOffre);
-            this.Controls.Add(this.buttonAjouterRapport);
-            this.Controls.Add(this.buttonValiderModifRapport);
+            this.Controls.Add(this.groupBoxBilan);
+            this.Controls.Add(this.groupBoxMedecin);
+            this.Controls.Add(this.groupBoxDate);
+            this.Controls.Add(this.groupBoxMotif);
+            this.Controls.Add(this.groupBoxVisiteur);
+            this.Controls.Add(this.groupBoxCode);
+            this.Controls.Add(this.buttonRechercher);
             this.Controls.Add(this.buttonSupprimerRapport);
+            this.Controls.Add(this.labelTitreDgv);
+            this.Controls.Add(this.buttonReinitialiser);
+            this.Controls.Add(this.buttonValiderRecherche);
+            this.Controls.Add(this.buttonValiderAjout);
+            this.Controls.Add(this.buttonAjouterRapport);
+            this.Controls.Add(this.buttonValiderModif);
             this.Controls.Add(this.buttonModifierRapport);
-            this.Controls.Add(this.dgwRapport);
+            this.Controls.Add(this.dgvRapport);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Rapport";
             this.Text = "Rappors";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Rapport_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgwRapport)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgwOffre)).EndInit();
-            this.groupBoxDateRapport.ResumeLayout(false);
-            this.groupBoxDateRapport.PerformLayout();
-            this.groupBoxMotifRapport.ResumeLayout(false);
-            this.groupBoxBilanRapport.ResumeLayout(false);
-            this.groupBoxBilanRapport.PerformLayout();
-            this.groupBoxVisiteurRapport.ResumeLayout(false);
-            this.groupBoxMedecinRapport.ResumeLayout(false);
-            this.groupBoxRapportOffert.ResumeLayout(false);
-            this.groupBoxMedicamentOffert.ResumeLayout(false);
-            this.groupBoxQuantite.ResumeLayout(false);
-            this.groupBoxQuantite.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRapport)).EndInit();
+            this.groupBoxCode.ResumeLayout(false);
+            this.groupBoxCode.PerformLayout();
+            this.groupBoxVisiteur.ResumeLayout(false);
+            this.groupBoxMotif.ResumeLayout(false);
+            this.groupBoxDate.ResumeLayout(false);
+            this.groupBoxMedecin.ResumeLayout(false);
+            this.groupBoxBilan.ResumeLayout(false);
+            this.groupBoxBilan.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dgwRapport;
+        private System.Windows.Forms.DataGridView dgvRapport;
         private System.Windows.Forms.Button buttonModifierRapport;
-        private System.Windows.Forms.Button buttonSupprimerRapport;
-        private System.Windows.Forms.TextBox txtBoxDateRapport;
-        private System.Windows.Forms.TextBox txtBoxBilanRapport;
-        private System.Windows.Forms.ComboBox comboBoxVisiteurRapport;
-        private System.Windows.Forms.ComboBox comboBoxMedecinRapport;
-        private System.Windows.Forms.Button buttonValiderModifRapport;
+        private System.Windows.Forms.Button buttonValiderModif;
         private System.Windows.Forms.Button buttonAjouterRapport;
-        private System.Windows.Forms.TextBox txtQuantiteOffre;
-        private System.Windows.Forms.Button buttonAjouterOffre;
-        private System.Windows.Forms.Button buttonModifierOffre;
-        private System.Windows.Forms.Button buttonSupprimerOffre;
-        private System.Windows.Forms.DataGridView dgwOffre;
-        private System.Windows.Forms.GroupBox groupBoxDateRapport;
-        private System.Windows.Forms.GroupBox groupBoxMotifRapport;
-        private System.Windows.Forms.GroupBox groupBoxBilanRapport;
-        private System.Windows.Forms.GroupBox groupBoxVisiteurRapport;
-        private System.Windows.Forms.GroupBox groupBoxMedecinRapport;
-        private System.Windows.Forms.GroupBox groupBoxRapportOffert;
-        private System.Windows.Forms.GroupBox groupBoxMedicamentOffert;
-        private System.Windows.Forms.GroupBox groupBoxQuantite;
-        private System.Windows.Forms.ComboBox comboBoxIdOffreRapport;
-        private System.Windows.Forms.ComboBox comboBoxIdMedicament;
-        private System.Windows.Forms.ComboBox comboBoxMotifRapport;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idRapportOffert;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idMedicamentoffert;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomCommercialMedicament;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantiteOff;
         private System.Windows.Forms.DataGridViewTextBoxColumn idRap;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomVisiteur;
         private System.Windows.Forms.DataGridViewTextBoxColumn prenomVisiteur;
@@ -465,5 +381,23 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn bilanRapport;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomMedecin;
         private System.Windows.Forms.DataGridViewTextBoxColumn prenomMedecin;
+        private System.Windows.Forms.Button buttonValiderAjout;
+        private System.Windows.Forms.Button buttonValiderRecherche;
+        private System.Windows.Forms.Button buttonReinitialiser;
+        private System.Windows.Forms.Label labelTitreDgv;
+        private System.Windows.Forms.Button buttonSupprimerRapport;
+        private System.Windows.Forms.Button buttonRechercher;
+        private System.Windows.Forms.GroupBox groupBoxCode;
+        private System.Windows.Forms.GroupBox groupBoxVisiteur;
+        private System.Windows.Forms.ComboBox comboBoxVisiteur;
+        private System.Windows.Forms.GroupBox groupBoxMotif;
+        private System.Windows.Forms.ComboBox comboBoxMotif;
+        private System.Windows.Forms.GroupBox groupBoxDate;
+        private System.Windows.Forms.GroupBox groupBoxMedecin;
+        private System.Windows.Forms.ComboBox comboBoxMed;
+        private System.Windows.Forms.GroupBox groupBoxBilan;
+        private System.Windows.Forms.TextBox textBoxCode;
+        private System.Windows.Forms.DateTimePicker dateTimePickerRapport;
+        private System.Windows.Forms.TextBox textBoxBilan;
     }
 }

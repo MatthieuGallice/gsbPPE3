@@ -50,7 +50,7 @@ namespace Formulaire
             }
         }
 
-        // fonction qui remplis la combobox des medecins
+        // fonction qui remplis le combobox des medecins
         public void remplirComboboxListeMedecin()
         {
             // initialisation d'une liste puis ajout grâce a la fonction chargerLesMedecin de classePMedecin
@@ -157,57 +157,59 @@ namespace Formulaire
         // fonction qui s'active au clique du button modifier 
         private void buttonModifierMedecin_Click(object sender, EventArgs e)
         {
-            // condition qui pour être remplis dans sélectionné une ligne dans le dgv
-            if (dgwMedecin.CurrentRow.Selected)
+            if (dgwMedecin.RowCount != 1)
             {
-                // nettoye et cache les textbox et combobox
-                nettoyer();
-                cacherText();
-
-                // rend les groupbox et le button validerModif visible
-                groupBoxNomMedecin.Visible = true;
-                groupBoxPrenomMedecin.Visible = true;
-                groupBoxTelMedecin.Visible = true;
-                groupBoxAdresseMedecin.Visible = true;
-                groupBoxDepartementMedecin.Visible = true;
-                groupBoxSpecialiteMedecin.Visible = true;
-
-                buttonValiderModif.Visible = true;
-
-                // instanciation de la spécialité
-                string laSpe = dgwMedecin.CurrentRow.Cells[5].Value.ToString();
-                List<ClasseSpecialite> lesSpe = ClassePSpecialite.chargerLesSpecialite();
-
-                foreach (ClasseSpecialite specia in lesSpe)
+                // condition qui pour être remplis dans sélectionné une ligne dans le dgv
+                if (dgwMedecin.CurrentRow.Selected)
                 {
-                    if (specia.Specialite.ToString() == laSpe)
+                    // nettoye et cache les textbox et combobox
+                    nettoyer();
+                    cacherText();
+
+                    // rend les groupbox et le button validerModif visible
+                    groupBoxNomMedecin.Visible = true;
+                    groupBoxPrenomMedecin.Visible = true;
+                    groupBoxTelMedecin.Visible = true;
+                    groupBoxAdresseMedecin.Visible = true;
+                    groupBoxDepartementMedecin.Visible = true;
+                    groupBoxSpecialiteMedecin.Visible = true;
+
+                    buttonValiderModif.Visible = true;
+
+                    // instanciation de la spécialité
+                    string laSpe = dgwMedecin.CurrentRow.Cells[5].Value.ToString();
+                    List<ClasseSpecialite> lesSpe = ClassePSpecialite.chargerLesSpecialite();
+
+                    foreach (ClasseSpecialite specia in lesSpe)
                     {
-                        // fonction qui récupérer l'id de spécialité grâce au nom de la spécialité
-                        int idSpe = ClassePMedecin.recupererIdSpe(laSpe);
+                        if (specia.Specialite.ToString() == laSpe)
+                        {
+                            // fonction qui récupérer l'id de spécialité grâce au nom de la spécialité
+                            int idSpe = ClassePMedecin.recupererIdSpe(laSpe);
 
-                        instanSpe = new ClasseSpecialite(idSpe, specia.ToString());
+                            instanSpe = new ClasseSpecialite(idSpe, specia.ToString());
+                        }
                     }
+
+                    // instanciation du medecin 
+                    ClasseMedecin modifier = new ClasseMedecin(int.Parse(dgwMedecin.CurrentRow.Cells[0].Value.ToString()), dgwMedecin.CurrentRow.Cells[1].Value.ToString(), dgwMedecin.CurrentRow.Cells[2].Value.ToString(), dgwMedecin.CurrentRow.Cells[3].Value.ToString(), dgwMedecin.CurrentRow.Cells[4].Value.ToString(), int.Parse(dgwMedecin.CurrentRow.Cells[6].Value.ToString()), instanSpe);
+
+                    // placement dans les textbox et sélection dans le combobox
+                    txtId.Text = modifier.Id.ToString();
+                    txtNomMedecin.Text = modifier.Nom;
+                    txtPrenomMedecin.Text = modifier.Prenom;
+                    txtTelMedecin.Text = modifier.Tel;
+                    txtAdresseMedecin.Text = modifier.Adresse;
+                    txtDepartementMedecin.Text = modifier.Departement.ToString();
+                    comboBoxSpecialite.SelectedItem = laSpe;
+
                 }
-
-                // instanciation du medecin 
-                ClasseMedecin modifier = new ClasseMedecin(int.Parse(dgwMedecin.CurrentRow.Cells[0].Value.ToString()), dgwMedecin.CurrentRow.Cells[1].Value.ToString(), dgwMedecin.CurrentRow.Cells[2].Value.ToString(), dgwMedecin.CurrentRow.Cells[3].Value.ToString(), dgwMedecin.CurrentRow.Cells[4].Value.ToString(), int.Parse(dgwMedecin.CurrentRow.Cells[6].Value.ToString()), instanSpe);
-
-                // placement dans les textbox et sélection dans le combobox
-                txtId.Text = modifier.Id.ToString();
-                txtNomMedecin.Text = modifier.Nom;
-                txtPrenomMedecin.Text = modifier.Prenom;
-                txtTelMedecin.Text = modifier.Tel;
-                txtAdresseMedecin.Text = modifier.Adresse;
-                txtDepartementMedecin.Text = modifier.Departement.ToString();
-                comboBoxSpecialite.SelectedItem = laSpe;
-                
+                // condition si pas de ligne sélectionner
+                else
+                {
+                    MessageBox.Show("Sélectionner un médecin dans le tableau !");
+                }
             }
-            // condition si pas de ligne sélectionner
-            else
-            {
-                MessageBox.Show("Sélectionner un médecin dans le tableau !");
-            }
-
         }
 
         // fonction qui s'active au clique du button validerModifier 
@@ -279,22 +281,25 @@ namespace Formulaire
         // fonction qui s'active au clique du button supprimer 
         private void buttonSupprimerMedecin_Click(object sender, EventArgs e)
         {
-            // variable qui récupére les données dans les cellules du dgv 
-            string leNom = dgwMedecin.CurrentRow.Cells[1].Value.ToString();
-            string lePrenom = dgwMedecin.CurrentRow.Cells[2].Value.ToString();
-            int idMedecin = int.Parse(dgwMedecin.CurrentRow.Cells[0].Value.ToString());
-
-            // condition qui active un messageBox et si valider alors suppression du médecin
-            if (MessageBox.Show("êtes vous sur de vouloir supprimer " + leNom + " " + lePrenom + " ?", "advertissement ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (dgwMedecin.RowCount != 1)
             {
-                // fonction qui supprime le medecin
-                ClassePMedecin.SupprimerMedecin(idMedecin);
+                // variable qui récupére les données dans les cellules du dgv 
+                string leNom = dgwMedecin.CurrentRow.Cells[1].Value.ToString();
+                string lePrenom = dgwMedecin.CurrentRow.Cells[2].Value.ToString();
+                int idMedecin = int.Parse(dgwMedecin.CurrentRow.Cells[0].Value.ToString());
 
-                dgvFormulaireMedecin();
-                remplirComboboxListeMedecin();
-                cacherText();
-                nettoyer();
-            }
+                // condition qui active un messageBox et si valider alors suppression du médecin
+                if (MessageBox.Show("êtes vous sur de vouloir supprimer " + leNom + " " + lePrenom + " ?", "advertissement ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    // fonction qui supprime le medecin
+                    ClassePMedecin.SupprimerMedecin(idMedecin);
+
+                    dgvFormulaireMedecin();
+                    remplirComboboxListeMedecin();
+                    cacherText();
+                    nettoyer();
+                }
+            }    
         }
 
         // fonction qui s'active au clique du button ajouter  
@@ -406,12 +411,6 @@ namespace Formulaire
                 string leNomMed = leNom[0];
                 string lePrenomMed = leNom[1];
 
-                // connexion a la bdd
-                MySqlConnection connexion = new MySqlConnection();
-                connexion.ConnectionString = ClassePConnexion.DBConnection();
-
-                connexion.Open();
-
                 // fonction qui récupére l'id du médecin en fonction de sont nom et prénom
                 int idMedecin = ClassePMedecin.recupererIdMedecin(leNomMed, lePrenomMed);
 
@@ -428,7 +427,7 @@ namespace Formulaire
                     motifRap = lesRap.MotifRap;
                     bilanRap = lesRap.BilanRap;
 
-                    dgwDernierRapport.Rows.Add(idRap, idVis, nomVis, prenomMed, dateRap, motifRap, bilanRap); 
+                    dgwDernierRapport.Rows.Add(idRap, idVis, nomVis, prenomVis, dateRap, motifRap, bilanRap); 
                 }
             }
         }
@@ -636,6 +635,5 @@ namespace Formulaire
 
             dgvFormulaireMedecin();
         }
-
     }
 }
