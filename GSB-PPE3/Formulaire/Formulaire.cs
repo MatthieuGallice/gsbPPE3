@@ -62,15 +62,6 @@ namespace Formulaire
             gerer_medecinForm.Show();
         }
 
-        // affichage liste des médicament
-        private void listeMédicamentMenuStrip_Click(object sender, EventArgs e)
-        {
-            Liste_Medicament liste_medecinForm = new Liste_Medicament();
-            liste_medecinForm.MdiParent = this;
-            fermeForme();
-            liste_medecinForm.Show();
-        }
-
         // affichage de à propos
         private void aProposMenuStrip_Click(object sender, EventArgs e)
         {
@@ -88,6 +79,25 @@ namespace Formulaire
                 ActiveMdiChild.Close();
             }
         }
+<<<<<<< HEAD
         
+=======
+
+        private void listeMedecinToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Medecin medecinForm = new Medecin();
+            medecinForm.MdiParent = this;
+            fermeForme();
+            medecinForm.Show();
+        }
+
+        private void listeMédicamentMenuStrip_Click(object sender, EventArgs e)
+        {
+            Liste_Medicament liste_medecinForm = new Liste_Medicament();
+            liste_medecinForm.MdiParent = this;
+            fermeForme();
+            liste_medecinForm.Show();
+        }
+>>>>>>> Anto
     }
 }
