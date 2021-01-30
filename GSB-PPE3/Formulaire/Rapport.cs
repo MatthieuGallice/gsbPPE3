@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClassePasserelle;
 using ClasseMétiers;
-using 
 
 namespace Formulaire
 {
@@ -218,7 +217,7 @@ namespace Formulaire
                 int leMede = ClassePMedecin.recupererIdMedecin(nomMed, prenomMed);
 
                 // ajoute le rapport avec la fonction ajouterRapport
-                ClassePRapport.ajouterRapport(dateRapport, motifRapport, bilanRapport, leVisi, leMede);
+                //ClassePRapport.ajouterRapport(dateRapport, motifRapport, bilanRapport, leVisi, leMede);
 
                 // appelle de la fonction qui remplis le dgv et qui remplis les combobox
                 chargerDgv();

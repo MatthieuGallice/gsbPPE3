@@ -79,9 +79,6 @@ namespace Formulaire
                 ActiveMdiChild.Close();
             }
         }
-<<<<<<< HEAD
-        
-=======
 
         private void listeMedecinToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -98,6 +95,5 @@ namespace Formulaire
             fermeForme();
             liste_medecinForm.Show();
         }
->>>>>>> Anto
     }
 }

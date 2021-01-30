@@ -16,7 +16,7 @@ namespace Formulaire
     public partial class Gerer_Medicament : Form
     {
         public Gerer_Medicament modifier;
-        string comboNonChoisi = "-----------------------------------------------------------------------------------------------";
+        string comboNonChoisi = "";
 
         public Gerer_Medicament()
         {
@@ -52,8 +52,7 @@ namespace Formulaire
             lesFamille = ClassePFamille.chargerLesFamilles();
 
             comboBoxFamilleMedicament.Items.Clear();
-            comboBoxFamilleMedicament.Items.Add(comboNonChoisi);
-            comboBoxFamilleMedicament.SelectedItem = comboNonChoisi;
+            comboBoxFamilleMedicament.Items.Add("");
 
             foreach (ClasseFamille famille in lesFamille)
             {
@@ -69,11 +68,6 @@ namespace Formulaire
                 // VARIABLE POUR LA REQUETE SQL 
                 string laFamille = dgwGererMedicament.CurrentRow.Cells[2].Value.ToString(); ;
 
-                //CONNEXION BDD
-                MySqlConnection connexion = new MySqlConnection();
-                connexion.ConnectionString = ClassePConnexion.DBConnection();
-
-                connexion.Open();
 
                 //REQUETE SQL
                 int idFamille = ClassePMedicament.recupererIdFamille(laFamille);
@@ -90,33 +84,28 @@ namespace Formulaire
                 txtEffetMedicament.Text = modifier.Effets;
                 txtContreIndicationMedicament.Text = modifier.Contreindictions;
                 comboBoxFamilleMedicament.SelectedItem = laFamille;
-
-                connexion.Close();
+                buttonValiderModification.Visible = true;
+                AfficherBox();
+                btnRetour.Visible = true;
             }
             else
             {
-                MessageBox.Show("Sélectionner un médicament dans le tableau !");
+                MessageBox.Show("Il faut sélectionner un médicament dans le tableau !");
             }
-
         }
 
         //BOUTON VALIDER MOFIFICATION
         private void buttonValiderModification_Click(object sender, EventArgs e)
         {
-            //CONNEXION BDD
-            MySqlConnection connexion = new MySqlConnection();
-            connexion.ConnectionString = ClassePConnexion.DBConnection();
-
-            connexion.Open();
 
             if (txtNomMedicament.Text == "" || txtCompositionMedicament.Text == "" || txtEffetMedicament.Text == ""
                 || txtContreIndicationMedicament.Text == "")
             {
-                MessageBox.Show("une ou plusieurs case ne sont pas remplis ! ");
+                MessageBox.Show("Une ou plusieurs cases ne sont pas remplis ! ");
             }
-            else if (comboBoxFamilleMedicament.Text == comboNonChoisi)
+            else if (comboBoxFamilleMedicament.Text == "")
             {
-                MessageBox.Show("il faut choisir une famille de médicament ! ");
+                MessageBox.Show("Il faut choisir une famille de médicament ! ");
             }
             else
             {
@@ -137,13 +126,13 @@ namespace Formulaire
 
                 dgvFormulaireGererMedicament();
 
-                connexion.Close();
 
                 txtNomMedicament.Clear();
                 txtCompositionMedicament.Clear();
                 txtEffetMedicament.Clear();
                 txtContreIndicationMedicament.Clear();
-                comboBoxFamilleMedicament.SelectedItem = comboNonChoisi;
+                comboBoxFamilleMedicament.SelectedItem = "";
+                CacherBox();
             }
         }
 
@@ -166,14 +155,61 @@ namespace Formulaire
         // BOUTON AJOUTER 
         private void buttonAjouterMedicament_Click(object sender, EventArgs e)
         {
-            //CONNEXION BDD
-            MySqlConnection connexion = new MySqlConnection();
-            connexion.ConnectionString = ClassePConnexion.DBConnection();
+            AfficherBox();
+            btnValiderAjout.Visible = true;
+            btnRetour.Visible = true;
+        }
+        #region fonctions
+        private void CacherBox()
+        {
+            groupBoxCompositionMedicament.Visible = false;
+            groupBoxContreIndication.Visible = false;
+            groupBoxEffetMedicament.Visible = false;
+            groupBoxFamilleMedicament.Visible = false;
+            groupBoxNomMedicament.Visible = false;
+            buttonSupprimerMedicament.Visible = true;
+            buttonModifierMedicament.Visible = true;
+            buttonAjouterMedicament.Visible = true;
+            buttonValiderModification.Visible = false;
+            btnRechercher.Visible = true;
+        }
 
-            connexion.Open();
+        private void AfficherBox()
+        {
+            groupBoxCompositionMedicament.Visible = true;
+            groupBoxContreIndication.Visible = true;
+            groupBoxEffetMedicament.Visible = true;
+            groupBoxFamilleMedicament.Visible = true;
+            groupBoxNomMedicament.Visible = true;
+            buttonSupprimerMedicament.Visible = false;
+            buttonModifierMedicament.Visible = false;
+            buttonAjouterMedicament.Visible = false;
+            btnRechercher.Visible = false;
+        }
 
+        private void FermerComboBox()
+        {
+            cboxRechercherNom.Enabled = false;
+            cboxRechercherCompo.Enabled = false;
+            cboxRechercheEffet.Enabled = false;
+            cboxRechercheCI.Enabled = false;
+            cboxRechercheFamille.Enabled = false;
+            // vide le dgv
+            dgwGererMedicament.Rows.Clear();
+        }
+        private void OuvrirComboBox()
+        {
+            cboxRechercherNom.Enabled = true;
+            cboxRechercherCompo.Enabled = true;
+            cboxRechercheEffet.Enabled = true;
+            cboxRechercheCI.Enabled = true;
+            cboxRechercheFamille.Enabled = true;
+        }
+        #endregion
+        private void btnValiderAjout_Click(object sender, EventArgs e)
+        {
             if (txtNomMedicament.Text == "" || txtCompositionMedicament.Text == "" || txtEffetMedicament.Text == ""
-                || txtContreIndicationMedicament.Text == "")
+                    || txtContreIndicationMedicament.Text == "")
             {
                 MessageBox.Show("une ou plusieurs case ne sont pas remplis ! ");
             }
@@ -198,13 +234,187 @@ namespace Formulaire
 
                 dgvFormulaireGererMedicament();
 
-                connexion.Close();
-
                 txtNomMedicament.Clear();
                 txtCompositionMedicament.Clear();
                 txtEffetMedicament.Clear();
                 txtContreIndicationMedicament.Clear();
-                comboBoxFamilleMedicament.SelectedItem = comboNonChoisi;
+                comboBoxFamilleMedicament.SelectedItem = "";
+                CacherBox();
+            }
+        }
+
+        private void btnRetour_Click(object sender, EventArgs e)
+        {
+            txtNomMedicament.Clear();
+            txtCompositionMedicament.Clear();
+            txtEffetMedicament.Clear();
+            txtContreIndicationMedicament.Clear();
+            comboBoxFamilleMedicament.SelectedItem = "";
+            CacherBox();
+            btnRetour.Visible = false;
+            btnValiderAjout.Visible = false;
+            buttonValiderModification.Visible = false;
+            grpboxRechercheCI.Visible = false;
+            grpboxRechercheEffet.Visible = false;
+            grpboxRechercherCompo.Visible = false;
+            grpboxRechercherNom.Visible = false;
+            grpboxRechercheFamille.Visible = false;
+        }
+
+        private void btnRechercher_Click(object sender, EventArgs e)
+        {
+            //Gère affichage des boutons
+            buttonSupprimerMedicament.Visible = false;
+            buttonModifierMedicament.Visible = false;
+            buttonAjouterMedicament.Visible = false;
+            btnRechercher.Visible = false;
+
+            //  Vide les combo box
+            cboxRechercheFamille.Items.Clear();
+            cboxRechercheCI.Items.Clear();
+            cboxRechercheEffet.Items.Clear();
+            cboxRechercherCompo.Items.Clear();
+            cboxRechercherNom.Items.Clear();
+
+            // vide le dgv
+            dgwGererMedicament.Rows.Clear();
+
+            // Ajoute un éléments aux combobox
+            cboxRechercheCI.Items.Add("");
+            cboxRechercheEffet.Items.Add("");
+            cboxRechercheFamille.Items.Add("");
+            cboxRechercherCompo.Items.Add("");
+            cboxRechercherNom.Items.Add("");
+
+            // Gére la visiblité des group box
+            grpboxRechercheCI.Visible = true;
+            grpboxRechercheEffet.Visible = true;
+            grpboxRechercherCompo.Visible = true;
+            grpboxRechercherNom.Visible = true;
+            grpboxRechercheFamille.Visible = true;
+
+            List<ClasseMedicament> lesMedicaments = ClassePMedicament.chargerLesMedicaments();
+            foreach (ClasseMedicament unMedicament in lesMedicaments)
+            {
+                string leNom = unMedicament.NomCommercial;
+                string laFamille = unMedicament.Famille.Libelle;
+                string laComposition = unMedicament.Composition;
+                string leffet = unMedicament.Effets;
+                string lesIndications = unMedicament.Contreindictions;
+
+
+                // Gère si les indications sont écrites plusieurs fois
+                if (!cboxRechercheCI.Items.Contains(lesIndications))
+                {
+                    // Les insèrent dans la combobox
+                    cboxRechercheCI.Items.Add(lesIndications);
+                }
+
+                // Gère si les effets sont écrites plusieurs fois
+                if (!cboxRechercheEffet.Items.Contains(leffet))
+                {
+                    // Les insèrent dans la combobox
+                    cboxRechercheEffet.Items.Add(leffet);
+                }
+
+                // Gère si la composition est écrite plusieurs fois
+                if (!cboxRechercherCompo.Items.Contains(laComposition))
+                {
+                    // Les insèrent dans la combobox
+                    cboxRechercherCompo.Items.Add(laComposition);
+                }
+
+                // Gère si le nom est écrit plusieurs fois
+                if (!cboxRechercherNom.Items.Contains(leNom))
+                {
+                    // Les insèrent dans la combobox
+                    cboxRechercherNom.Items.Add(leNom);
+                }
+
+                // Gère si la famille est écrite plusieurs fois
+                if (!cboxRechercheFamille.Items.Contains(laFamille))
+                {
+                    // Les insèrent dans la combobox
+                    cboxRechercheFamille.Items.Add(laFamille);
+                }
+            }
+            btnRetour.Visible = true;
+        }
+
+        private void cboxRechercherNom_TextChanged(object sender, EventArgs e)
+        {
+            if(cboxRechercherNom.Text == "")
+            {
+                OuvrirComboBox();
+            }
+            else
+            {
+                FermerComboBox();
+                cboxRechercherNom.Enabled = true;
+                List<ClasseMedicament> LesNomsMedicaments = ClassePMedicament.chargerLeNom(cboxRechercherNom.Text);
+                foreach(ClasseMedicament leNomMedicament in LesNomsMedicaments)
+                {
+                    int leNb = leNomMedicament.Id;
+                    string leNom = leNomMedicament.NomCommercial;
+                    string laFamille = leNomMedicament.Famille.Libelle;
+                    string laComposition = leNomMedicament.Composition;
+                    string leffet = leNomMedicament.Effets;
+                    string lesIndications = leNomMedicament.Contreindictions;
+
+                    dgwGererMedicament.Rows.Add(leNb, leNom, laFamille, laComposition, leffet, lesIndications);
+                }
+            }
+        }
+
+        private void cboxRechercheFamille_TextChanged(object sender, EventArgs e)
+        {
+            if (cboxRechercheFamille.Text == "")
+            {
+                OuvrirComboBox();
+            }
+            else
+            {
+                FermerComboBox();
+                cboxRechercheFamille.Enabled = true;
+            }
+        }
+
+        private void cboxRechercherCompo_TextChanged(object sender, EventArgs e)
+        {
+            if (cboxRechercherCompo.Text == "")
+            {
+                OuvrirComboBox();
+            }
+            else
+            {
+                FermerComboBox();
+                cboxRechercherCompo.Enabled = true;
+            }
+        }
+
+        private void cboxRechercheEffet_TextChanged(object sender, EventArgs e)
+        {
+            if (cboxRechercheEffet.Text == "")
+            {
+                OuvrirComboBox();
+            }
+            else
+            {
+                FermerComboBox();
+                cboxRechercheEffet.Enabled = true;
+            }
+        }
+
+        private void cboxRechercheCI_TextChanged(object sender, EventArgs e)
+        {
+            if (cboxRechercheCI.Text == "")
+            {
+                OuvrirComboBox();
+            }
+            else
+            {
+                FermerComboBox();
+                cboxRechercheCI.Enabled = true;
             }
         }
     }

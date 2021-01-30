@@ -182,7 +182,7 @@ namespace ClassePasserelle
         }
         #endregion
 
-        #region recuperer id medidament
+        #region recuperer id medicament
         public static int recupererIdMedicament(string nomMedicament)
         {
             int idMedicament = 0;
@@ -245,6 +245,63 @@ namespace ClassePasserelle
             connexion.Close();
 
             return idFamille;
+        }
+        #endregion
+
+        #region ChargerLeNom
+        public static List<ClasseMedicament> chargerLeNom(string Nom)
+        {
+            //VARIABLES
+            List<ClasseMedicament> LesMedicaments = new List<ClasseMedicament>();
+            int id;
+            string composition;
+            string effets;
+            string contreindications;
+            int idfamille;
+            string libFam;
+
+
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT idMedicament, nomCommercialMedicament, idFamilleMedicament, libFamille, compositionMedicament, effetsMedicament, contreIndicationsMedicament " +
+                              "FROM medicament INNER JOIN famille " +
+                              "ON famille.idFamille = medicament.idFamilleMedicament " +
+                              "WHERE nomCommercialMedicament = '" + Nom + "'";
+            //EXECUTION REQUETE
+            MySqlDataReader drr = cmd.ExecuteReader();
+
+            //LECTURE REQUETE
+            while (drr.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                id = int.Parse(drr.GetString(0));
+                idfamille = int.Parse(drr.GetString(2));
+                libFam = drr.GetString(3);
+                composition = drr.GetString(4);
+                effets = drr.GetString(5);
+                contreindications = drr.GetString(6);
+
+                //ON INSTANCIE UN OBJET CLASSEFAMILLE
+                ClasseFamille laFamille = new ClasseFamille(idfamille, libFam);
+                //ON INSTANCIE UN OBJET CLASSEMEDICAMENT
+                ClasseMedicament leMedicament = new ClasseMedicament(id, Nom, composition, effets, contreindications, laFamille);
+                //ON AJOUTE UN OBJET CLASSEMEDICAMENT DANS UNE LISTE CLASSEMEDICAMENT
+                LesMedicaments.Add(leMedicament);
+
+
+            }
+
+            drr.Close();
+            connexion.Close();
+
+            return LesMedicaments;
         }
         #endregion
     }
