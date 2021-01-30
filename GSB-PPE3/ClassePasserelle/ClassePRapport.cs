@@ -44,7 +44,8 @@ namespace ClassePasserelle
 
             cmd = connexion.CreateCommand();
             //REQUETE SQL
-            cmd.CommandText = "DELETE FROM 'rapport' WHERE idRap = '" + idRap + "' ";
+            cmd.CommandText = "DELETE FROM `rapport` WHERE `idRap` = " + idRap + " ";
+
             //EXECUTION REQUETE
             MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
@@ -56,6 +57,13 @@ namespace ClassePasserelle
         // procédure qui ajoute un rapport 
         public static void ajoutRapport(DateTime dateRap, string motifRap, string bilanRap, int idVisiteurRap, int idMedecinRap)
         {
+            //Conversion de la date
+            string ladate = dateRap.ToString();
+            String jour = ladate.Substring(0, 2);
+            String mois = ladate.Substring(3, 2);
+            String Ans = ladate.Substring(6, 4);
+            string uneDate = Ans + "-" + mois + "-" + jour;
+
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
             MySqlCommand cmd = new MySqlCommand();
@@ -66,7 +74,7 @@ namespace ClassePasserelle
             cmd = connexion.CreateCommand();
             //REQUETE SQL
             cmd.CommandText = "INSERT INTO rapport(dateRap, motifRap, bilanRap, idVisiteurRap, idMedecinRap) " +
-                                "VALUES ('" + dateRap + "', '" + motifRap + "', '" + bilanRap + "', '" + idVisiteurRap + "', '" + idMedecinRap + "');";
+                                "VALUES ('" + uneDate + "', '" + motifRap + "', '" + bilanRap + "', '" + idVisiteurRap + "', '" + idMedecinRap + "');";
             
             MySqlDataReader drr = cmd.ExecuteReader(); //Execution du script
             drr.Close();
@@ -96,7 +104,7 @@ namespace ClassePasserelle
             cmd = connexion.CreateCommand();
             //REQUETE SQL
             cmd.CommandText = "SELECT idRap, dateRap, motifRap, bilanRap, idVisiteurRap, idMedecinRap " +
-                              "FROM rapport";
+                              "FROM rapport ORDER BY idRap ASC";
 
             //EXECUTION REQUETE SQL
             MySqlDataReader drr = cmd.ExecuteReader();

@@ -109,6 +109,9 @@ namespace Formulaire
 
         private void btn_Reinitialiser_Click(object sender, EventArgs e)
         {
+            // remplis le dgv
+            dgvFormulaireVisiteur();
+
             //Cache toutes les textBox, le bouton réinitialiser, valider modification et ajouter visiteur et Affiche les boutons supprimer et ajouter 
             CacherBox();
             //Nettoie toutes les textBox et remet le calendrier à la date du jour

@@ -61,7 +61,7 @@ namespace ClassePasserelle
             connexion.Open();
             //Supprimer un Medecin dans la Table Medecin 
             cmd = connexion.CreateCommand();
-            cmd.CommandText = "DELETE FROM `medecin` WHERE `idMed` = " + lidMed + "";
+            cmd.CommandText = "DELETE FROM `medecin` WHERE `idMed` = " + lidMed + " ";
 
             MySqlDataReader drr = cmd.ExecuteReader(); //Execution du script
             drr.Close();

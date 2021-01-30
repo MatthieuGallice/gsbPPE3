@@ -15,7 +15,7 @@ namespace Formulaire
     public partial class Rapport : Form
     {
         // variable global
-        string comboNonChoisi = "-----------------------------------------------------------------------------------------------";
+        string comboNonChoisi = "----------------------------------------------------------------------------------------------------------------------------------------------------";
 
         public Rapport()
         {
@@ -206,18 +206,20 @@ namespace Formulaire
                 string[] separeVis = leVisiteur.Split(' ');
                 string nomVisi = separeVis[0];
                 string prenomVisi = separeVis[1];
+
                 // fonction qui récupére l'id grace au nom et prenom du visiteur
-                /* int leVisi = ClassePVisiteur.chargerUnVisiteur(nomVisi, prenomVisi);*/
+                int leVisi = ClassePVisiteur.chargerUnVisiteur(nomVisi, prenomVisi);
 
                 // récupére et sépare le nom et prénom du médecin 
                 string[] separeMed = leMedecin.Split(' ');
                 string nomMed = separeMed[0];
                 string prenomMed = separeMed[1];
-                // fonction qui récupére l'id grace au nom et prenom du visiteur
+
+                // fonction qui récupére l'id grace au nom et prenom du medecin
                 int leMede = ClassePMedecin.recupererIdMedecin(nomMed, prenomMed);
 
                 // ajoute le rapport avec la fonction ajouterRapport
-                //ClassePRapport.ajouterRapport(dateRapport, motifRapport, bilanRapport, leVisi, leMede);
+                ClassePRapport.ajoutRapport(laDate, leMotif, leBilan, leVisi, leMede);
 
                 // appelle de la fonction qui remplis le dgv et qui remplis les combobox
                 chargerDgv();
@@ -234,9 +236,24 @@ namespace Formulaire
         {
             if (dgvRapport.RowCount != 1)
             {
+                // variable qui récupére les données dans les cellules du dgv 
+                int idRapport = int.Parse(dgvRapport.CurrentRow.Cells[0].Value.ToString());
 
+                // condition qui active un messageBox et si valider alors suppression du médecin
+                if (MessageBox.Show("êtes vous sur de vouloir supprimer le rapport numéro : " + idRapport + " ?", "advertissement ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    // fonction qui supprime le rapport
+                    ClassePRapport.supprimerRapport(idRapport);
+
+                    // appelle de la fonction qui remplis le dgv et qui remplis les combobox
+                    chargerDgv();
+                    remplirCombobox();
+
+                    // appelle de la fonction qui nettoye les textbox et combobox puis les cache 
+                    nettoyer();
+                    cacherText();
+                }
             }
-
         }
 
         // fonction au clique du button modifier qui affiche les groupbox et le button valider modif

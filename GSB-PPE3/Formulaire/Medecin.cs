@@ -435,6 +435,7 @@ namespace Formulaire
         // fonction qui affiche les groupbox de recherche et le button validerRecherche au clique du button rechercher
         private void buttonRechercherMedecin_Click(object sender, EventArgs e)
         {
+            dgvFormulaireMedecin();
             cacherText();
             nettoyer();
             groupBoxRechercherNom.Visible = true;
