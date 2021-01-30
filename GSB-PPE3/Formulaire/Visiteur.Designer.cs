@@ -64,7 +64,6 @@
             this.grpboxVilleRecherche = new System.Windows.Forms.GroupBox();
             this.grpboxCPRechercher = new System.Windows.Forms.GroupBox();
             this.cboxCPRechercher = new System.Windows.Forms.ComboBox();
-            this.btnValiderRecherche = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgwVisiteur)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.groupBoxNomVisiteur.SuspendLayout();
@@ -398,22 +397,11 @@
             this.cboxCPRechercher.TabIndex = 0;
             this.cboxCPRechercher.TextChanged += new System.EventHandler(this.cboxCPRechercher_TextChanged);
             // 
-            // btnValiderRecherche
-            // 
-            this.btnValiderRecherche.Location = new System.Drawing.Point(576, 446);
-            this.btnValiderRecherche.Name = "btnValiderRecherche";
-            this.btnValiderRecherche.Size = new System.Drawing.Size(132, 29);
-            this.btnValiderRecherche.TabIndex = 37;
-            this.btnValiderRecherche.Text = "Rechercher";
-            this.btnValiderRecherche.UseVisualStyleBackColor = true;
-            this.btnValiderRecherche.Visible = false;
-            // 
             // Visiteur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1300, 722);
-            this.Controls.Add(this.btnValiderRecherche);
             this.Controls.Add(this.grpboxCPRechercher);
             this.Controls.Add(this.grpboxVilleRecherche);
             this.Controls.Add(this.grpboxNPVisiteurRecherche);
@@ -493,6 +481,5 @@
         private System.Windows.Forms.ComboBox cboxNPVisiteurRechercher;
         private System.Windows.Forms.GroupBox grpboxCPRechercher;
         private System.Windows.Forms.ComboBox cboxCPRechercher;
-        private System.Windows.Forms.Button btnValiderRecherche;
     }
 }

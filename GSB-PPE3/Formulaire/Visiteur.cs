@@ -115,7 +115,6 @@ namespace Formulaire
             clearBox();
             //Affiche le bonton modifier
             buttonModifierVisiteur.Visible = true;
-            btnValiderRecherche.Visible = false;
 
         }
 
@@ -261,7 +260,6 @@ namespace Formulaire
             grpboxNPVisiteurRecherche.Visible = true;
             grpboxVilleRecherche.Visible = true;
             btn_Reinitialiser.Visible = true;
-            btnValiderRecherche.Visible = true;
 
             //Cacher
             buttonAjouterVisiteur.Visible = false;
