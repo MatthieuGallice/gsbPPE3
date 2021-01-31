@@ -93,7 +93,8 @@
             this.dgwVisiteur.Location = new System.Drawing.Point(18, 37);
             this.dgwVisiteur.Name = "dgwVisiteur";
             this.dgwVisiteur.Size = new System.Drawing.Size(1270, 236);
-            this.dgwVisiteur.TabIndex = 1;
+            this.dgwVisiteur.TabIndex = 80;
+            this.dgwVisiteur.TabStop = false;
             // 
             // idVis
             // 
@@ -177,7 +178,7 @@
             this.buttonValiderModificationVisiteur.Location = new System.Drawing.Point(576, 645);
             this.buttonValiderModificationVisiteur.Name = "buttonValiderModificationVisiteur";
             this.buttonValiderModificationVisiteur.Size = new System.Drawing.Size(132, 29);
-            this.buttonValiderModificationVisiteur.TabIndex = 4;
+            this.buttonValiderModificationVisiteur.TabIndex = 7;
             this.buttonValiderModificationVisiteur.Text = "Valider Modification";
             this.buttonValiderModificationVisiteur.UseVisualStyleBackColor = true;
             this.buttonValiderModificationVisiteur.Click += new System.EventHandler(this.buttonValiderModificationVisiteur_Click);
@@ -188,7 +189,7 @@
             this.buttonAjouterVisiteur.Location = new System.Drawing.Point(303, 300);
             this.buttonAjouterVisiteur.Name = "buttonAjouterVisiteur";
             this.buttonAjouterVisiteur.Size = new System.Drawing.Size(132, 29);
-            this.buttonAjouterVisiteur.TabIndex = 5;
+            this.buttonAjouterVisiteur.TabIndex = 1;
             this.buttonAjouterVisiteur.Text = "Ajouter Visiteur";
             this.buttonAjouterVisiteur.UseVisualStyleBackColor = true;
             this.buttonAjouterVisiteur.Click += new System.EventHandler(this.buttonAjouterVisiteur_Click);
@@ -244,7 +245,7 @@
             this.groupBoxNomVisiteur.Location = new System.Drawing.Point(36, 348);
             this.groupBoxNomVisiteur.Name = "groupBoxNomVisiteur";
             this.groupBoxNomVisiteur.Size = new System.Drawing.Size(512, 57);
-            this.groupBoxNomVisiteur.TabIndex = 21;
+            this.groupBoxNomVisiteur.TabIndex = 1;
             this.groupBoxNomVisiteur.TabStop = false;
             this.groupBoxNomVisiteur.Text = "Nom du Visiteur";
             // 
@@ -254,7 +255,7 @@
             this.groupBoxVille.Location = new System.Drawing.Point(36, 418);
             this.groupBoxVille.Name = "groupBoxVille";
             this.groupBoxVille.Size = new System.Drawing.Size(512, 57);
-            this.groupBoxVille.TabIndex = 23;
+            this.groupBoxVille.TabIndex = 3;
             this.groupBoxVille.TabStop = false;
             this.groupBoxVille.Text = "Ville";
             // 
@@ -264,7 +265,7 @@
             this.groupBoxPrenomVisiteur.Location = new System.Drawing.Point(755, 348);
             this.groupBoxPrenomVisiteur.Name = "groupBoxPrenomVisiteur";
             this.groupBoxPrenomVisiteur.Size = new System.Drawing.Size(512, 57);
-            this.groupBoxPrenomVisiteur.TabIndex = 25;
+            this.groupBoxPrenomVisiteur.TabIndex = 2;
             this.groupBoxPrenomVisiteur.TabStop = false;
             this.groupBoxPrenomVisiteur.Text = "Prenom du Visiteur";
             // 
@@ -274,7 +275,7 @@
             this.groupBoxCodePostal.Location = new System.Drawing.Point(36, 490);
             this.groupBoxCodePostal.Name = "groupBoxCodePostal";
             this.groupBoxCodePostal.Size = new System.Drawing.Size(512, 57);
-            this.groupBoxCodePostal.TabIndex = 26;
+            this.groupBoxCodePostal.TabIndex = 4;
             this.groupBoxCodePostal.TabStop = false;
             this.groupBoxCodePostal.Text = "Code Postal";
             // 
@@ -284,7 +285,7 @@
             this.groupBoxAdresse.Location = new System.Drawing.Point(36, 562);
             this.groupBoxAdresse.Name = "groupBoxAdresse";
             this.groupBoxAdresse.Size = new System.Drawing.Size(512, 57);
-            this.groupBoxAdresse.TabIndex = 27;
+            this.groupBoxAdresse.TabIndex = 5;
             this.groupBoxAdresse.TabStop = false;
             this.groupBoxAdresse.Text = "Adresse";
             // 
@@ -300,7 +301,7 @@
             this.groupBoxDateEmbauche.Location = new System.Drawing.Point(755, 418);
             this.groupBoxDateEmbauche.Name = "groupBoxDateEmbauche";
             this.groupBoxDateEmbauche.Size = new System.Drawing.Size(512, 201);
-            this.groupBoxDateEmbauche.TabIndex = 29;
+            this.groupBoxDateEmbauche.TabIndex = 6;
             this.groupBoxDateEmbauche.TabStop = false;
             this.groupBoxDateEmbauche.Text = "Date d\'Embauche";
             // 
@@ -310,7 +311,7 @@
             this.btn_Reinitialiser.Location = new System.Drawing.Point(1072, 645);
             this.btn_Reinitialiser.Name = "btn_Reinitialiser";
             this.btn_Reinitialiser.Size = new System.Drawing.Size(132, 29);
-            this.btn_Reinitialiser.TabIndex = 30;
+            this.btn_Reinitialiser.TabIndex = 43;
             this.btn_Reinitialiser.Text = "Réinitialiser";
             this.btn_Reinitialiser.UseVisualStyleBackColor = true;
             this.btn_Reinitialiser.Click += new System.EventHandler(this.btn_Reinitialiser_Click);
@@ -321,7 +322,7 @@
             this.btnAjoutVisiteur.Location = new System.Drawing.Point(576, 645);
             this.btnAjoutVisiteur.Name = "btnAjoutVisiteur";
             this.btnAjoutVisiteur.Size = new System.Drawing.Size(132, 29);
-            this.btnAjoutVisiteur.TabIndex = 31;
+            this.btnAjoutVisiteur.TabIndex = 7;
             this.btnAjoutVisiteur.Text = "Ajouter le Visiteur";
             this.btnAjoutVisiteur.UseVisualStyleBackColor = true;
             this.btnAjoutVisiteur.Click += new System.EventHandler(this.btnAjoutVisiteur_Click);
@@ -332,7 +333,7 @@
             this.btnRechercheVis.Location = new System.Drawing.Point(576, 446);
             this.btnRechercheVis.Name = "btnRechercheVis";
             this.btnRechercheVis.Size = new System.Drawing.Size(132, 29);
-            this.btnRechercheVis.TabIndex = 32;
+            this.btnRechercheVis.TabIndex = 4;
             this.btnRechercheVis.Text = "Rechercher Visiteur";
             this.btnRechercheVis.UseVisualStyleBackColor = true;
             this.btnRechercheVis.Click += new System.EventHandler(this.btnRechercheVis_Click);
@@ -358,10 +359,10 @@
             // grpboxNPVisiteurRecherche
             // 
             this.grpboxNPVisiteurRecherche.Controls.Add(this.cboxNPVisiteurRechercher);
-            this.grpboxNPVisiteurRecherche.Location = new System.Drawing.Point(36, 348);
+            this.grpboxNPVisiteurRecherche.Location = new System.Drawing.Point(30, 348);
             this.grpboxNPVisiteurRecherche.Name = "grpboxNPVisiteurRecherche";
             this.grpboxNPVisiteurRecherche.Size = new System.Drawing.Size(512, 57);
-            this.grpboxNPVisiteurRecherche.TabIndex = 35;
+            this.grpboxNPVisiteurRecherche.TabIndex = 40;
             this.grpboxNPVisiteurRecherche.TabStop = false;
             this.grpboxNPVisiteurRecherche.Text = "Nom - Prenom du Visiteur";
             this.grpboxNPVisiteurRecherche.Visible = false;
@@ -369,10 +370,10 @@
             // grpboxVilleRecherche
             // 
             this.grpboxVilleRecherche.Controls.Add(this.cboxVilleRechercher);
-            this.grpboxVilleRecherche.Location = new System.Drawing.Point(36, 418);
+            this.grpboxVilleRecherche.Location = new System.Drawing.Point(30, 418);
             this.grpboxVilleRecherche.Name = "grpboxVilleRecherche";
             this.grpboxVilleRecherche.Size = new System.Drawing.Size(512, 57);
-            this.grpboxVilleRecherche.TabIndex = 35;
+            this.grpboxVilleRecherche.TabIndex = 41;
             this.grpboxVilleRecherche.TabStop = false;
             this.grpboxVilleRecherche.Text = "Ville";
             this.grpboxVilleRecherche.Visible = false;
@@ -380,10 +381,10 @@
             // grpboxCPRechercher
             // 
             this.grpboxCPRechercher.Controls.Add(this.cboxCPRechercher);
-            this.grpboxCPRechercher.Location = new System.Drawing.Point(36, 490);
+            this.grpboxCPRechercher.Location = new System.Drawing.Point(30, 490);
             this.grpboxCPRechercher.Name = "grpboxCPRechercher";
             this.grpboxCPRechercher.Size = new System.Drawing.Size(512, 57);
-            this.grpboxCPRechercher.TabIndex = 36;
+            this.grpboxCPRechercher.TabIndex = 42;
             this.grpboxCPRechercher.TabStop = false;
             this.grpboxCPRechercher.Text = "Code Postal";
             this.grpboxCPRechercher.Visible = false;
@@ -403,9 +404,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1300, 722);
             this.Controls.Add(this.grpboxCPRechercher);
-            this.Controls.Add(this.grpboxVilleRecherche);
             this.Controls.Add(this.grpboxNPVisiteurRecherche);
             this.Controls.Add(this.btnRechercheVis);
+            this.Controls.Add(this.grpboxVilleRecherche);
             this.Controls.Add(this.btnAjoutVisiteur);
             this.Controls.Add(this.btn_Reinitialiser);
             this.Controls.Add(this.buttonAjouterVisiteur);

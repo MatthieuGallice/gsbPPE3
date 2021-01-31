@@ -204,6 +204,8 @@ namespace Formulaire
             cboxRechercheEffet.Enabled = true;
             cboxRechercheCI.Enabled = true;
             cboxRechercheFamille.Enabled = true;
+
+            dgwGererMedicament.Rows.Clear();
         }
         #endregion
         private void btnValiderAjout_Click(object sender, EventArgs e)
@@ -245,20 +247,37 @@ namespace Formulaire
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
+            // Nettoie toutes les zones de textes
             txtNomMedicament.Clear();
             txtCompositionMedicament.Clear();
             txtEffetMedicament.Clear();
             txtContreIndicationMedicament.Clear();
+
+            // Réinitialise la selection des combobox
             comboBoxFamilleMedicament.SelectedItem = "";
-            CacherBox();
+            cboxRechercheCI.SelectedItem = "";
+            cboxRechercheEffet.SelectedItem = "";
+            cboxRechercheFamille.SelectedItem = "";
+            cboxRechercherCompo.SelectedItem = "";
+            cboxRechercherNom.SelectedItem = "";
+
+
+            //Gère la visibilité des boutons 
             btnRetour.Visible = false;
             btnValiderAjout.Visible = false;
             buttonValiderModification.Visible = false;
+
+            //Gère la visibilité des éléments
             grpboxRechercheCI.Visible = false;
             grpboxRechercheEffet.Visible = false;
             grpboxRechercherCompo.Visible = false;
             grpboxRechercherNom.Visible = false;
             grpboxRechercheFamille.Visible = false;
+            CacherBox();
+
+            //Charge les données dans le DGV
+            dgvFormulaireGererMedicament();
+
         }
 
         private void btnRechercher_Click(object sender, EventArgs e)
@@ -293,9 +312,12 @@ namespace Formulaire
             grpboxRechercherNom.Visible = true;
             grpboxRechercheFamille.Visible = true;
 
+            // Instancie la liste de tout les médicaments
             List<ClasseMedicament> lesMedicaments = ClassePMedicament.chargerLesMedicaments();
+            //Balaye la liste des médicaments
             foreach (ClasseMedicament unMedicament in lesMedicaments)
             {
+                // Récupère les données de cet éléments 
                 string leNom = unMedicament.NomCommercial;
                 string laFamille = unMedicament.Famille.Libelle;
                 string laComposition = unMedicament.Composition;
@@ -338,29 +360,37 @@ namespace Formulaire
                     cboxRechercheFamille.Items.Add(laFamille);
                 }
             }
+            // Gère la visibilité du bouton retour
             btnRetour.Visible = true;
         }
 
         private void cboxRechercherNom_TextChanged(object sender, EventArgs e)
         {
+            // Vérifie si une information est saisie dans la combobox
             if(cboxRechercherNom.Text == "")
             {
+                // Laisse accessible toutes les combobox
                 OuvrirComboBox();
             }
             else
             {
+                // Empêche la saisie dans les autres combobox
                 FermerComboBox();
                 cboxRechercherNom.Enabled = true;
+
+                // Cherche les médicaments qui disposent du nom choisis dans la combobox
                 List<ClasseMedicament> LesNomsMedicaments = ClassePMedicament.chargerLeNom(cboxRechercherNom.Text);
+                // Balaye les noms de médicaments
                 foreach(ClasseMedicament leNomMedicament in LesNomsMedicaments)
                 {
+                    // Récupère les informations 
                     int leNb = leNomMedicament.Id;
                     string leNom = leNomMedicament.NomCommercial;
                     string laFamille = leNomMedicament.Famille.Libelle;
                     string laComposition = leNomMedicament.Composition;
                     string leffet = leNomMedicament.Effets;
                     string lesIndications = leNomMedicament.Contreindictions;
-
+                    // Ajoute les médicaments dans le DGV
                     dgwGererMedicament.Rows.Add(leNb, leNom, laFamille, laComposition, leffet, lesIndications);
                 }
             }
@@ -368,53 +398,129 @@ namespace Formulaire
 
         private void cboxRechercheFamille_TextChanged(object sender, EventArgs e)
         {
+            // Vérifie si une information est saisie dans la combobox
             if (cboxRechercheFamille.Text == "")
             {
+                // Laisse accessible toutes les combobox
                 OuvrirComboBox();
             }
             else
             {
+                // Empêche la saisie dans les autres combobox
                 FermerComboBox();
                 cboxRechercheFamille.Enabled = true;
+
+                // Cherche les médicaments qui disposent de la famille choisis dans la combobox
+                List<ClasseMedicament> LesFamilles = ClassePMedicament.chargerLaFamille(cboxRechercheFamille.Text);
+                // Balaye les familles de médicaments
+                foreach (ClasseMedicament laFamille in LesFamilles)
+                {
+                    // Récupère les informations 
+                    int leNb = laFamille.Id;
+                    string leNom = laFamille.NomCommercial;
+                    string uneFamille = laFamille.Famille.Libelle;
+                    string laComposition = laFamille.Composition;
+                    string leffet = laFamille.Effets;
+                    string lesIndications = laFamille.Contreindictions;
+                    // Ajoute les médicaments dans le DGV
+                    dgwGererMedicament.Rows.Add(leNb, leNom, uneFamille, laComposition, leffet, lesIndications);
+                }
             }
         }
 
         private void cboxRechercherCompo_TextChanged(object sender, EventArgs e)
         {
+            // Vérifie si une information est saisie dans la combobox
             if (cboxRechercherCompo.Text == "")
             {
+                // Laisse accessible toutes les combobox
                 OuvrirComboBox();
             }
             else
             {
+                // Empêche la saisie dans les autres combobox
                 FermerComboBox();
                 cboxRechercherCompo.Enabled = true;
+
+                // Cherche les médicaments qui disposent de la composition choisis dans la combobox
+                List<ClasseMedicament> LesCompos = ClassePMedicament.chargerLaComposition(cboxRechercherCompo.Text);
+                // Balaye les compositions de médicaments
+                foreach (ClasseMedicament laCompo in LesCompos)
+                {
+                    // Récupère les informations 
+                    int leNb = laCompo.Id;
+                    string leNom = laCompo.NomCommercial;
+                    string uneFamille = laCompo.Famille.Libelle;
+                    string laComposition = laCompo.Composition;
+                    string leffet = laCompo.Effets;
+                    string lesIndications = laCompo.Contreindictions;
+                    // Ajoute les médicaments dans le DGV
+                    dgwGererMedicament.Rows.Add(leNb, leNom, uneFamille, laComposition, leffet, lesIndications);
+                }
             }
         }
 
         private void cboxRechercheEffet_TextChanged(object sender, EventArgs e)
         {
+            // Vérifie si une information est saisie dans la combobox
             if (cboxRechercheEffet.Text == "")
             {
+                // Laisse accessible toutes les combobox
                 OuvrirComboBox();
             }
             else
             {
+                // Empêche la saisie dans les autres combobox
                 FermerComboBox();
                 cboxRechercheEffet.Enabled = true;
+
+                // Cherche les médicaments qui disposent des effets choisis dans la combobox
+                List<ClasseMedicament> LesEffets = ClassePMedicament.chargerLEffet(cboxRechercheEffet.Text);
+                // Balaye les effets de médicaments
+                foreach (ClasseMedicament lEffet in LesEffets)
+                {
+                    // Récupère les informations 
+                    int leNb = lEffet.Id;
+                    string leNom = lEffet.NomCommercial;
+                    string uneFamille = lEffet.Famille.Libelle;
+                    string laComposition = lEffet.Composition;
+                    string leffet = lEffet.Effets;
+                    string lesIndications = lEffet.Contreindictions;
+                    // Ajoute les médicaments dans le DGV
+                    dgwGererMedicament.Rows.Add(leNb, leNom, uneFamille, laComposition, leffet, lesIndications);
+                }
             }
         }
 
         private void cboxRechercheCI_TextChanged(object sender, EventArgs e)
         {
+            // Vérifie si une information est saisie dans la combobox
             if (cboxRechercheCI.Text == "")
             {
+                // Laisse accessible toutes les combobox
                 OuvrirComboBox();
             }
             else
             {
+                // Empêche la saisie dans les autres combobox
                 FermerComboBox();
                 cboxRechercheCI.Enabled = true;
+
+                // Cherche les médicaments qui disposent des Contre Indications choisis dans la combobox
+                List<ClasseMedicament> LesCI = ClassePMedicament.chargerLaCI(cboxRechercheCI.Text);
+                // Balaye les Contre indications de médicaments
+                foreach (ClasseMedicament laCI in LesCI)
+                {
+                    // Récupère les informations 
+                    int leNb = laCI.Id;
+                    string leNom = laCI.NomCommercial;
+                    string uneFamille = laCI.Famille.Libelle;
+                    string laComposition = laCI.Composition;
+                    string leffet = laCI.Effets;
+                    string lesIndications = laCI.Contreindictions;
+                    // Ajoute les médicaments dans le DGV
+                    dgwGererMedicament.Rows.Add(leNb, leNom, uneFamille, laComposition, leffet, lesIndications);
+                }
             }
         }
     }

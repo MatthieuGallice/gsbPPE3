@@ -118,7 +118,7 @@ namespace ClassePasserelle
                 //ON INSTANCIE UN OBJET CLASSEFAMILLE
                 ClasseFamille laFamille = new ClasseFamille(idfamille, libFam);
                 //ON INSTANCIE UN OBJET CLASSEMEDICAMENT
-                ClasseMedicament leMedicament = new ClasseMedicament(id, nomcomposition, composition, effets, contreindications, laFamille);
+                LeMedicament = new ClasseMedicament(id, nomcomposition, composition, effets, contreindications, laFamille);
             }
 
             drr.Close();
@@ -254,6 +254,7 @@ namespace ClassePasserelle
             //VARIABLES
             List<ClasseMedicament> LesMedicaments = new List<ClasseMedicament>();
             int id;
+            string nom;
             string composition;
             string effets;
             string contreindications;
@@ -282,6 +283,64 @@ namespace ClassePasserelle
             {
                 //ON RECUPERE LES VARIABLES
                 id = int.Parse(drr.GetString(0));
+                nom = drr.GetString(1);
+                idfamille = int.Parse(drr.GetString(2));
+                libFam = drr.GetString(3);
+                composition = drr.GetString(4);
+                effets = drr.GetString(5);
+                contreindications = drr.GetString(6);
+
+                //ON INSTANCIE UN OBJET CLASSEFAMILLE
+                ClasseFamille laFamille = new ClasseFamille(idfamille, libFam);
+                //ON INSTANCIE UN OBJET CLASSEMEDICAMENT
+                ClasseMedicament leMedicament = new ClasseMedicament(id, nom, composition, effets, contreindications, laFamille);
+                //ON AJOUTE UN OBJET CLASSEMEDICAMENT DANS UNE LISTE CLASSEMEDICAMENT
+                LesMedicaments.Add(leMedicament);
+            }
+
+            drr.Close();
+            connexion.Close();
+
+            return LesMedicaments;
+        }
+        #endregion
+
+        #region ChargerLaFamille
+        public static List<ClasseMedicament> chargerLaFamille(string Famille)
+        {
+            //VARIABLES
+            List<ClasseMedicament> LesMedicaments = new List<ClasseMedicament>();
+            int id;
+            string Nom;
+            string composition;
+            string effets;
+            string contreindications;
+            int idfamille;
+            string libFam;
+
+
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT idMedicament, nomCommercialMedicament, idFamilleMedicament, libFamille, compositionMedicament, effetsMedicament, contreIndicationsMedicament " +
+                              "FROM medicament INNER JOIN famille " +
+                              "ON famille.idFamille = medicament.idFamilleMedicament " +
+                              "WHERE libFamille = '" + Famille + "'";
+            //EXECUTION REQUETE
+            MySqlDataReader drr = cmd.ExecuteReader();
+
+            //LECTURE REQUETE
+            while (drr.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                id = int.Parse(drr.GetString(0));
+                Nom = drr.GetString(1);
                 idfamille = int.Parse(drr.GetString(2));
                 libFam = drr.GetString(3);
                 composition = drr.GetString(4);
@@ -304,5 +363,184 @@ namespace ClassePasserelle
             return LesMedicaments;
         }
         #endregion
+
+        #region ChargerLaComposition
+        public static List<ClasseMedicament> chargerLaComposition(string Compo)
+        {
+            //VARIABLES
+            List<ClasseMedicament> LesMedicaments = new List<ClasseMedicament>();
+            int id;
+            string Nom;
+            string composition;
+            string effets;
+            string contreindications;
+            int idfamille;
+            string libFam;
+
+
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT idMedicament, nomCommercialMedicament, idFamilleMedicament, libFamille, compositionMedicament, effetsMedicament, contreIndicationsMedicament " +
+                              "FROM medicament INNER JOIN famille " +
+                              "ON famille.idFamille = medicament.idFamilleMedicament " +
+                              "WHERE compositionMedicament = '" + Compo + "'";
+            //EXECUTION REQUETE
+            MySqlDataReader drr = cmd.ExecuteReader();
+
+            //LECTURE REQUETE
+            while (drr.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                id = int.Parse(drr.GetString(0));
+                Nom = drr.GetString(1);
+                idfamille = int.Parse(drr.GetString(2));
+                libFam = drr.GetString(3);
+                composition = drr.GetString(4);
+                effets = drr.GetString(5);
+                contreindications = drr.GetString(6);
+
+                //ON INSTANCIE UN OBJET CLASSEFAMILLE
+                ClasseFamille laFamille = new ClasseFamille(idfamille, libFam);
+                //ON INSTANCIE UN OBJET CLASSEMEDICAMENT
+                ClasseMedicament leMedicament = new ClasseMedicament(id, Nom, composition, effets, contreindications, laFamille);
+                //ON AJOUTE UN OBJET CLASSEMEDICAMENT DANS UNE LISTE CLASSEMEDICAMENT
+                LesMedicaments.Add(leMedicament);
+
+
+            }
+
+            drr.Close();
+            connexion.Close();
+
+            return LesMedicaments;
+        }
+        #endregion
+        
+        #region ChargerLEffet
+        public static List<ClasseMedicament> chargerLEffet(string Effet)
+        {
+            //VARIABLES
+            List<ClasseMedicament> LesMedicaments = new List<ClasseMedicament>();
+            int id;
+            string Nom;
+            string composition;
+            string effets;
+            string contreindications;
+            int idfamille;
+            string libFam;
+
+
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT idMedicament, nomCommercialMedicament, idFamilleMedicament, libFamille, compositionMedicament, effetsMedicament, contreIndicationsMedicament " +
+                              "FROM medicament INNER JOIN famille " +
+                              "ON famille.idFamille = medicament.idFamilleMedicament " +
+                              "WHERE effetsMedicament = '" + Effet + "'";
+            //EXECUTION REQUETE
+            MySqlDataReader drr = cmd.ExecuteReader();
+
+            //LECTURE REQUETE
+            while (drr.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                id = int.Parse(drr.GetString(0));
+                Nom = drr.GetString(1);
+                idfamille = int.Parse(drr.GetString(2));
+                libFam = drr.GetString(3);
+                composition = drr.GetString(4);
+                effets = drr.GetString(5);
+                contreindications = drr.GetString(6);
+
+                //ON INSTANCIE UN OBJET CLASSEFAMILLE
+                ClasseFamille laFamille = new ClasseFamille(idfamille, libFam);
+                //ON INSTANCIE UN OBJET CLASSEMEDICAMENT
+                ClasseMedicament leMedicament = new ClasseMedicament(id, Nom, composition, effets, contreindications, laFamille);
+                //ON AJOUTE UN OBJET CLASSEMEDICAMENT DANS UNE LISTE CLASSEMEDICAMENT
+                LesMedicaments.Add(leMedicament);
+
+
+            }
+
+            drr.Close();
+            connexion.Close();
+
+            return LesMedicaments;
+        }
+        #endregion
+
+        #region ChargerLaCI
+        public static List<ClasseMedicament> chargerLaCI(string CI)
+        {
+            //VARIABLES
+            List<ClasseMedicament> LesMedicaments = new List<ClasseMedicament>();
+            int id;
+            string Nom;
+            string composition;
+            string effets;
+            string contreindications;
+            int idfamille;
+            string libFam;
+
+
+            //CONNEXION BDD
+            MySqlConnection connexion = new MySqlConnection();
+            MySqlCommand cmd = new MySqlCommand();
+            connexion.ConnectionString = ClassePConnexion.DBConnection();
+
+            connexion.Open();
+
+            cmd = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd.CommandText = "SELECT idMedicament, nomCommercialMedicament, idFamilleMedicament, libFamille, compositionMedicament, effetsMedicament, contreIndicationsMedicament " +
+                              "FROM medicament INNER JOIN famille " +
+                              "ON famille.idFamille = medicament.idFamilleMedicament " +
+                              "WHERE contreIndicationsMedicament = '" + CI + "'";
+            //EXECUTION REQUETE
+            MySqlDataReader drr = cmd.ExecuteReader();
+
+            //LECTURE REQUETE
+            while (drr.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                id = int.Parse(drr.GetString(0));
+                Nom = drr.GetString(1);
+                idfamille = int.Parse(drr.GetString(2));
+                libFam = drr.GetString(3);
+                composition = drr.GetString(4);
+                effets = drr.GetString(5);
+                contreindications = drr.GetString(6);
+
+                //ON INSTANCIE UN OBJET CLASSEFAMILLE
+                ClasseFamille laFamille = new ClasseFamille(idfamille, libFam);
+                //ON INSTANCIE UN OBJET CLASSEMEDICAMENT
+                ClasseMedicament leMedicament = new ClasseMedicament(id, Nom, composition, effets, contreindications, laFamille);
+                //ON AJOUTE UN OBJET CLASSEMEDICAMENT DANS UNE LISTE CLASSEMEDICAMENT
+                LesMedicaments.Add(leMedicament);
+
+
+            }
+
+            drr.Close();
+            connexion.Close();
+
+            return LesMedicaments;
+        }
+        #endregion
+
+        
     }
 }

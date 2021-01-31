@@ -88,7 +88,7 @@
             // groupBoxQuantite
             // 
             this.groupBoxQuantite.Controls.Add(this.txtQuantiteOffre);
-            this.groupBoxQuantite.Location = new System.Drawing.Point(64, 594);
+            this.groupBoxQuantite.Location = new System.Drawing.Point(940, 373);
             this.groupBoxQuantite.Name = "groupBoxQuantite";
             this.groupBoxQuantite.Size = new System.Drawing.Size(292, 60);
             this.groupBoxQuantite.TabIndex = 28;
@@ -105,7 +105,7 @@
             // groupBoxMedicamentOffert
             // 
             this.groupBoxMedicamentOffert.Controls.Add(this.comboBoxIdMedicament);
-            this.groupBoxMedicamentOffert.Location = new System.Drawing.Point(64, 515);
+            this.groupBoxMedicamentOffert.Location = new System.Drawing.Point(511, 373);
             this.groupBoxMedicamentOffert.Name = "groupBoxMedicamentOffert";
             this.groupBoxMedicamentOffert.Size = new System.Drawing.Size(292, 60);
             this.groupBoxMedicamentOffert.TabIndex = 27;
@@ -123,7 +123,7 @@
             // groupBoxRapportOffert
             // 
             this.groupBoxRapportOffert.Controls.Add(this.comboBoxIdOffreRapport);
-            this.groupBoxRapportOffert.Location = new System.Drawing.Point(64, 431);
+            this.groupBoxRapportOffert.Location = new System.Drawing.Point(59, 373);
             this.groupBoxRapportOffert.Name = "groupBoxRapportOffert";
             this.groupBoxRapportOffert.Size = new System.Drawing.Size(292, 60);
             this.groupBoxRapportOffert.TabIndex = 26;
@@ -140,29 +140,29 @@
             // 
             // buttonSupprimerOffre
             // 
-            this.buttonSupprimerOffre.Location = new System.Drawing.Point(398, 603);
+            this.buttonSupprimerOffre.Location = new System.Drawing.Point(802, 252);
             this.buttonSupprimerOffre.Name = "buttonSupprimerOffre";
             this.buttonSupprimerOffre.Size = new System.Drawing.Size(95, 38);
             this.buttonSupprimerOffre.TabIndex = 25;
-            this.buttonSupprimerOffre.Text = "Supprimer Offre";
+            this.buttonSupprimerOffre.Text = "Supprimer ";
             this.buttonSupprimerOffre.UseVisualStyleBackColor = true;
             // 
             // buttonModifierOffre
             // 
-            this.buttonModifierOffre.Location = new System.Drawing.Point(398, 524);
+            this.buttonModifierOffre.Location = new System.Drawing.Point(600, 252);
             this.buttonModifierOffre.Name = "buttonModifierOffre";
             this.buttonModifierOffre.Size = new System.Drawing.Size(95, 38);
             this.buttonModifierOffre.TabIndex = 24;
-            this.buttonModifierOffre.Text = "Modifier Offre";
+            this.buttonModifierOffre.Text = "Modifier ";
             this.buttonModifierOffre.UseVisualStyleBackColor = true;
             // 
             // buttonAjouterOffre
             // 
-            this.buttonAjouterOffre.Location = new System.Drawing.Point(398, 440);
+            this.buttonAjouterOffre.Location = new System.Drawing.Point(398, 252);
             this.buttonAjouterOffre.Name = "buttonAjouterOffre";
             this.buttonAjouterOffre.Size = new System.Drawing.Size(95, 38);
             this.buttonAjouterOffre.TabIndex = 23;
-            this.buttonAjouterOffre.Text = "Ajouter Offre";
+            this.buttonAjouterOffre.Text = "Ajouter ";
             this.buttonAjouterOffre.UseVisualStyleBackColor = true;
             // 
             // Liste_Medicament

@@ -53,14 +53,6 @@ namespace Formulaire
             medecinForm.Show();
         }
 
-        // affichage gérer les médicaments
-        private void gérerMédicamentMenuStrip_Click(object sender, EventArgs e)
-        {
-            Gerer_Medicament gerer_medecinForm = new Gerer_Medicament();
-            gerer_medecinForm.MdiParent = this;
-            fermeForme();
-            gerer_medecinForm.Show();
-        }
 
         // affichage de à propos
         private void aProposMenuStrip_Click(object sender, EventArgs e)
@@ -88,8 +80,19 @@ namespace Formulaire
             medecinForm.Show();
         }
 
+
+        // affichage gérer les médicaments
+        private void medicamentMenuStrip_Click(object sender, EventArgs e)
+        {
+            Gerer_Medicament gerer_medecinForm = new Gerer_Medicament();
+            gerer_medecinForm.MdiParent = this;
+            fermeForme();
+            gerer_medecinForm.Show();
+        }
+
         private void listeMédicamentMenuStrip_Click(object sender, EventArgs e)
         {
+
             Liste_Medicament liste_medecinForm = new Liste_Medicament();
             liste_medecinForm.MdiParent = this;
             fermeForme();

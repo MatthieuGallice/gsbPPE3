@@ -89,6 +89,7 @@
             this.dgwGererMedicament.Name = "dgwGererMedicament";
             this.dgwGererMedicament.Size = new System.Drawing.Size(1276, 255);
             this.dgwGererMedicament.TabIndex = 1;
+            this.dgwGererMedicament.TabStop = false;
             // 
             // idMedicament
             // 
@@ -138,7 +139,7 @@
             // 
             // buttonSupprimerMedicament
             // 
-            this.buttonSupprimerMedicament.Location = new System.Drawing.Point(482, 304);
+            this.buttonSupprimerMedicament.Location = new System.Drawing.Point(749, 304);
             this.buttonSupprimerMedicament.Name = "buttonSupprimerMedicament";
             this.buttonSupprimerMedicament.Size = new System.Drawing.Size(98, 39);
             this.buttonSupprimerMedicament.TabIndex = 3;
@@ -159,7 +160,7 @@
             // 
             // buttonAjouterMedicament
             // 
-            this.buttonAjouterMedicament.Location = new System.Drawing.Point(748, 304);
+            this.buttonAjouterMedicament.Location = new System.Drawing.Point(480, 304);
             this.buttonAjouterMedicament.Name = "buttonAjouterMedicament";
             this.buttonAjouterMedicament.Size = new System.Drawing.Size(98, 39);
             this.buttonAjouterMedicament.TabIndex = 5;
@@ -173,28 +174,28 @@
             this.txtNomMedicament.Location = new System.Drawing.Point(30, 47);
             this.txtNomMedicament.Name = "txtNomMedicament";
             this.txtNomMedicament.Size = new System.Drawing.Size(305, 20);
-            this.txtNomMedicament.TabIndex = 6;
+            this.txtNomMedicament.TabIndex = 0;
             // 
             // txtCompositionMedicament
             // 
             this.txtCompositionMedicament.Location = new System.Drawing.Point(53, 38);
             this.txtCompositionMedicament.Name = "txtCompositionMedicament";
             this.txtCompositionMedicament.Size = new System.Drawing.Size(305, 20);
-            this.txtCompositionMedicament.TabIndex = 7;
+            this.txtCompositionMedicament.TabIndex = 2;
             // 
             // txtEffetMedicament
             // 
             this.txtEffetMedicament.Location = new System.Drawing.Point(37, 47);
             this.txtEffetMedicament.Name = "txtEffetMedicament";
             this.txtEffetMedicament.Size = new System.Drawing.Size(305, 20);
-            this.txtEffetMedicament.TabIndex = 8;
+            this.txtEffetMedicament.TabIndex = 3;
             // 
             // txtContreIndicationMedicament
             // 
             this.txtContreIndicationMedicament.Location = new System.Drawing.Point(55, 42);
             this.txtContreIndicationMedicament.Name = "txtContreIndicationMedicament";
             this.txtContreIndicationMedicament.Size = new System.Drawing.Size(305, 20);
-            this.txtContreIndicationMedicament.TabIndex = 10;
+            this.txtContreIndicationMedicament.TabIndex = 4;
             // 
             // comboBoxFamilleMedicament
             // 
@@ -202,7 +203,7 @@
             this.comboBoxFamilleMedicament.Location = new System.Drawing.Point(45, 48);
             this.comboBoxFamilleMedicament.Name = "comboBoxFamilleMedicament";
             this.comboBoxFamilleMedicament.Size = new System.Drawing.Size(305, 21);
-            this.comboBoxFamilleMedicament.TabIndex = 11;
+            this.comboBoxFamilleMedicament.TabIndex = 1;
             // 
             // groupBoxNomMedicament
             // 
@@ -221,7 +222,7 @@
             this.groupBoxCompositionMedicament.Location = new System.Drawing.Point(893, 396);
             this.groupBoxCompositionMedicament.Name = "groupBoxCompositionMedicament";
             this.groupBoxCompositionMedicament.Size = new System.Drawing.Size(380, 102);
-            this.groupBoxCompositionMedicament.TabIndex = 13;
+            this.groupBoxCompositionMedicament.TabIndex = 14;
             this.groupBoxCompositionMedicament.TabStop = false;
             this.groupBoxCompositionMedicament.Text = "Composition du Médicament";
             this.groupBoxCompositionMedicament.Visible = false;
@@ -232,7 +233,7 @@
             this.groupBoxEffetMedicament.Location = new System.Drawing.Point(236, 524);
             this.groupBoxEffetMedicament.Name = "groupBoxEffetMedicament";
             this.groupBoxEffetMedicament.Size = new System.Drawing.Size(380, 102);
-            this.groupBoxEffetMedicament.TabIndex = 13;
+            this.groupBoxEffetMedicament.TabIndex = 15;
             this.groupBoxEffetMedicament.TabStop = false;
             this.groupBoxEffetMedicament.Text = "Effet du Médicament";
             this.groupBoxEffetMedicament.Visible = false;
@@ -243,7 +244,7 @@
             this.groupBoxFamilleMedicament.Location = new System.Drawing.Point(467, 396);
             this.groupBoxFamilleMedicament.Name = "groupBoxFamilleMedicament";
             this.groupBoxFamilleMedicament.Size = new System.Drawing.Size(380, 102);
-            this.groupBoxFamilleMedicament.TabIndex = 14;
+            this.groupBoxFamilleMedicament.TabIndex = 13;
             this.groupBoxFamilleMedicament.TabStop = false;
             this.groupBoxFamilleMedicament.Text = "Libelle de la Famille du Médicament";
             this.groupBoxFamilleMedicament.Visible = false;
@@ -254,7 +255,7 @@
             this.groupBoxContreIndication.Location = new System.Drawing.Point(709, 524);
             this.groupBoxContreIndication.Name = "groupBoxContreIndication";
             this.groupBoxContreIndication.Size = new System.Drawing.Size(380, 102);
-            this.groupBoxContreIndication.TabIndex = 15;
+            this.groupBoxContreIndication.TabIndex = 16;
             this.groupBoxContreIndication.TabStop = false;
             this.groupBoxContreIndication.Text = "Contre Indications ";
             this.groupBoxContreIndication.Visible = false;
@@ -264,7 +265,7 @@
             this.btnValiderAjout.Location = new System.Drawing.Point(615, 649);
             this.btnValiderAjout.Name = "btnValiderAjout";
             this.btnValiderAjout.Size = new System.Drawing.Size(98, 39);
-            this.btnValiderAjout.TabIndex = 16;
+            this.btnValiderAjout.TabIndex = 25;
             this.btnValiderAjout.Text = "Valider ";
             this.btnValiderAjout.UseVisualStyleBackColor = true;
             this.btnValiderAjout.Visible = false;
@@ -272,7 +273,7 @@
             // 
             // btnRechercher
             // 
-            this.btnRechercher.Location = new System.Drawing.Point(1045, 304);
+            this.btnRechercher.Location = new System.Drawing.Point(1153, 304);
             this.btnRechercher.Name = "btnRechercher";
             this.btnRechercher.Size = new System.Drawing.Size(98, 39);
             this.btnRechercher.TabIndex = 17;
@@ -285,7 +286,7 @@
             this.btnRetour.Location = new System.Drawing.Point(1153, 648);
             this.btnRetour.Name = "btnRetour";
             this.btnRetour.Size = new System.Drawing.Size(98, 39);
-            this.btnRetour.TabIndex = 18;
+            this.btnRetour.TabIndex = 26;
             this.btnRetour.Text = "Retour";
             this.btnRetour.UseVisualStyleBackColor = true;
             this.btnRetour.Visible = false;
@@ -294,10 +295,10 @@
             // grpboxRechercherNom
             // 
             this.grpboxRechercherNom.Controls.Add(this.cboxRechercherNom);
-            this.grpboxRechercherNom.Location = new System.Drawing.Point(42, 396);
+            this.grpboxRechercherNom.Location = new System.Drawing.Point(30, 396);
             this.grpboxRechercherNom.Name = "grpboxRechercherNom";
             this.grpboxRechercherNom.Size = new System.Drawing.Size(380, 102);
-            this.grpboxRechercherNom.TabIndex = 13;
+            this.grpboxRechercherNom.TabIndex = 20;
             this.grpboxRechercherNom.TabStop = false;
             this.grpboxRechercherNom.Text = "Nom du Médicament";
             this.grpboxRechercherNom.Visible = false;
@@ -308,16 +309,16 @@
             this.cboxRechercherNom.Location = new System.Drawing.Point(22, 40);
             this.cboxRechercherNom.Name = "cboxRechercherNom";
             this.cboxRechercherNom.Size = new System.Drawing.Size(305, 21);
-            this.cboxRechercherNom.TabIndex = 0;
+            this.cboxRechercherNom.TabIndex = 5;
             this.cboxRechercherNom.TextChanged += new System.EventHandler(this.cboxRechercherNom_TextChanged);
             // 
             // grpboxRechercherCompo
             // 
             this.grpboxRechercherCompo.Controls.Add(this.cboxRechercherCompo);
-            this.grpboxRechercherCompo.Location = new System.Drawing.Point(893, 396);
+            this.grpboxRechercherCompo.Location = new System.Drawing.Point(887, 396);
             this.grpboxRechercherCompo.Name = "grpboxRechercherCompo";
             this.grpboxRechercherCompo.Size = new System.Drawing.Size(380, 102);
-            this.grpboxRechercherCompo.TabIndex = 14;
+            this.grpboxRechercherCompo.TabIndex = 22;
             this.grpboxRechercherCompo.TabStop = false;
             this.grpboxRechercherCompo.Text = "Composition du Médicament";
             this.grpboxRechercherCompo.Visible = false;
@@ -328,16 +329,16 @@
             this.cboxRechercherCompo.Location = new System.Drawing.Point(47, 48);
             this.cboxRechercherCompo.Name = "cboxRechercherCompo";
             this.cboxRechercherCompo.Size = new System.Drawing.Size(305, 21);
-            this.cboxRechercherCompo.TabIndex = 0;
+            this.cboxRechercherCompo.TabIndex = 7;
             this.cboxRechercherCompo.TextChanged += new System.EventHandler(this.cboxRechercherCompo_TextChanged);
             // 
             // grpboxRechercheCI
             // 
             this.grpboxRechercheCI.Controls.Add(this.cboxRechercheCI);
-            this.grpboxRechercheCI.Location = new System.Drawing.Point(715, 524);
+            this.grpboxRechercheCI.Location = new System.Drawing.Point(703, 524);
             this.grpboxRechercheCI.Name = "grpboxRechercheCI";
             this.grpboxRechercheCI.Size = new System.Drawing.Size(380, 102);
-            this.grpboxRechercheCI.TabIndex = 16;
+            this.grpboxRechercheCI.TabIndex = 24;
             this.grpboxRechercheCI.TabStop = false;
             this.grpboxRechercheCI.Text = "Contre Indications ";
             this.grpboxRechercheCI.Visible = false;
@@ -348,16 +349,16 @@
             this.cboxRechercheCI.Location = new System.Drawing.Point(22, 40);
             this.cboxRechercheCI.Name = "cboxRechercheCI";
             this.cboxRechercheCI.Size = new System.Drawing.Size(338, 21);
-            this.cboxRechercheCI.TabIndex = 0;
+            this.cboxRechercheCI.TabIndex = 9;
             this.cboxRechercheCI.TextChanged += new System.EventHandler(this.cboxRechercheCI_TextChanged);
             // 
             // grpboxRechercheEffet
             // 
             this.grpboxRechercheEffet.Controls.Add(this.cboxRechercheEffet);
-            this.grpboxRechercheEffet.Location = new System.Drawing.Point(236, 524);
+            this.grpboxRechercheEffet.Location = new System.Drawing.Point(230, 524);
             this.grpboxRechercheEffet.Name = "grpboxRechercheEffet";
             this.grpboxRechercheEffet.Size = new System.Drawing.Size(380, 102);
-            this.grpboxRechercheEffet.TabIndex = 14;
+            this.grpboxRechercheEffet.TabIndex = 23;
             this.grpboxRechercheEffet.TabStop = false;
             this.grpboxRechercheEffet.Text = "Effet du Médicament";
             this.grpboxRechercheEffet.Visible = false;
@@ -368,16 +369,16 @@
             this.cboxRechercheEffet.Location = new System.Drawing.Point(14, 42);
             this.cboxRechercheEffet.Name = "cboxRechercheEffet";
             this.cboxRechercheEffet.Size = new System.Drawing.Size(346, 21);
-            this.cboxRechercheEffet.TabIndex = 0;
+            this.cboxRechercheEffet.TabIndex = 8;
             this.cboxRechercheEffet.TextChanged += new System.EventHandler(this.cboxRechercheEffet_TextChanged);
             // 
             // grpboxRechercheFamille
             // 
             this.grpboxRechercheFamille.Controls.Add(this.cboxRechercheFamille);
-            this.grpboxRechercheFamille.Location = new System.Drawing.Point(466, 396);
+            this.grpboxRechercheFamille.Location = new System.Drawing.Point(461, 396);
             this.grpboxRechercheFamille.Name = "grpboxRechercheFamille";
             this.grpboxRechercheFamille.Size = new System.Drawing.Size(380, 102);
-            this.grpboxRechercheFamille.TabIndex = 15;
+            this.grpboxRechercheFamille.TabIndex = 21;
             this.grpboxRechercheFamille.TabStop = false;
             this.grpboxRechercheFamille.Text = "Libelle de la Famille du Médicament";
             this.grpboxRechercheFamille.Visible = false;
@@ -388,7 +389,7 @@
             this.cboxRechercheFamille.Location = new System.Drawing.Point(45, 48);
             this.cboxRechercheFamille.Name = "cboxRechercheFamille";
             this.cboxRechercheFamille.Size = new System.Drawing.Size(305, 21);
-            this.cboxRechercheFamille.TabIndex = 11;
+            this.cboxRechercheFamille.TabIndex = 6;
             this.cboxRechercheFamille.TextChanged += new System.EventHandler(this.cboxRechercheFamille_TextChanged);
             // 
             // Gerer_Medicament
@@ -397,9 +398,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1300, 722);
             this.Controls.Add(this.grpboxRechercherCompo);
+            this.Controls.Add(this.grpboxRechercheFamille);
             this.Controls.Add(this.grpboxRechercheCI);
             this.Controls.Add(this.grpboxRechercherNom);
-            this.Controls.Add(this.grpboxRechercheFamille);
             this.Controls.Add(this.grpboxRechercheEffet);
             this.Controls.Add(this.btnRetour);
             this.Controls.Add(this.btnRechercher);
