@@ -14,6 +14,13 @@ namespace ClassePasserelle
         // procédure qui modifie un rapport 
         public static void modifRapport(int idRap, DateTime dateRap, string motifRap, string bilanRap, int idVisiteurRap, int idMedecinRAp)
         {
+            //Conversion de la date
+            string ladate = dateRap.ToString();
+            String jour = ladate.Substring(0, 2);
+            String mois = ladate.Substring(3, 2);
+            String Ans = ladate.Substring(6, 4);
+            string uneDate = Ans + "-" + mois + "-" + jour;
+
             //Connexion BDD
             MySqlConnection connexion = new MySqlConnection();
             MySqlCommand cmd = new MySqlCommand();
@@ -22,8 +29,10 @@ namespace ClassePasserelle
             connexion.Open();
 
             cmd = connexion.CreateCommand();
+
             //REQUETE SQL
-            cmd.CommandText = "UPDATE rapport SET dateRap = '"+ dateRap + "', motifRap = '" + motifRap + "', bilanRap = '" + bilanRap + "', idVisiteurRap = '" + idVisiteurRap + "', idMedecinRap = '" + idMedecinRAp + "' WHERE idRap = '" + idRap + "' ";
+            cmd.CommandText = "UPDATE `rapport` SET `dateRap`='" + uneDate + "',`motifRap`='" + motifRap + "',`bilanRap`='" + bilanRap + "',`idVisiteurRap`='" + idVisiteurRap + "',`idMedecinRap`='" + idMedecinRAp + "' WHERE idRap ='" + idRap + "'";
+
             //EXECUTION REQUETE
             MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
