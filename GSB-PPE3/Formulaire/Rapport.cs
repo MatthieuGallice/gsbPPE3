@@ -385,12 +385,82 @@ namespace Formulaire
         // fonction au clique du button rechercher qui affiche les groupbox et le button valider recherche
         private void buttonRechercher_Click(object sender, EventArgs e)
         {
+            // appelle de la fonction qui remplis le dgv et qui remplis les combobox
+            chargerDgv();
+            remplirCombobox();
 
+            // appelle de la fonction qui nettoye les textbox et combobox puis les cache 
+            nettoyer();
+            cacherText();
+
+            // affiche les groupebox 
+            groupBoxCode.Visible = true;
+            groupBoxDate.Visible = true;
+
+            groupBoxVisiteur.Visible = true;
+            groupBoxMedecin.Visible = true;
+
+            groupBoxMotif.Visible = true;
+            groupBoxBilan.Visible = true;
+
+            // affiche le button valider ajout
+            buttonValiderRecherche.Visible = true;
+
+            // rend le textbox code accessible
+            textBoxCode.Enabled = true;
         }
 
         // fonction au clique du button valider recherche qui affiche dans le dgv en focntion des recherche rentrée
         private void buttonValiderRecherche_Click(object sender, EventArgs e)
         {
+            // nettoye le dgv
+            dgvRapport.Rows.Clear();
+
+            // variable qui récupére le contenu des combobox et du textbox de recherche  
+            string leCode = textBoxCode.Text;
+            DateTime laDate = DateTime.Parse(dateTimePickerRapport.Text);
+
+            string leVisiteur = comboBoxVisiteur.Text;
+            string leMedecin = comboBoxMed.Text;
+
+            string leMotif = comboBoxMotif.Text;
+            string leBilan = textBoxBilan.Text;
+
+            string leNomVis;
+            string lePrenomVis;
+
+            // récupération du nom et du prénom du médecin avec un split qui prend la séparation sur l'espace
+            if (leVisiteur == comboNonChoisi)
+            {
+                leNomVis = "";
+                lePrenomVis = "";
+            }
+            else
+            {
+                string[] leVisi = leVisiteur.Split(' ');
+                leNomVis = leVisi[0];
+                lePrenomVis = leVisi[1];
+            }
+
+            string leNomMed;
+            string lePrenomMed;
+
+            // récupération du nom et du prénom du médecin avec un split qui prend la séparation sur l'espace
+            if (leMedecin == comboNonChoisi)
+            {
+                leNomMed = "";
+                lePrenomMed = "";
+            }
+            else
+            {
+                string[] leMed = leMedecin.Split(' ');
+                leNomMed = leMed[0];
+                lePrenomMed = leMed[1];
+            }
+
+
+
+
 
         }
 

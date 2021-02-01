@@ -30,8 +30,10 @@ namespace ClassePasserelle
 
             cmd = connexion.CreateCommand();
 
+            
+
             //REQUETE SQL
-            cmd.CommandText = "UPDATE `rapport` SET `dateRap`='" + uneDate + "',`motifRap`='" + motifRap + "',`bilanRap`='" + bilanRap + "',`idVisiteurRap`='" + idVisiteurRap + "',`idMedecinRap`='" + idMedecinRAp + "' WHERE idRap ='" + idRap + "'";
+            cmd.CommandText = "UPDATE `rapport` SET `dateRap`='" + uneDate + "',`motifRap`='" + motifRap + "',`bilanRap`=\"" + bilanRap+ "\",`idVisiteurRap`='" + idVisiteurRap + "',`idMedecinRap`='" + idMedecinRAp + "' WHERE idRap ='" + idRap + "'";
 
             //EXECUTION REQUETE
             MySqlDataReader drr = cmd.ExecuteReader();
