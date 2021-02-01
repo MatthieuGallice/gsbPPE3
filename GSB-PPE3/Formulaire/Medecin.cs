@@ -435,6 +435,7 @@ namespace Formulaire
         // fonction qui affiche les groupbox de recherche et le button validerRecherche au clique du button rechercher
         private void buttonRechercherMedecin_Click(object sender, EventArgs e)
         {
+            dgvFormulaireMedecin();
             cacherText();
             nettoyer();
             groupBoxRechercherNom.Visible = true;
@@ -455,21 +456,44 @@ namespace Formulaire
             // nettoye le dgv
             dgwMedecin.Rows.Clear();
 
-            // varible qui récupére le contenu des combobox et du textbox de recherche  
+            // variable qui récupére le contenu des combobox et du textbox de recherche  
             string leNomMedecin = comboBoxRechercherNom.Text;
             string laSpeMedecin = comboBoxRechercherSpe.Text;
             string leDepartementMedecin = textBoxRechercherDepartement.Text;
 
-            // condition qui s'active si seulement le combobox leNomMedecin et utilisé
-            if (leNomMedecin != comboNonChoisi && laSpeMedecin == comboNonChoisi && leDepartementMedecin == "")
-            {
-                // récupération du nom et du prénom du médecin avec un split qui prend la séparation sur l'espace
-                string[] leNom = leNomMedecin.Split(' ');
-                string leNomMed = leNom[0];
-                string lePrenomMed = leNom[1];
+            string leNomMed;
+            string lePrenomMed;
 
+            // récupération du nom et du prénom du médecin avec un split qui prend la séparation sur l'espace
+            if (leNomMedecin == comboNonChoisi)
+            {
+                leNomMed = "";
+                lePrenomMed = "";
+            }
+            else
+            {
+                string[] leNom = leNomMedecin.Split(' ');
+                leNomMed = leNom[0];
+                lePrenomMed = leNom[1];
+            }
+
+            if (leDepartementMedecin != "")
+            {
+                // variable qui vérifie la validité du département
+                bool ledepartementValide = ClasseMedecin.departementValide(leDepartementMedecin);
+
+                // condition qui vérifie la validité du département
+                if (ledepartementValide == false)
+                {
+                    MessageBox.Show("le numéro de département n'est pas valide (deux chiffre) ! ");
+                }
+            }
+
+            // condition qui vérifie qu'au moins un des élément et sélectionné
+            if (leNomMedecin != comboNonChoisi || laSpeMedecin != comboNonChoisi || leDepartementMedecin != "")
+            {
                 // initialisation d'une liste avec la fonction rechercherNomMedecin de classePMedecin 
-                List<ClasseMedecin> leMed =  ClassePMedecin.rechercherNomMedecin(leNomMed, lePrenomMed);
+                List<ClasseMedecin> leMed = ClassePMedecin.rechercherMedecin(leNomMed, lePrenomMed, laSpeMedecin, leDepartementMedecin);
                 // foreach qui remplis le dgv avec la liste leMed
                 foreach (ClasseMedecin lesMed in leMed)
                 {
@@ -484,142 +508,7 @@ namespace Formulaire
                     dgwMedecin.Rows.Add(lid, leNomMede, lePrenomMede, ladresse, leTel, laSpe, leDepartement);
                 }
             }
-
-            // condition qui s'active si seulement le combobox laSpeMedecin et utilisé
-            else if (leNomMedecin == comboNonChoisi && laSpeMedecin != comboNonChoisi && leDepartementMedecin == "")
-            {
-                // initialisation d'une liste avec la fonction rechercherSpeMedecin de classePMedecin 
-                List<ClasseMedecin> leMed = ClassePMedecin.rechercherSpeMedecin(laSpeMedecin);
-                // foreach qui remplis le dgv avec la liste leMed
-                foreach (ClasseMedecin lesMed in leMed)
-                {
-                    string lid = lesMed.Id.ToString();
-                    string leNomMede = lesMed.Nom;
-                    string lePrenomMede = lesMed.Prenom;
-                    string ladresse = lesMed.Adresse;
-                    string leTel = lesMed.Tel;
-                    string laSpe = lesMed.LaSpecialite.Specialite;
-                    string leDepartement = lesMed.Departement.ToString();
-
-                    dgwMedecin.Rows.Add(lid, leNomMede, lePrenomMede, ladresse, leTel, laSpe, leDepartement);
-                }
-            }
-
-            // condition qui s'active si seulement le combobox leDepartementMedecin et utilisé
-            else if (leNomMedecin == comboNonChoisi && laSpeMedecin == comboNonChoisi && leDepartementMedecin != "")
-            {
-                // initialisation d'une liste avec la fonction rechercherDepMedecin de classePMedecin 
-                List<ClasseMedecin> leMed = ClassePMedecin.rechercherDepMedecin(leDepartementMedecin);
-                // foreach qui remplis le dgv avec la liste leMed
-                foreach (ClasseMedecin lesMed in leMed)
-                {
-                    string lid = lesMed.Id.ToString();
-                    string leNomMede = lesMed.Nom;
-                    string lePrenomMede = lesMed.Prenom;
-                    string ladresse = lesMed.Adresse;
-                    string leTel = lesMed.Tel;
-                    string laSpe = lesMed.LaSpecialite.Specialite;
-                    string leDepartement = lesMed.Departement.ToString();
-
-                    dgwMedecin.Rows.Add(lid, leNomMede, lePrenomMede, ladresse, leTel, laSpe, leDepartement);
-                }
-            }
-
-            // condition qui s'active si le combobox leNomMedecin et laSpeMedecin sont utilisé
-            else if (leNomMedecin != comboNonChoisi && laSpeMedecin != comboNonChoisi && leDepartementMedecin == "")
-            {
-                // récupération du nom et du prénom du médecin avec un split qui prend la séparation sur l'espace
-                string[] leNom = leNomMedecin.Split(' ');
-                string leNomMed = leNom[0];
-                string lePrenomMed = leNom[1];
-
-                // initialisation d'une liste avec la fonction rechercherNomSpeMedecin de classePMedecin 
-                List<ClasseMedecin> leMed = ClassePMedecin.rechercherNomSpeMedecin(leNomMed, lePrenomMed, laSpeMedecin);
-                // foreach qui remplis le dgv avec la liste leMed
-                foreach (ClasseMedecin lesMed in leMed)
-                {
-                    string lid = lesMed.Id.ToString();
-                    string leNomMede = lesMed.Nom;
-                    string lePrenomMede = lesMed.Prenom;
-                    string ladresse = lesMed.Adresse;
-                    string leTel = lesMed.Tel;
-                    string laSpe = lesMed.LaSpecialite.Specialite;
-                    string leDepartement = lesMed.Departement.ToString();
-
-                    dgwMedecin.Rows.Add(lid, leNomMede, lePrenomMede, ladresse, leTel, laSpe, leDepartement);
-                }
-            }
-
-            // condition qui s'active si le combobox leNomMedecin et leDepartementMedecin sont utilisé
-            else if (leNomMedecin != comboNonChoisi && laSpeMedecin == comboNonChoisi && leDepartementMedecin != "")
-            {
-                // récupération du nom et du prénom du médecin avec un split qui prend la séparation sur l'espace
-                string[] leNom = leNomMedecin.Split(' ');
-                string leNomMed = leNom[0];
-                string lePrenomMed = leNom[1];
-
-                // initialisation d'une liste avec la fonction rechercherNomDepMedecin de classePMedecin 
-                List<ClasseMedecin> leMed = ClassePMedecin.rechercherNomDepMedecin(leNomMed, lePrenomMed, leDepartementMedecin);
-                // foreach qui remplis le dgv avec la liste leMed
-                foreach (ClasseMedecin lesMed in leMed)
-                {
-                    string lid = lesMed.Id.ToString();
-                    string leNomMede = lesMed.Nom;
-                    string lePrenomMede = lesMed.Prenom;
-                    string ladresse = lesMed.Adresse;
-                    string leTel = lesMed.Tel;
-                    string laSpe = lesMed.LaSpecialite.Specialite;
-                    string leDepartement = lesMed.Departement.ToString();
-
-                    dgwMedecin.Rows.Add(lid, leNomMede, lePrenomMede, ladresse, leTel, laSpe, leDepartement);
-                }
-            }
-
-            // condition qui s'active si le combobox laSpeMedecin et leDepartementMedecin sont utilisé
-            else if (leNomMedecin == comboNonChoisi && laSpeMedecin != comboNonChoisi && leDepartementMedecin != "")
-            {
-                // initialisation d'une liste avec la fonction rechercherSpeDepMedecin de classePMedecin 
-                List<ClasseMedecin> leMed = ClassePMedecin.rechercherSpeDepMedecin(laSpeMedecin, leDepartementMedecin);
-                // foreach qui remplis le dgv avec la liste leMed
-                foreach (ClasseMedecin lesMed in leMed)
-                {
-                    string lid = lesMed.Id.ToString();
-                    string leNomMede = lesMed.Nom;
-                    string lePrenomMede = lesMed.Prenom;
-                    string ladresse = lesMed.Adresse;
-                    string leTel = lesMed.Tel;
-                    string laSpe = lesMed.LaSpecialite.Specialite;
-                    string leDepartement = lesMed.Departement.ToString();
-
-                    dgwMedecin.Rows.Add(lid, leNomMede, lePrenomMede, ladresse, leTel, laSpe, leDepartement);
-                }
-            }
-
-            // condition qui s'active si les combobox et le textbox sont utilisé
-            else if (leNomMedecin != comboNonChoisi && laSpeMedecin != comboNonChoisi && leDepartementMedecin != "")
-            {
-                // récupération du nom et du prénom du médecin avec un split qui prend la séparation sur l'espace
-                string[] leNom = leNomMedecin.Split(' ');
-                string leNomMed = leNom[0];
-                string lePrenomMed = leNom[1];
-
-                // initialisation d'une liste avec la fonction rechercherToutMedecin de classePMedecin 
-                List<ClasseMedecin> leMed = ClassePMedecin.rechercherToutMedecin(leNomMed, lePrenomMed, laSpeMedecin, leDepartementMedecin);
-                // foreach qui remplis le dgv avec la liste leMed
-                foreach (ClasseMedecin lesMed in leMed)
-                {
-                    string lid = lesMed.Id.ToString();
-                    string leNomMede = lesMed.Nom;
-                    string lePrenomMede = lesMed.Prenom;
-                    string ladresse = lesMed.Adresse;
-                    string leTel = lesMed.Tel;
-                    string laSpe = lesMed.LaSpecialite.Specialite;
-                    string leDepartement = lesMed.Departement.ToString();
-
-                    dgwMedecin.Rows.Add(lid, leNomMede, lePrenomMede, ladresse, leTel, laSpe, leDepartement);
-                }
-            }
-            // condition qui s'active si aucun des groupbox et le textbox ne sont pas sélectionné 
+            // condition qui s'active si aucun des groupbox et le textbox ne sont sélectionné 
             else
             {
                 dgvFormulaireMedecin();
