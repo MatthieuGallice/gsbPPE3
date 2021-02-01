@@ -42,10 +42,15 @@
             this.buttonSupprimerOffre = new System.Windows.Forms.Button();
             this.buttonModifierOffre = new System.Windows.Forms.Button();
             this.buttonAjouterOffre = new System.Windows.Forms.Button();
+            this.txtboxNomCommercial = new System.Windows.Forms.TextBox();
+            this.grpboxNomCommercial = new System.Windows.Forms.GroupBox();
+            this.btnValiderAjout = new System.Windows.Forms.Button();
+            this.btnValiderModif = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgwListeMedicament)).BeginInit();
             this.groupBoxQuantite.SuspendLayout();
             this.groupBoxMedicamentOffert.SuspendLayout();
             this.groupBoxRapportOffert.SuspendLayout();
+            this.grpboxNomCommercial.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgwListeMedicament
@@ -88,12 +93,13 @@
             // groupBoxQuantite
             // 
             this.groupBoxQuantite.Controls.Add(this.txtQuantiteOffre);
-            this.groupBoxQuantite.Location = new System.Drawing.Point(940, 373);
+            this.groupBoxQuantite.Location = new System.Drawing.Point(511, 493);
             this.groupBoxQuantite.Name = "groupBoxQuantite";
             this.groupBoxQuantite.Size = new System.Drawing.Size(292, 60);
             this.groupBoxQuantite.TabIndex = 28;
             this.groupBoxQuantite.TabStop = false;
             this.groupBoxQuantite.Text = "Quantité offertes";
+            this.groupBoxQuantite.Visible = false;
             // 
             // txtQuantiteOffre
             // 
@@ -111,6 +117,7 @@
             this.groupBoxMedicamentOffert.TabIndex = 27;
             this.groupBoxMedicamentOffert.TabStop = false;
             this.groupBoxMedicamentOffert.Text = "médicament offert";
+            this.groupBoxMedicamentOffert.Visible = false;
             // 
             // comboBoxIdMedicament
             // 
@@ -129,6 +136,7 @@
             this.groupBoxRapportOffert.TabIndex = 26;
             this.groupBoxRapportOffert.TabStop = false;
             this.groupBoxRapportOffert.Text = "Rapport associé";
+            this.groupBoxRapportOffert.Visible = false;
             // 
             // comboBoxIdOffreRapport
             // 
@@ -146,6 +154,7 @@
             this.buttonSupprimerOffre.TabIndex = 25;
             this.buttonSupprimerOffre.Text = "Supprimer ";
             this.buttonSupprimerOffre.UseVisualStyleBackColor = true;
+            this.buttonSupprimerOffre.Click += new System.EventHandler(this.buttonSupprimerOffre_Click);
             // 
             // buttonModifierOffre
             // 
@@ -155,6 +164,7 @@
             this.buttonModifierOffre.TabIndex = 24;
             this.buttonModifierOffre.Text = "Modifier ";
             this.buttonModifierOffre.UseVisualStyleBackColor = true;
+            this.buttonModifierOffre.Click += new System.EventHandler(this.buttonModifierOffre_Click);
             // 
             // buttonAjouterOffre
             // 
@@ -164,12 +174,56 @@
             this.buttonAjouterOffre.TabIndex = 23;
             this.buttonAjouterOffre.Text = "Ajouter ";
             this.buttonAjouterOffre.UseVisualStyleBackColor = true;
+            this.buttonAjouterOffre.Click += new System.EventHandler(this.buttonAjouterOffre_Click);
+            // 
+            // txtboxNomCommercial
+            // 
+            this.txtboxNomCommercial.Location = new System.Drawing.Point(16, 20);
+            this.txtboxNomCommercial.Name = "txtboxNomCommercial";
+            this.txtboxNomCommercial.Size = new System.Drawing.Size(251, 20);
+            this.txtboxNomCommercial.TabIndex = 29;
+            // 
+            // grpboxNomCommercial
+            // 
+            this.grpboxNomCommercial.Controls.Add(this.txtboxNomCommercial);
+            this.grpboxNomCommercial.Location = new System.Drawing.Point(889, 373);
+            this.grpboxNomCommercial.Name = "grpboxNomCommercial";
+            this.grpboxNomCommercial.Size = new System.Drawing.Size(292, 60);
+            this.grpboxNomCommercial.TabIndex = 30;
+            this.grpboxNomCommercial.TabStop = false;
+            this.grpboxNomCommercial.Text = "Nom Commercial";
+            this.grpboxNomCommercial.Visible = false;
+            // 
+            // btnValiderAjout
+            // 
+            this.btnValiderAjout.Location = new System.Drawing.Point(398, 598);
+            this.btnValiderAjout.Name = "btnValiderAjout";
+            this.btnValiderAjout.Size = new System.Drawing.Size(95, 38);
+            this.btnValiderAjout.TabIndex = 31;
+            this.btnValiderAjout.Text = "Valider ";
+            this.btnValiderAjout.UseVisualStyleBackColor = true;
+            this.btnValiderAjout.Visible = false;
+            this.btnValiderAjout.Click += new System.EventHandler(this.btnValiderAjout_Click);
+            // 
+            // btnValiderModif
+            // 
+            this.btnValiderModif.Location = new System.Drawing.Point(600, 598);
+            this.btnValiderModif.Name = "btnValiderModif";
+            this.btnValiderModif.Size = new System.Drawing.Size(95, 38);
+            this.btnValiderModif.TabIndex = 32;
+            this.btnValiderModif.Text = "Valider";
+            this.btnValiderModif.UseVisualStyleBackColor = true;
+            this.btnValiderModif.Visible = false;
+            this.btnValiderModif.Click += new System.EventHandler(this.btnValiderModif_Click);
             // 
             // Liste_Medicament
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1300, 722);
+            this.Controls.Add(this.btnValiderModif);
+            this.Controls.Add(this.btnValiderAjout);
+            this.Controls.Add(this.grpboxNomCommercial);
             this.Controls.Add(this.groupBoxQuantite);
             this.Controls.Add(this.groupBoxMedicamentOffert);
             this.Controls.Add(this.groupBoxRapportOffert);
@@ -187,6 +241,8 @@
             this.groupBoxQuantite.PerformLayout();
             this.groupBoxMedicamentOffert.ResumeLayout(false);
             this.groupBoxRapportOffert.ResumeLayout(false);
+            this.grpboxNomCommercial.ResumeLayout(false);
+            this.grpboxNomCommercial.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -206,5 +262,9 @@
         private System.Windows.Forms.Button buttonSupprimerOffre;
         private System.Windows.Forms.Button buttonModifierOffre;
         private System.Windows.Forms.Button buttonAjouterOffre;
+        private System.Windows.Forms.TextBox txtboxNomCommercial;
+        private System.Windows.Forms.GroupBox grpboxNomCommercial;
+        private System.Windows.Forms.Button btnValiderAjout;
+        private System.Windows.Forms.Button btnValiderModif;
     }
 }

@@ -44,7 +44,8 @@ namespace ClassePasserelle
             cmd = connexion.CreateCommand();
             //REQUETE SQL
             cmd.CommandText = "UPDATE offrir " +
-                              "SET idRapportOff = '"+ idRapport + "', idMedicamentOff = '" + idMedicament + "', quantiteOff = '" + quantite + "'; ";
+                              "SET idRapportOff = "+ idRapport + ", idMedicamentOff = " + idMedicament + ", quantiteOff = " + quantite + " " +
+                              "WHERE  idRapportOff = " + idRapport + " AND idMedicamentOff = " + idMedicament + "";
             //EXECUTION REQUETE
             MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
