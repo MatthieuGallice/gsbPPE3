@@ -35,6 +35,7 @@ namespace ClassePasserelle
         #region UPDATE
         public static void ModifMedicament(int lid, string unnomcomposition, string unecomposition, string deseffets, string unecontreindications, int lafamille)
         {
+            
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
             MySqlCommand cmd = new MySqlCommand();

@@ -77,7 +77,7 @@ namespace Formulaire
             DateTime laDate = CalendrierDateEmbauche.SelectionStart;
 
 
-
+            ClassePRapport.supprimerRapport(id);
             ClassePVisiteur.ModifVisiteur(id, nomVis, prenomVis, Adresse, "", "", CP, Ville, laDate);
             CacherBox();
             buttonModifierVisiteur.Visible = true;
