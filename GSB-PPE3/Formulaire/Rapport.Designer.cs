@@ -482,20 +482,20 @@
             // 
             // buttonRechercherMedRap
             // 
-            this.buttonRechercherMedRap.Location = new System.Drawing.Point(507, 538);
+            this.buttonRechercherMedRap.Location = new System.Drawing.Point(379, 538);
             this.buttonRechercherMedRap.Name = "buttonRechercherMedRap";
             this.buttonRechercherMedRap.Size = new System.Drawing.Size(102, 30);
-            this.buttonRechercherMedRap.TabIndex = 19;
+            this.buttonRechercherMedRap.TabIndex = 18;
             this.buttonRechercherMedRap.Text = "Rechercher Offre";
             this.buttonRechercherMedRap.UseVisualStyleBackColor = true;
             this.buttonRechercherMedRap.Click += new System.EventHandler(this.buttonRechercherMedRap_Click);
             // 
             // buttonReinitialiserMedRap
             // 
-            this.buttonReinitialiserMedRap.Location = new System.Drawing.Point(379, 538);
+            this.buttonReinitialiserMedRap.Location = new System.Drawing.Point(507, 538);
             this.buttonReinitialiserMedRap.Name = "buttonReinitialiserMedRap";
             this.buttonReinitialiserMedRap.Size = new System.Drawing.Size(102, 30);
-            this.buttonReinitialiserMedRap.TabIndex = 18;
+            this.buttonReinitialiserMedRap.TabIndex = 19;
             this.buttonReinitialiserMedRap.Text = "Réinitialiser";
             this.buttonReinitialiserMedRap.UseVisualStyleBackColor = true;
             this.buttonReinitialiserMedRap.Click += new System.EventHandler(this.buttonReinitialiserMedRap_Click);
@@ -544,7 +544,7 @@
             this.Controls.Add(this.dgvRapport);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Rapport";
-            this.Text = "Rapports";
+            this.Text = "Gestion des Rapports";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Rapport_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRapport)).EndInit();

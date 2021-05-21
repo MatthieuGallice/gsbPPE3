@@ -12,12 +12,14 @@ namespace ClasseMétiers
         private int quantite;
         private ClasseMedicament leMedicament;
         private ClasseRapport leRapport;
+        private int idRapport;
         #endregion
 
         #region Accesseur
         public int Quantite { get => quantite; set => quantite = value; }
         public ClasseMedicament LeMedicament { get => leMedicament; set => leMedicament = value; }
         public ClasseRapport LeRapport { get => leRapport; set => leRapport = value; }
+        public int IdRapport { get => idRapport; set => idRapport = value; }
 
         #endregion
 
@@ -34,6 +36,13 @@ namespace ClasseMétiers
             quantite = unequantite;
             leMedicament = unMedicament;
             LeRapport = unRapport;
+        }
+
+        public ClasseEchantillonOffert(int unequantite, ClasseMedicament unMedicament, int codeRapport)
+        {
+            quantite = unequantite;
+            leMedicament = unMedicament;
+            idRapport = codeRapport;
         }
         #endregion
     }

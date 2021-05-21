@@ -159,7 +159,7 @@ namespace Formulaire
         {
             if (dgwMedecin.RowCount != 1)
             {
-                // condition qui pour être remplis dans sélectionné une ligne dans le dgv
+                // condition qui pour être remplis dois sélectionné une ligne dans le dgv
                 if (dgwMedecin.CurrentRow.Selected)
                 {
                     // nettoye et cache les textbox et combobox
@@ -209,6 +209,10 @@ namespace Formulaire
                 {
                     MessageBox.Show("Sélectionner un médecin dans le tableau !");
                 }
+            }
+            else
+            {
+                MessageBox.Show("il n'y pas de médecin dans le tableau");
             }
         }
 
@@ -299,7 +303,11 @@ namespace Formulaire
                     cacherText();
                     nettoyer();
                 }
-            }    
+            }
+            else
+            {
+                MessageBox.Show("il n'y pas de médecin dans le tableau");
+            }
         }
 
         // fonction qui s'active au clique du button ajouter  

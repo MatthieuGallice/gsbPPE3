@@ -48,29 +48,6 @@ namespace Formulaire
             }
         }
 
-        // fonction qui remplis le dgv de med offert
-        private void chargerDgvOffert()
-        {
-            // nettoye le dgv
-            dgwListeMedicament.Rows.Clear();
-
-            // initialise une liste avec la fonction chargerLesEchantillonOffert de ClassePEchantillonOffert
-            List<ClasseEchantillonOffert> lesMedOffert = ClassePEchantillonOffert.chargerLesEchantillonOffert();
-            // foreach qui remplis le dgv grâce à la liste 
-            foreach (ClasseEchantillonOffert lesOffert in lesMedOffert)
-            {
-                // variable 
-                int numRap = lesOffert.LeRapport.Id;
-                int numMed = lesOffert.LeMedicament.Id;
-                string nomMed = lesOffert.LeMedicament.NomCommercial;
-                int numQuantite = lesOffert.Quantite;
-
-                // ajoute les éléments dans le dgv par ligne
-                dgwListeMedicament.Rows.Add(numRap, numMed, nomMed, numQuantite);
-            }
-
-        }
-
         // fonction qui remplis les combobox partie rapport
         public void remplirCombobox()
         {
@@ -235,8 +212,8 @@ namespace Formulaire
             dateTimeAJour();
 
             // partie med offert
-            chargerDgvOffert();
             remplirComboboxMedOffert();
+            clearMed();
         }
 
         // fonction au clique du button ajouter qui affiche les groupbox et le button valider ajout
@@ -349,6 +326,10 @@ namespace Formulaire
                     cacherText();
                     dateTimeAJour();
                 }
+            }
+            else
+            {
+                MessageBox.Show("il n'y pas d'élément dans le tableau");
             }
         }
 
@@ -645,7 +626,6 @@ namespace Formulaire
                 ClassePEchantillonOffert.AjoutEchantillonOffert(int.Parse(leRapport), idMedicament, int.Parse(laQuantite));
 
                 // appelle de la fonction qui remplis le dgv et qui remplis les combobox
-                chargerDgvOffert();
                 remplirComboboxMedOffert();
                 clearMed();
             }
@@ -673,9 +653,9 @@ namespace Formulaire
                     buttonValiderModifEchantillon.Visible = true;
 
                     // récupération des valeur 
-                    string codeRapport = dgvRapport.CurrentRow.Cells[0].Value.ToString();
-                    string nomMedicament = dgvRapport.CurrentRow.Cells[2].Value.ToString();
-                    string laQuantite = dgvRapport.CurrentRow.Cells[3].Value.ToString();
+                    string codeRapport = dgwListeMedicament.CurrentRow.Cells[0].Value.ToString();
+                    string nomMedicament = dgwListeMedicament.CurrentRow.Cells[2].Value.ToString();
+                    string laQuantite = dgwListeMedicament.CurrentRow.Cells[3].Value.ToString();
 
                     // placement dans les textbox et sélection dans le combobox
                     comboBoxIdOffreRapport.SelectedItem = codeRapport;
@@ -691,6 +671,10 @@ namespace Formulaire
                 {
                     MessageBox.Show("Sélectionner un rapport dans le tableau !");
                 }
+            }
+            else
+            {
+                MessageBox.Show("il n'y pas d'élément dans le tableau");
             }
         }
 
@@ -716,7 +700,7 @@ namespace Formulaire
                     ClassePEchantillonOffert.ModifEchantillonOffert(int.Parse(leRapport), idMedicament, int.Parse(laQuantite));
 
                     // appelle de la fonction qui remplis le dgv et qui remplis les combobox
-                    chargerDgvOffert();
+                    dgwListeMedicament.Rows.Clear();
                     remplirComboboxMedOffert();
                     clearMed();
                 }
@@ -739,9 +723,9 @@ namespace Formulaire
             if (dgwListeMedicament.RowCount != 1)
             {
                 // variable qui récupére les données dans les cellules du dgv 
-                int idRapport = int.Parse(dgvRapport.CurrentRow.Cells[0].Value.ToString());
-                int idMedicament = int.Parse(dgvRapport.CurrentRow.Cells[1].Value.ToString());
-                int nomMedicament = int.Parse(dgvRapport.CurrentRow.Cells[2].Value.ToString());
+                int idRapport = int.Parse(dgwListeMedicament.CurrentRow.Cells[0].Value.ToString());
+                int idMedicament = int.Parse(dgwListeMedicament.CurrentRow.Cells[1].Value.ToString());
+                string nomMedicament = dgwListeMedicament.CurrentRow.Cells[2].Value.ToString();
 
                 // condition qui active un messageBox et si valider alors suppression de l'échantillon
                 if (MessageBox.Show("êtes vous sur de vouloir supprimer l'échantillon lier au rapport numéro : " + idRapport + " comprenant le médicament intituler : " + nomMedicament + " ?", "advertissement ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
@@ -750,10 +734,14 @@ namespace Formulaire
                     ClassePEchantillonOffert.SupprimerEchantillonOffert(idRapport, idMedicament);
 
                     // appelle de la fonction qui remplis le dgv et qui remplis les combobox
-                    chargerDgvOffert();
+                    dgwListeMedicament.Rows.Clear();
                     remplirComboboxMedOffert();
                     clearMed();
-                }
+                } 
+            }
+            else
+            {
+                MessageBox.Show("il n'y pas d'élément dans le tableau");
             }
         }
 
@@ -808,10 +796,12 @@ namespace Formulaire
 
                     // initialisation d'une liste avec la fonction rechercherRapport de classePRapport
                     List<ClasseEchantillonOffert> lEchant = ClassePEchantillonOffert.rechercherRapportMedicament(leRapport, leRapportValide, leMedicament, leMedicamentValide, laQuantite);
+                    // on vide le dgw pour le remplir 
+                    dgwListeMedicament.Rows.Clear();
                     // foreach qui remplis le dgv avec la liste leRap
                     foreach (ClasseEchantillonOffert lesEchant in lEchant)
                     {
-                        string idRap = lesEchant.LeRapport.Id.ToString();
+                        string idRap = lesEchant.IdRapport.ToString();
                         string idMed = lesEchant.LeMedicament.Id.ToString();
                         string nomMed = lesEchant.LeMedicament.NomCommercial;
                         string quantiteOfferte = lesEchant.Quantite.ToString();
@@ -826,7 +816,7 @@ namespace Formulaire
         // fonction qui réinitialise le dgw des medicament offert
         private void buttonReinitialiserMedRap_Click(object sender, EventArgs e)
         {
-            chargerDgvOffert();
+            dgwListeMedicament.Rows.Clear();
             remplirComboboxMedOffert();
             clearMed();
         }

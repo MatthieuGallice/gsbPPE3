@@ -152,9 +152,10 @@ namespace ClassePasserelle
                 idMedicament = int.Parse(drr.GetString(1));
                 quantite = drr.GetInt16(2);
 
+                
                 // On récupère la liste des médicaments avec la méthode chargerLeMedicaments
                 ClasseMedicament leMedicament = ClassePMedicament.chargerLeMedicament(idMedicament);
-
+                
                 // On récupére le rapport avec l'id et la méthode chargerLeRapports
                 ClasseRapport leRapport = ClassePRapport.chargerLeRapports(idRapport);
 
@@ -262,10 +263,10 @@ namespace ClassePasserelle
                 ClasseMedicament leMedicament = ClassePMedicament.chargerLeMedicament(idMedicament);
 
                 // On récupére le rapport avec l'id
-                ClasseRapport leRapport = ClassePRapport.chargerLeRapports(idRapport);
+                //ClasseRapport leRapport = ClassePRapport.chargerLeRapports(idRapport);
 
                 // Instancie un échantillon 
-                ClasseEchantillonOffert lEchantillons = new ClasseEchantillonOffert(quantiteOffert, leMedicament, leRapport);
+                ClasseEchantillonOffert lEchantillons = new ClasseEchantillonOffert(quantiteOffert, leMedicament, idRapport);
 
                 // On ajoute à la liste
                 lesEchantillons.Add(lEchantillons);

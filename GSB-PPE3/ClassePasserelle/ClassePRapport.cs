@@ -137,7 +137,7 @@ namespace ClassePasserelle
                 ClasseMedecin leMedecin = ClassePMedecin.chargerLeMedecin(idMedecinRap);
 
                 // Instancie un échantillon 
-                List<ClasseEchantillonOffert> lesEchantillonsOfferts = ClassePEchantillonOffert.chargerLesEchantillonOffert();
+                List<ClasseEchantillonOffert> lesEchantillonsOfferts = ClassePEchantillonOffert.chargerLEchantillonOffert(idRap);
 
                 // Instancie un rapport
                 ClasseRapport unRapport = new ClasseRapport(idRap, dateRap, motifRap, bilanRap, leVisiteur, leMedecin, lesEchantillonsOfferts);

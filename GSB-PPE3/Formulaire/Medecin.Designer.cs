@@ -530,7 +530,7 @@
             this.Controls.Add(this.dgwMedecin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Medecin";
-            this.Text = "Medecins";
+            this.Text = "Gestion des Medecins";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Medecin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgwMedecin)).EndInit();
