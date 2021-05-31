@@ -76,16 +76,57 @@ namespace ClassePasserelle
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
             MySqlCommand cmd = new MySqlCommand();
+            MySqlCommand cmd2 = new MySqlCommand();
+            MySqlCommand cmd3 = new MySqlCommand();
+            MySqlCommand cmd4 = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
+            List<int> lesRapports = new List<int>();
+
             connexion.Open();
-            
+
+            cmd4 = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd4.CommandText = "SELECT `idRap` FROM `rapport` WHERE idVisiteurRap = '" + lid + "'";
+            //EXECUTION REQUETE SQL
+            MySqlDataReader drr4 = cmd4.ExecuteReader();
+
+            while (drr4.Read())
+            {
+                //ON RECUPERE LES VARIABLES
+                int idRapport = drr4.GetInt32(0);
+                lesRapports.Add(idRapport);
+            }
+            drr4.Close();
+
+
+            cmd3 = connexion.CreateCommand();
+            foreach (int idRapport in lesRapports)
+            {
+                //REQUETE SQL
+                cmd3.CommandText = "DELETE FROM offrir WHERE offrir.idRapportOff = '" + idRapport + "'";
+                //EXECUTION REQUETE SQL
+                MySqlDataReader drr3 = cmd3.ExecuteReader();
+
+                drr3.Close();
+            }
+
+
+            cmd2 = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd2.CommandText = "DELETE FROM rapport WHERE rapport.idVisiteurRap = '" + lid + "'";
+            //EXECUTION REQUETE SQL
+            MySqlDataReader drr1 = cmd2.ExecuteReader();
+
+            drr1.Close();
+
             cmd = connexion.CreateCommand();
             //REQUETE SQL
-            cmd.CommandText = "DELETE FROM visiteur WHERE visiteur.idVis = '"+ lid +"'";
+            cmd.CommandText = "DELETE FROM visiteur WHERE visiteur.idVis = '" + lid + "'";
             //EXECUTION REQUETE SQL
-            MySqlDataReader drr = cmd.ExecuteReader();
-            drr.Close();
+            MySqlDataReader drr2 = cmd.ExecuteReader();
+
+            drr2.Close();
             connexion.Close();
         }
         #endregion

@@ -97,12 +97,6 @@
     <Compile Include="Accueil.Designer.cs">
       <DependentUpon>Accueil.cs</DependentUpon>
     </Compile>
-    <Compile Include="A_Propos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="A_Propos.Designer.cs">
-      <DependentUpon>A_Propos.cs</DependentUpon>
-    </Compile>
     <Compile Include="Formulaire.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,12 +108,6 @@
     </Compile>
     <Compile Include="Gerer_Medicament.Designer.cs">
       <DependentUpon>Gerer_Medicament.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Liste_Medicament.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Liste_Medicament.Designer.cs">
-      <DependentUpon>Liste_Medicament.cs</DependentUpon>
     </Compile>
     <Compile Include="Medecin.cs">
       <SubType>Form</SubType>
@@ -149,17 +137,11 @@
     <EmbeddedResource Include="Accueil.resx">
       <DependentUpon>Accueil.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="A_propos.resx">
-      <DependentUpon>A_Propos.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Formulaire.resx">
       <DependentUpon>Formulaire.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gerer_Medicament.resx">
       <DependentUpon>Gerer_Medicament.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Liste_Medicament.resx">
-      <DependentUpon>Liste_Medicament.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Medecin.resx">
       <DependentUpon>Medecin.cs</DependentUpon>

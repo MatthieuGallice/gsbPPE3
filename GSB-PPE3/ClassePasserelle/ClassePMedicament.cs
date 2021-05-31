@@ -61,16 +61,28 @@ namespace ClassePasserelle
             //CONNEXION BDD
             MySqlConnection connexion = new MySqlConnection();
             MySqlCommand cmd = new MySqlCommand();
+            MySqlCommand cmd3 = new MySqlCommand();
             connexion.ConnectionString = ClassePConnexion.DBConnection();
 
             connexion.Open();
 
+            cmd3 = connexion.CreateCommand();
+            //REQUETE SQL
+            cmd3.CommandText = "DELETE FROM `offrir` WHERE idMedicamentOff = '" + lid + "' ";
+            //EXECUTION REQUETE SQL
+            MySqlDataReader drr3 = cmd3.ExecuteReader();
+
+            drr3.Close();
+
             cmd = connexion.CreateCommand();
             //REQUETE SQL
-            cmd.CommandText = "DELETE FROM medicament WHERE idMedicament = '"+ lid +"' ";
+            cmd.CommandText = "DELETE FROM medicament WHERE idMedicament = '" + lid + "' ";
             //EXECUTION REQUETE
             MySqlDataReader drr = cmd.ExecuteReader();
             drr.Close();
+
+            
+
             connexion.Close();
         }
         #endregion

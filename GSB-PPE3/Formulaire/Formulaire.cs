@@ -54,14 +54,6 @@ namespace Formulaire
         }
 
 
-        // affichage de à propos
-        private void aProposMenuStrip_Click(object sender, EventArgs e)
-        {
-            A_Propos AProposForm = new A_Propos();
-            AProposForm.MdiParent = this;
-            fermeForme();
-            AProposForm.Show();
-        }
 
         // méthode qui récupére la collection de formulaire et qui regarde si au moins un et ouvert et les ferme
         public void fermeForme()
@@ -90,13 +82,6 @@ namespace Formulaire
             gerer_medecinForm.Show();
         }
 
-        private void listeMédicamentMenuStrip_Click(object sender, EventArgs e)
-        {
 
-            Liste_Medicament liste_medecinForm = new Liste_Medicament();
-            liste_medecinForm.MdiParent = this;
-            fermeForme();
-            liste_medecinForm.Show();
-        }
     }
 }

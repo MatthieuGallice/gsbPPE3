@@ -34,9 +34,6 @@
             this.visiteurMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.medecinMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.medicamentMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.listeMédicamentMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.aProposMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,8 +44,7 @@
             this.rapportMenuStrip,
             this.visiteurMenuStrip,
             this.medecinMenuStrip,
-            this.medicamentMenuStrip,
-            this.aProposMenuStrip});
+            this.medicamentMenuStrip});
             this.Menu.Location = new System.Drawing.Point(0, 0);
             this.Menu.Name = "Menu";
             this.Menu.Size = new System.Drawing.Size(1284, 24);
@@ -85,32 +81,10 @@
             // 
             // medicamentMenuStrip
             // 
-            this.medicamentMenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listeMédicamentMenuStrip,
-            this.toolStripSeparator1});
             this.medicamentMenuStrip.Name = "medicamentMenuStrip";
             this.medicamentMenuStrip.Size = new System.Drawing.Size(91, 20);
             this.medicamentMenuStrip.Text = "Medicaments";
             this.medicamentMenuStrip.Click += new System.EventHandler(this.medicamentMenuStrip_Click);
-            // 
-            // listeMédicamentMenuStrip
-            // 
-            this.listeMédicamentMenuStrip.Name = "listeMédicamentMenuStrip";
-            this.listeMédicamentMenuStrip.Size = new System.Drawing.Size(202, 22);
-            this.listeMédicamentMenuStrip.Text = "Liste Médicament Offert";
-            this.listeMédicamentMenuStrip.Click += new System.EventHandler(this.listeMédicamentMenuStrip_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(199, 6);
-            // 
-            // aProposMenuStrip
-            // 
-            this.aProposMenuStrip.Name = "aProposMenuStrip";
-            this.aProposMenuStrip.Size = new System.Drawing.Size(65, 20);
-            this.aProposMenuStrip.Text = "a propos";
-            this.aProposMenuStrip.Click += new System.EventHandler(this.aProposMenuStrip_Click);
             // 
             // Formulaire
             // 
@@ -138,9 +112,6 @@
         private System.Windows.Forms.ToolStripMenuItem visiteurMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem medecinMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem medicamentMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem listeMédicamentMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem aProposMenuStrip;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 
